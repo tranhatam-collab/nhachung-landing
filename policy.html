@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chính sách — Nhà Chung</title>
+  <meta name="description" content="Chính sách quyền riêng tư, dữ liệu, bảo mật, lưu trữ và chia sẻ của Nhà Chung." />
+  <meta name="robots" content="index,follow" />
+  <style>
+    :root{ --bg:#fff; --fg:#111; --muted:#6b7280; --card:#f7f7f8; --border:#e5e7eb; --r:18px; --max:1100px; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); color:var(--fg); }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:40px 20px; }
+    .top{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap; }
+    h1{ margin:0; font-size:38px; letter-spacing:-.02em; }
+    .muted{ color:var(--muted); }
+    .pill{ display:inline-flex; gap:8px; align-items:center; padding:10px 14px; border:1px solid var(--border); border-radius:999px; background:#fff; cursor:pointer; }
+    .pill:hover{ border-color:#cbd5e1; }
+    .primary{ background:#111; color:#fff; border-color:#111; }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius:var(--r); padding:18px; margin-top:14px; }
+    .panel{ background:#fff; border:1px solid var(--border); border-radius:14px; padding:16px; margin-top:10px; }
+    h2{ margin:0 0 8px; font-size:22px; letter-spacing:-.01em; }
+    h3{ margin:0 0 6px; font-size:16px; letter-spacing:-.01em; }
+    p{ margin:0; color:var(--muted); line-height:1.7; }
+    ul{ margin:8px 0 0; padding-left:18px; color:var(--muted); line-height:1.75; }
+    .mini{ font-size:12px; color:var(--muted); }
+    .grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
+    @media (max-width:900px){ .grid{ grid-template-columns:1fr; } h1{ font-size:32px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <h1 data-i="title">Chính sách</h1>
+        <div class="muted" data-i="desc">Tài liệu công bố về quyền riêng tư, dữ liệu, lưu trữ và chia sẻ của Nhà Chung.</div>
+      </div>
+      <nav style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="pill" href="/index.html?lang=vi" id="homeBtn" data-i="home">Trang chủ</a>
+        <a class="pill" href="/member.html?lang=vi" id="memberBtn" data-i="member">Thành viên</a>
+        <a class="pill primary" href="https://app.nhachung.org/?lang=vi" id="appBtn" data-i="openApp">Mở App</a>
+        <button class="pill" id="vi">VI</button>
+        <button class="pill" id="en">EN</button>
+      </nav>
+    </header>
+
+    <section class="card">
+      <h2 data-i="p0t">Tóm tắt (đọc 30 giây)</h2>
+      <div class="grid">
+        <div class="panel">
+          <h3 data-i="p0a">Nguyên tắc</h3>
+          <ul>
+            <li data-i="p0a1">Ưu tiên an toàn, riêng tư, không thao túng.</li>
+            <li data-i="p0a2">Tối thiểu hoá dữ liệu cá nhân và ghi log.</li>
+            <li data-i="p0a3">Tệp tin lưu private, chỉ truy cập qua signed URL.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3 data-i="p0b">Cam kết</h3>
+          <ul>
+            <li data-i="p0b1">Không bán dữ liệu cá nhân cho bên thứ ba.</li>
+            <li data-i="p0b2">Không tạo feed/thuật toán gây nghiện.</li>
+            <li data-i="p0b3">Chỉ thu thập phần cần thiết để vận hành và chống lạm dụng.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="mini" style="margin-top:10px;" data-i="effective">
+        Hiệu lực: khi công bố. Có thể cập nhật; thay đổi lớn sẽ được ghi chú.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2 data-i="p1t">1) Dữ liệu nào được thu thập</h2>
+      <div class="panel">
+        <p data-i="p1d">
+          Nhà Chung vận hành theo nguyên tắc tối giản dữ liệu. Hệ thống có thể ghi nhận một số dữ liệu kỹ thuật cần thiết để chạy đăng nhập, phân quyền, chống spam/lạm dụng và xử lý thanh toán.
+        </p>
+        <ul>
+          <li data-i="p1l1">Email (khi đăng nhập hoặc khi yêu cầu nhận token).</li>
+          <li data-i="p1l2">Thông tin vai trò/quyền (viewer/editor/keeper/admin) để kiểm soát truy cập.</li>
+          <li data-i="p1l3">Sự kiện kỹ thuật tối thiểu (ví dụ: tạo bài, upload file, mua download) để chống gian lận.</li>
+          <li data-i="p1l4">Stripe: xử lý thanh toán (Nhà Chung không lưu số thẻ).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 data-i="p2t">2) File & lưu trữ (R2 + Stream)</h2>
+      <div class="panel">
+        <p data-i="p2d">
+          File tài liệu/ảnh/âm thanh được lưu ở Cloudflare R2 với chế độ private. Video có thể dùng Cloudflare Stream với signed playback. Việc truy cập file được kiểm soát bằng signed URL theo quyền.
+        </p>
+        <ul>
+          <li data-i="p2l1">R2: private, không bật public access.</li>
+          <li data-i="p2l2">Link xem có thể là signed view; link tải về là signed download.</li>
+          <li data-i="p2l3">Xem miễn phí; tải về trả phí (Stripe). Nếu không mua, không có link tải.</li>
+          <li data-i="p2l4">Giới hạn file: tối đa 5GB mỗi file (theo cấu hình dự án).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 data-i="p3t">3) Cookie & theo dõi</h2>
+      <div class="panel">
+        <p data-i="p3d">
+          Nhà Chung không dùng tracking quảng cáo. Cookie (nếu có) chủ yếu để duy trì phiên đăng nhập, chọn ngôn ngữ, và bảo vệ hệ thống khỏi lạm dụng.
+        </p>
+        <ul>
+          <li data-i="p3l1">Không chạy pixel quảng cáo.</li>
+          <li data-i="p3l2">Không bán dữ liệu hành vi.</li>
+          <li data-i="p3l3">Không tối ưu “dopamine” bằng feed.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 data-i="p4t">4) Quyền của người dùng</h2>
+      <div class="panel">
+        <p data-i="p4d">
+          Anh/chị có thể yêu cầu xem, cập nhật hoặc xoá dữ liệu tài khoản ở mức phù hợp với nghĩa vụ vận hành và pháp lý.
+        </p>
+        <ul>
+          <li data-i="p4l1">Yêu cầu xuất dữ liệu cơ bản liên quan đến tài khoản.</li>
+          <li data-i="p4l2">Yêu cầu xoá tài khoản (một số log giao dịch có thể cần lưu để chống gian lận/pháp lý).</li>
+          <li data-i="p4l3">Yêu cầu hỗ trợ bảo mật nếu nghi ngờ bị truy cập trái phép.</li>
+        </ul>
+        <p class="mini" style="margin-top:10px;">
+          Contact: <a class="pill" style="padding:6px 10px;" href="mailto:admin@nhachung.org">admin@nhachung.org</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 data-i="p5t">5) Liên hệ & thông báo</h2>
+      <div class="panel">
+        <p data-i="p5d">
+          Email hệ thống gửi từ no-reply@nhachung.org (ví dụ: token đăng nhập, thông báo giao dịch). Hỗ trợ vận hành qua admin@nhachung.org.
+        </p>
+        <ul>
+          <li data-i="p5l1">FROM_EMAIL: no-reply@nhachung.org</li>
+          <li data-i="p5l2">ADMIN_EMAIL: admin@nhachung.org</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="card">
+      <div class="mini">© <span id="y"></span> nhachung.org · <a href="/legal.html?lang=vi" id="legalBtn">Legal</a></div>
+    </footer>
+  </div>
+
+  <script>
+    const I = {
+      vi:{
+        title:"Chính sách",
+        desc:"Tài liệu công bố về quyền riêng tư, dữ liệu, lưu trữ và chia sẻ của Nhà Chung.",
+        home:"Trang chủ", member:"Thành viên", openApp:"Mở App",
+        p0t:"Tóm tắt (đọc 30 giây)", p0a:"Nguyên tắc", p0a1:"Ưu tiên an toàn, riêng tư, không thao túng.", p0a2:"Tối thiểu hoá dữ liệu cá nhân và ghi log.", p0a3:"Tệp tin lưu private, chỉ truy cập qua signed URL.",
+        p0b:"Cam kết", p0b1:"Không bán dữ liệu cá nhân cho bên thứ ba.", p0b2:"Không tạo feed/thuật toán gây nghiện.", p0b3:"Chỉ thu thập phần cần thiết để vận hành và chống lạm dụng.",
+        effective:"Hiệu lực: khi công bố. Có thể cập nhật; thay đổi lớn sẽ được ghi chú.",
+        p1t:"1) Dữ liệu nào được thu thập",
+        p1d:"Nhà Chung vận hành theo nguyên tắc tối giản dữ liệu. Hệ thống có thể ghi nhận một số dữ liệu kỹ thuật cần thiết để chạy đăng nhập, phân quyền, chống spam/lạm dụng và xử lý thanh toán.",
+        p1l1:"Email (khi đăng nhập hoặc khi yêu cầu nhận token).",
+        p1l2:"Thông tin vai trò/quyền (viewer/editor/keeper/admin) để kiểm soát truy cập.",
+        p1l3:"Sự kiện kỹ thuật tối thiểu (ví dụ: tạo bài, upload file, mua download) để chống gian lận.",
+        p1l4:"Stripe: xử lý thanh toán (Nhà Chung không lưu số thẻ).",
+        p2t:"2) File & lưu trữ (R2 + Stream)",
+        p2d:"File tài liệu/ảnh/âm thanh được lưu ở Cloudflare R2 với chế độ private. Video có thể dùng Cloudflare Stream với signed playback. Việc truy cập file được kiểm soát bằng signed URL theo quyền.",
+        p2l1:"R2: private, không bật public access.",
+        p2l2:"Link xem có thể là signed view; link tải về là signed download.",
+        p2l3:"Xem miễn phí; tải về trả phí (Stripe). Nếu không mua, không có link tải.",
+        p2l4:"Giới hạn file: tối đa 5GB mỗi file (theo cấu hình dự án).",
+        p3t:"3) Cookie & theo dõi",
+        p3d:"Nhà Chung không dùng tracking quảng cáo. Cookie (nếu có) chủ yếu để duy trì phiên đăng nhập, chọn ngôn ngữ, và bảo vệ hệ thống khỏi lạm dụng.",
+        p3l1:"Không chạy pixel quảng cáo.",
+        p3l2:"Không bán dữ liệu hành vi.",
+        p3l3:"Không tối ưu “dopamine” bằng feed.",
+        p4t:"4) Quyền của người dùng",
+        p4d:"Anh/chị có thể yêu cầu xem, cập nhật hoặc xoá dữ liệu tài khoản ở mức phù hợp với nghĩa vụ vận hành và pháp lý.",
+        p4l1:"Yêu cầu xuất dữ liệu cơ bản liên quan đến tài khoản.",
+        p4l2:"Yêu cầu xoá tài khoản (một số log giao dịch có thể cần lưu để chống gian lận/pháp lý).",
+        p4l3:"Yêu cầu hỗ trợ bảo mật nếu nghi ngờ bị truy cập trái phép.",
+        p5t:"5) Liên hệ & thông báo",
+        p5d:"Email hệ thống gửi từ no-reply@nhachung.org (ví dụ: token đăng nhập, thông báo giao dịch). Hỗ trợ vận hành qua admin@nhachung.org.",
+        p5l1:"FROM_EMAIL: no-reply@nhachung.org",
+        p5l2:"ADMIN_EMAIL: admin@nhachung.org"
+      },
+      en:{
+        title:"Policy",
+        desc:"Public policy on privacy, data handling, storage, and sharing for Nha Chung.",
+        home:"Home", member:"Member", openApp:"Open App",
+        p0t:"Summary (30 seconds)", p0a:"Principles", p0a1:"Safety, privacy, no manipulation.", p0a2:"Minimize personal data and logging.", p0a3:"Assets are private and accessed via signed URLs.",
+        p0b:"Commitments", p0b1:"We do not sell personal data to third parties.", p0b2:"No addictive feeds/algorithms.", p0b3:"We collect only what is necessary for operations and abuse prevention.",
+        effective:"Effective upon publication. Updates may occur; material changes will be noted.",
+        p1t:"1) What data we collect",
+        p1d:"Nha Chung follows a data-minimization approach. We may record limited technical data required for authentication, roles, abuse prevention, and payment processing.",
+        p1l1:"Email (for login or token delivery).",
+        p1l2:"Role/permission info (viewer/editor/keeper/admin).",
+        p1l3:"Minimal operational events (post creation, upload, paid download) to prevent abuse.",
+        p1l4:"Stripe processes payments (we do not store card numbers).",
+        p2t:"2) Files & storage (R2 + Stream)",
+        p2d:"Documents/images/audio are stored on Cloudflare R2 in private mode. Videos may use Cloudflare Stream signed playback. Access is controlled via signed URLs based on permissions.",
+        p2l1:"R2: private; public access disabled.",
+        p2l2:"Viewing may use signed view; downloading uses signed download.",
+        p2l3:"Viewing is free; downloading is paid (Stripe). Without purchase, no download link.",
+        p2l4:"File size limit: up to 5GB per file (project configuration).",
+        p3t:"3) Cookies & tracking",
+        p3d:"We do not use advertising trackers. Cookies (if any) are primarily for login sessions, language selection, and abuse protection.",
+        p3l1:"No ad pixels.",
+        p3l2:"No selling behavioral data.",
+        p3l3:"No dopamine-optimized feeds.",
+        p4t:"4) Your rights",
+        p4d:"You may request access, updates, or deletion of account data within operational and legal constraints.",
+        p4l1:"Request export of basic account data.",
+        p4l2:"Request account deletion (some transaction logs may be retained for abuse/legal reasons).",
+        p4l3:"Request security support if you suspect unauthorized access.",
+        p5t:"5) Contact & notices",
+        p5d:"System email is sent from no-reply@nhachung.org (tokens, transaction notices). Operational support via admin@nhachung.org.",
+        p5l1:"FROM_EMAIL: no-reply@nhachung.org",
+        p5l2:"ADMIN_EMAIL: admin@nhachung.org"
+      }
+    };
+
+    function qsLang(){ const u=new URL(location.href); return u.searchParams.get("lang")==="en"?"en":"vi"; }
+    function setLang(lang){
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i]").forEach(el=>{
+        const k = el.getAttribute("data-i");
+        if(I[lang][k]) el.textContent = I[lang][k];
+      });
+      document.getElementById("homeBtn").href = `/index.html?lang=${lang}`;
+      document.getElementById("memberBtn").href = `/member.html?lang=${lang}`;
+      document.getElementById("appBtn").href = `https://app.nhachung.org/?lang=${lang}`;
+      document.getElementById("legalBtn").href = `/legal.html?lang=${lang}`;
+      const u=new URL(location.href); u.searchParams.set("lang",lang); history.replaceState({}, "", u.toString());
+      document.title = (lang==="en") ? "Policy — Nha Chung" : "Chính sách — Nhà Chung";
+    }
+    document.getElementById("vi").onclick=()=>setLang("vi");
+    document.getElementById("en").onclick=()=>setLang("en");
+    document.getElementById("y").textContent=new Date().getFullYear();
+    setLang(qsLang());
+  </script>
+</body>
+</html>
