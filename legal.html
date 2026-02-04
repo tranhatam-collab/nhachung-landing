@@ -2,210 +2,41 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Legal — Nhà Chung</title>
-  <meta name="description" content="Điều khoản sử dụng, bản quyền, nội dung, thanh toán và giới hạn trách nhiệm của Nhà Chung." />
-  <meta name="robots" content="index,follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{ --bg:#fff; --fg:#111; --muted:#6b7280; --card:#f7f7f8; --border:#e5e7eb; --r:18px; --max:1100px; }
-    *{ box-sizing:border-box; }
-    body{ margin:0; font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); color:var(--fg); }
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:40px 20px; }
-    .top{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; flex-wrap:wrap; }
-    h1{ margin:0; font-size:38px; letter-spacing:-.02em; }
-    .muted{ color:var(--muted); }
-    .pill{ display:inline-flex; gap:8px; align-items:center; padding:10px 14px; border:1px solid var(--border); border-radius:999px; background:#fff; cursor:pointer; }
-    .pill:hover{ border-color:#cbd5e1; }
-    .primary{ background:#111; color:#fff; border-color:#111; }
-    .card{ background:var(--card); border:1px solid var(--border); border-radius:var(--r); padding:18px; margin-top:14px; }
-    .panel{ background:#fff; border:1px solid var(--border); border-radius:14px; padding:16px; margin-top:10px; }
-    h2{ margin:0 0 8px; font-size:22px; letter-spacing:-.01em; }
-    h3{ margin:0 0 6px; font-size:16px; letter-spacing:-.01em; }
-    p{ margin:0; color:var(--muted); line-height:1.7; }
-    ul{ margin:8px 0 0; padding-left:18px; color:var(--muted); line-height:1.75; }
-    .mini{ font-size:12px; color:var(--muted); }
-    @media (max-width:900px){ h1{ font-size:32px; } }
+    :root{--bg:#070a12;--fg:#eaf0ff;--muted:#a8b3cf;--border:rgba(255,255,255,.10);--radius:22px}
+    *{box-sizing:border-box}
+    body{margin:0;color:var(--fg);background:linear-gradient(180deg,#070a12,#0b0f19);font-family:Inter,"Noto Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 54px}
+    .card{border:1px solid var(--border);background:rgba(255,255,255,.03);border-radius:var(--radius);padding:18px}
+    h1{margin:0;font-size:32px;letter-spacing:-0.04em}
+    p{color:var(--muted);line-height:1.75}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{border:1px solid var(--border);background:rgba(255,255,255,.03);padding:10px 14px;border-radius:999px;font-weight:600}
+    .btn:hover{border-color:rgba(134,168,255,.45);background:rgba(134,168,255,.10)}
+    .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;font-size:12px;color:rgba(234,240,255,.85)}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="top">
-      <div>
-        <h1 data-i="title">Legal</h1>
-        <div class="muted" data-i="desc">Điều khoản sử dụng, bản quyền, thanh toán và giới hạn trách nhiệm.</div>
-      </div>
-      <nav style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a class="pill" href="/index.html?lang=vi" id="homeBtn" data-i="home">Trang chủ</a>
-        <a class="pill" href="/policy.html?lang=vi" id="policyBtn" data-i="policy">Chính sách</a>
-        <a class="pill primary" href="https://app.nhachung.org/?lang=vi" id="appBtn" data-i="openApp">Mở App</a>
-        <button class="pill" id="vi">VI</button>
-        <button class="pill" id="en">EN</button>
-      </nav>
-    </header>
+    <div class="card">
+      <h1>Legal</h1>
+      <p>Trang này công bố thông tin pháp lý cơ bản. Nội dung không thay thế tư vấn pháp lý/tài chính/quản trị chuyên môn.</p>
 
-    <section class="card">
-      <h2 data-i="t0">1) Điều khoản sử dụng</h2>
-      <div class="panel">
-        <p data-i="d0">Khi sử dụng nhachung.org và app.nhachung.org, anh/chị đồng ý tuân thủ các điều khoản này. Nếu không đồng ý, vui lòng ngừng sử dụng.</p>
-        <ul>
-          <li data-i="l01">Không dùng hệ thống để lừa đảo, phát tán mã độc, spam, hoặc xâm phạm quyền riêng tư người khác.</li>
-          <li data-i="l02">Không tìm cách vượt quyền, khai thác lỗ hổng, hoặc truy cập trái phép.</li>
-          <li data-i="l03">Hệ thống có quyền hạn chế/khóa tài khoản khi có dấu hiệu lạm dụng.</li>
-        </ul>
-      </div>
-    </section>
+      <p><b>Liên hệ pháp lý:</b> <span class="mono">admin@nhachung.org</span></p>
+      <p><b>Thông tin tổ chức quản lý:</b> Angel Edu Tam Foundation Inc (US). Tham khảo trang công bố: <span class="mono">angeledufund.org/contact-us</span></p>
 
-    <section class="card">
-      <h2 data-i="t1">2) Bản quyền & nội dung người dùng</h2>
-      <div class="panel">
-        <p data-i="d1">Người đăng giữ quyền sở hữu đối với nội dung của mình. Khi đăng lên Nhà Chung, người đăng cấp quyền hiển thị nội dung theo phạm vi chia sẻ đã chọn.</p>
-        <ul>
-          <li data-i="l11">Không đăng nội dung vi phạm bản quyền của bên thứ ba.</li>
-          <li data-i="l12">Không đăng nội dung trái pháp luật, kích động thù hận, hoặc xâm hại người khác.</li>
-          <li data-i="l13">Yêu cầu gỡ nội dung: liên hệ admin@nhachung.org (kèm bằng chứng).</li>
-        </ul>
+      <div class="row">
+        <a class="btn" href="index.html">Home</a>
+        <a class="btn" href="member.html">Member</a>
+        <a class="btn" href="policy.html">Policy</a>
       </div>
-    </section>
-
-    <section class="card">
-      <h2 data-i="t2">3) Thanh toán & tải về (Stripe)</h2>
-      <div class="panel">
-        <p data-i="d2">Xem nội dung có thể miễn phí. Tải file có thể yêu cầu thanh toán. Thanh toán xử lý qua Stripe; Nhà Chung không lưu thông tin thẻ.</p>
-        <ul>
-          <li data-i="l21">Tiền tệ mặc định theo ngôn ngữ: VI → VND, EN → USD.</li>
-          <li data-i="l22">Giá tối thiểu: USD $5, VND 100.000.</li>
-          <li data-i="l23">Sau khi thanh toán thành công, hệ thống cấp link tải (signed download) theo điều kiện truy cập.</li>
-          <li data-i="l24">Phí nền tảng: 5% (theo mô hình platform).</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2 data-i="t3">4) Hoàn tiền / tranh chấp</h2>
-      <div class="panel">
-        <p data-i="d3">Vì sản phẩm là nội dung số/tệp số, chính sách hoàn tiền phụ thuộc vào trạng thái cung cấp file và lỗi kỹ thuật.</p>
-        <ul>
-          <li data-i="l31">Nếu đã cấp link tải hợp lệ và tải được: thường không hoàn tiền.</li>
-          <li data-i="l32">Nếu lỗi hệ thống khiến không thể tải trong thời gian hợp lý: hỗ trợ cấp lại link hoặc hoàn tiền theo từng trường hợp.</li>
-          <li data-i="l33">Liên hệ: admin@nhachung.org kèm mã giao dịch/biên nhận Stripe.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2 data-i="t4">5) Giới hạn trách nhiệm</h2>
-      <div class="panel">
-        <p data-i="d4">Nhà Chung cung cấp hạ tầng lưu trữ/chia sẻ/marketplace. Nhà Chung không chịu trách nhiệm thay cho người đăng về tính hợp pháp của nội dung.</p>
-        <ul>
-          <li data-i="l41">Không bảo đảm hệ thống không gián đoạn tuyệt đối, nhưng ưu tiên ổn định và an toàn.</li>
-          <li data-i="l42">Không chịu trách nhiệm cho thiệt hại phát sinh từ việc người dùng sử dụng sai mục đích hoặc chia sẻ sai quyền.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2 data-i="t5">6) Liên hệ pháp lý</h2>
-      <div class="panel">
-        <p data-i="d5">Mọi yêu cầu pháp lý, khiếu nại bản quyền, hoặc thông báo quan trọng vui lòng gửi về admin@nhachung.org. Email hệ thống gửi từ no-reply@nhachung.org.</p>
-        <p class="mini" style="margin-top:10px;">
-          Admin: <a class="pill" style="padding:6px 10px;" href="mailto:admin@nhachung.org">admin@nhachung.org</a>
-          <span class="pill" style="padding:6px 10px; pointer-events:none;">FROM: no-reply@nhachung.org</span>
-        </p>
-      </div>
-    </section>
-
-    <footer class="card">
-      <div class="mini">© <span id="y"></span> nhachung.org · <a href="/policy.html?lang=vi" id="backPolicy">Policy</a></div>
-    </footer>
+    </div>
   </div>
-
-  <script>
-    const I = {
-      vi:{
-        title:"Legal",
-        desc:"Điều khoản sử dụng, bản quyền, thanh toán và giới hạn trách nhiệm.",
-        home:"Trang chủ", policy:"Chính sách", openApp:"Mở App",
-        t0:"1) Điều khoản sử dụng",
-        d0:"Khi sử dụng nhachung.org và app.nhachung.org, anh/chị đồng ý tuân thủ các điều khoản này. Nếu không đồng ý, vui lòng ngừng sử dụng.",
-        l01:"Không dùng hệ thống để lừa đảo, phát tán mã độc, spam, hoặc xâm phạm quyền riêng tư người khác.",
-        l02:"Không tìm cách vượt quyền, khai thác lỗ hổng, hoặc truy cập trái phép.",
-        l03:"Hệ thống có quyền hạn chế/khóa tài khoản khi có dấu hiệu lạm dụng.",
-        t1:"2) Bản quyền & nội dung người dùng",
-        d1:"Người đăng giữ quyền sở hữu đối với nội dung của mình. Khi đăng lên Nhà Chung, người đăng cấp quyền hiển thị nội dung theo phạm vi chia sẻ đã chọn.",
-        l11:"Không đăng nội dung vi phạm bản quyền của bên thứ ba.",
-        l12:"Không đăng nội dung trái pháp luật, kích động thù hận, hoặc xâm hại người khác.",
-        l13:"Yêu cầu gỡ nội dung: liên hệ admin@nhachung.org (kèm bằng chứng).",
-        t2:"3) Thanh toán & tải về (Stripe)",
-        d2:"Xem nội dung có thể miễn phí. Tải file có thể yêu cầu thanh toán. Thanh toán xử lý qua Stripe; Nhà Chung không lưu thông tin thẻ.",
-        l21:"Tiền tệ mặc định theo ngôn ngữ: VI → VND, EN → USD.",
-        l22:"Giá tối thiểu: USD $5, VND 100.000.",
-        l23:"Sau khi thanh toán thành công, hệ thống cấp link tải (signed download) theo điều kiện truy cập.",
-        l24:"Phí nền tảng: 5% (theo mô hình platform).",
-        t3:"4) Hoàn tiền / tranh chấp",
-        d3:"Vì sản phẩm là nội dung số/tệp số, chính sách hoàn tiền phụ thuộc vào trạng thái cung cấp file và lỗi kỹ thuật.",
-        l31:"Nếu đã cấp link tải hợp lệ và tải được: thường không hoàn tiền.",
-        l32:"Nếu lỗi hệ thống khiến không thể tải trong thời gian hợp lý: hỗ trợ cấp lại link hoặc hoàn tiền theo từng trường hợp.",
-        l33:"Liên hệ: admin@nhachung.org kèm mã giao dịch/biên nhận Stripe.",
-        t4:"5) Giới hạn trách nhiệm",
-        d4:"Nhà Chung cung cấp hạ tầng lưu trữ/chia sẻ/marketplace. Nhà Chung không chịu trách nhiệm thay cho người đăng về tính hợp pháp của nội dung.",
-        l41:"Không bảo đảm hệ thống không gián đoạn tuyệt đối, nhưng ưu tiên ổn định và an toàn.",
-        l42:"Không chịu trách nhiệm cho thiệt hại phát sinh từ việc người dùng sử dụng sai mục đích hoặc chia sẻ sai quyền.",
-        t5:"6) Liên hệ pháp lý",
-        d5:"Mọi yêu cầu pháp lý, khiếu nại bản quyền, hoặc thông báo quan trọng vui lòng gửi về admin@nhachung.org. Email hệ thống gửi từ no-reply@nhachung.org."
-      },
-      en:{
-        title:"Legal",
-        desc:"Terms of use, copyright, payments, and limitation of liability.",
-        home:"Home", policy:"Policy", openApp:"Open App",
-        t0:"1) Terms of use",
-        d0:"By using nhachung.org and app.nhachung.org, you agree to these terms. If you do not agree, please stop using the service.",
-        l01:"Do not use the system for fraud, malware, spam, or privacy violations.",
-        l02:"Do not attempt privilege escalation, vulnerability exploitation, or unauthorized access.",
-        l03:"We may restrict/suspend accounts in case of abuse.",
-        t1:"2) Copyright & user content",
-        d1:"Creators retain ownership of their content. By posting, you grant permission to display it according to the sharing scope you choose.",
-        l11:"Do not post content that infringes third-party copyright.",
-        l12:"Do not post illegal content, hate incitement, or harmful material.",
-        l13:"Takedown requests: contact admin@nhachung.org (with evidence).",
-        t2:"3) Payments & downloads (Stripe)",
-        d2:"Viewing may be free. Downloading may require payment. Payments are processed via Stripe; we do not store card data.",
-        l21:"Default currency by language: VI → VND, EN → USD.",
-        l22:"Minimum price: USD $5, VND 100,000.",
-        l23:"After successful payment, we issue a signed download link under access rules.",
-        l24:"Platform fee: 5% (platform model).",
-        t3:"4) Refunds / disputes",
-        d3:"Because products are digital files, refunds depend on delivery status and technical failure.",
-        l31:"If a valid link is delivered and works: typically non-refundable.",
-        l32:"If system failure prevents download within a reasonable time: we may reissue links or refund case-by-case.",
-        l33:"Contact admin@nhachung.org with Stripe receipt/transaction id.",
-        t4:"5) Limitation of liability",
-        d4:"Nha Chung provides infrastructure for storage/sharing/marketplace. We are not responsible for user-posted content legality.",
-        l41:"We do not guarantee zero downtime, but we prioritize safety and reliability.",
-        l42:"We are not liable for damages caused by misuse or incorrect permission sharing.",
-        t5:"6) Legal contact",
-        d5:"For legal notices, copyright complaints, or important requests: email admin@nhachung.org. System emails are sent from no-reply@nhachung.org."
-      }
-    };
-
-    function qsLang(){ const u=new URL(location.href); return u.searchParams.get("lang")==="en"?"en":"vi"; }
-    function setLang(lang){
-      document.documentElement.lang = lang;
-      document.querySelectorAll("[data-i]").forEach(el=>{
-        const k = el.getAttribute("data-i");
-        if(I[lang][k]) el.textContent = I[lang][k];
-      });
-      document.getElementById("homeBtn").href = `/index.html?lang=${lang}`;
-      document.getElementById("policyBtn").href = `/policy.html?lang=${lang}`;
-      document.getElementById("appBtn").href = `https://app.nhachung.org/?lang=${lang}`;
-      document.getElementById("backPolicy").href = `/policy.html?lang=${lang}`;
-      const u=new URL(location.href); u.searchParams.set("lang",lang); history.replaceState({}, "", u.toString());
-      document.title = "Legal — " + (lang==="en" ? "Nha Chung" : "Nhà Chung");
-    }
-    document.getElementById("vi").onclick=()=>setLang("vi");
-    document.getElementById("en").onclick=()=>setLang("en");
-    document.getElementById("y").textContent=new Date().getFullYear();
-    setLang(qsLang());
-  </script>
 </body>
 </html>
