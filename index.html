@@ -2,305 +2,527 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nhà Chung — Không gian số ưu tiên an toàn, riêng tư, không thao túng.</title>
-  <meta name="description" content="Nhà Chung là không gian số riêng tư. Xem miễn phí, tải về trả phí theo quyền. Đăng, lưu, chia sẻ nội dung bằng chứng." />
-  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nhà Chung</title>
+  <meta name="description" content="Cổng vào app.nhachung.org — không gian số ưu tiên an toàn, riêng tư, không thao túng." />
 
-  <meta property="og:title" content="Nhà Chung" />
-  <meta property="og:description" content="Không gian số ưu tiên an toàn, riêng tư, không thao túng." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/assets/hero.jpg" />
+  <!-- Font: Inter (Latin) + Noto Sans (Vietnamese) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#ffffff; --fg:#111111; --muted:#6b7280; --card:#f7f7f8; --border:#e5e7eb;
-      --shadow: 0 12px 30px rgba(0,0,0,.06);
-      --radius:18px;
-      --max:1100px;
+      --bg: #0b0f19;
+      --fg: #eaf0ff;
+      --muted:#a8b3cf;
+      --card:#0f172a;
+      --card2:#0b1224;
+      --border: rgba(255,255,255,.10);
+      --glow: rgba(140,170,255,.15);
+
+      --accent: #86a8ff;
+      --accent2:#b7f7ff;
+
+      --radius: 22px;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+
+      --hero-image: radial-gradient(1200px 600px at 75% 15%, rgba(134,168,255,.22), transparent 55%),
+                    radial-gradient(800px 500px at 20% 40%, rgba(183,247,255,.15), transparent 55%),
+                    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
     }
+
     *{ box-sizing:border-box; }
-    body{ margin:0; font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial; background:var(--bg); color:var(--fg); }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--fg);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(134,168,255,.12), transparent 60%),
+        radial-gradient(900px 650px at 85% 25%, rgba(183,247,255,.10), transparent 60%),
+        linear-gradient(180deg, #070a12, #0b0f19 40%, #070a12);
+      font-family: Inter, "Noto Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      letter-spacing: -0.01em;
+    }
+
     a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:40px 20px; }
-    .top{ display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
-    .brand{ display:flex; align-items:baseline; gap:12px; }
-    .brand h1{ margin:0; font-size:40px; letter-spacing:-.02em; }
-    .brand .tag{ color:var(--muted); font-size:14px; }
-    .nav{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-    .pill{ display:inline-flex; gap:8px; align-items:center; padding:10px 14px; border:1px solid var(--border); border-radius:999px; background:#fff; cursor:pointer; }
-    .pill:hover{ border-color:#cbd5e1; }
-    .muted{ color:var(--muted); }
-    .hero{ margin-top:22px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:linear-gradient(180deg,#fff,#fafafa); box-shadow:var(--shadow); }
-    .heroGrid{ display:grid; grid-template-columns: 1.15fr .85fr; gap:0; }
-    .heroCopy{ padding:26px; }
-    .heroCopy h2{ margin:0 0 10px; font-size:34px; letter-spacing:-.02em; }
-    .heroCopy p{ margin:0 0 12px; line-height:1.65; }
-    .heroCtas{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
-    .primary{ background:#111; color:#fff; border-color:#111; }
-    .primary:hover{ opacity:.92; }
-    .img{ width:100%; height:100%; min-height:240px; object-fit:cover; display:block; }
-    .sec{ margin-top:18px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
-    .card{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:18px; }
-    .card h3{ margin:0 0 8px; font-size:18px; letter-spacing:-.01em; }
-    .card p{ margin:0; line-height:1.6; color:var(--muted); }
-    .split{ margin-top:18px; display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
-    .panel{ background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
-    .panel .pad{ padding:18px; }
-    .panel h3{ margin:0 0 8px; font-size:20px; }
-    .list{ margin:10px 0 0; padding-left:18px; color:var(--muted); line-height:1.65; }
-    .foot{ margin-top:24px; padding-top:16px; border-top:1px solid var(--border); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-    .mini{ font-size:12px; color:var(--muted); }
-    .links{ display:flex; gap:10px; flex-wrap:wrap; }
-    .badge{ font-size:12px; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:6px 10px; background:#fff; }
-    @media (max-width:900px){
-      .heroGrid{ grid-template-columns:1fr; }
-      .sec{ grid-template-columns:1fr; }
-      .split{ grid-template-columns:1fr; }
-      .brand h1{ font-size:34px; }
-      .heroCopy h2{ font-size:28px; }
+    .wrap{ max-width: 1180px; margin:0 auto; padding: 28px 18px 54px; }
+
+    /* Top bar */
+    .top{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; flex-wrap:wrap;
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(12px);
+      background: rgba(7,10,18,.55);
+      border-bottom:1px solid var(--border);
+      padding: 14px 16px;
+      border-radius: 0 0 18px 18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
+    }
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(134,168,255,.30), rgba(183,247,255,.18));
+      border:1px solid var(--border);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+    }
+    .brandTitle{ font-weight:800; font-size: 16px; }
+    .brandSub{ color:var(--muted); font-size: 12px; margin-top:2px; }
+
+    .topRight{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .langSwitch{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 999px;
+    }
+    .langLabel{ color:var(--muted); font-size:12px; }
+    .chip{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      padding:7px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor:pointer;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); border-color: rgba(134,168,255,.45); background: rgba(134,168,255,.10); }
+    .chip.active{ border-color: rgba(134,168,255,.65); background: rgba(134,168,255,.16); }
+
+    /* Hero */
+    .hero{
+      margin-top: 18px;
+      border:1px solid var(--border);
+      background: var(--hero-image);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .heroInner{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      padding: 34px 28px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){
+      .heroInner{ grid-template-columns: 1fr; padding: 26px 18px; }
+    }
+
+    .h1{
+      font-size: 54px;
+      line-height: 1.03;
+      margin:0;
+      letter-spacing: -0.04em;
+    }
+    @media (max-width: 560px){
+      .h1{ font-size: 38px; }
+    }
+    .lead{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 70ch;
+    }
+
+    .ctaRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 18px;
+      align-items:center;
+    }
+
+    .btn{
+      position:relative;
+      display:inline-flex; gap:10px; align-items:center; justify-content:center;
+      padding: 11px 14px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
+      user-select:none;
+      font-weight:600;
+      font-size: 14px;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(134,168,255,.50);
+      background: rgba(134,168,255,.10);
+      box-shadow: 0 14px 50px rgba(0,0,0,.30);
+    }
+    .btn.primary{
+      border-color: rgba(134,168,255,.70);
+      background: linear-gradient(135deg, rgba(134,168,255,.22), rgba(183,247,255,.10));
+    }
+    .btn.primary:hover{
+      border-color: rgba(183,247,255,.75);
+      background: linear-gradient(135deg, rgba(134,168,255,.26), rgba(183,247,255,.14));
+    }
+
+    /* Tooltip (hiện khi hover) */
+    .btn[data-tip]::after{
+      content: attr(data-tip);
+      position:absolute;
+      left: 50%;
+      bottom: calc(100% + 10px);
+      transform: translateX(-50%);
+      white-space:nowrap;
+      padding: 8px 10px;
+      font-size: 12px;
+      color: var(--fg);
+      background: rgba(7,10,18,.92);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .12s ease, transform .12s ease;
+      box-shadow: 0 18px 55px rgba(0,0,0,.45);
+    }
+    .btn[data-tip]:hover::after{
+      opacity:1;
+      transform: translateX(-50%) translateY(-2px);
+    }
+
+    /* Right card */
+    .side{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(7,10,18,.35);
+      border-radius: 18px;
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      justify-content:space-between;
+    }
+    .sideTitle{ font-weight:700; font-size: 14px; color: var(--muted); letter-spacing: .02em; }
+    .sideBox{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .sideLine{ color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: 12px; color: rgba(234,240,255,.85); }
+
+    /* Sections */
+    .section{ margin-top: 18px; }
+    .grid3{
+      display:grid; gap:12px;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+    }
+    @media (max-width: 980px){ .grid3{ grid-template-columns: 1fr; } }
+
+    .card{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.20);
+    }
+    .card h3{ margin:0; font-size: 18px; letter-spacing: -0.02em; }
+    .card p{ margin:10px 0 0; color: var(--muted); line-height: 1.65; }
+
+    .split{
+      margin-top: 12px;
+      display:grid; gap:12px;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 980px){ .split{ grid-template-columns: 1fr; } }
+
+    /* Footer */
+    footer{
+      margin-top: 22px;
+      border:1px solid var(--border);
+      background: rgba(7,10,18,.40);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .footLeft{ color: var(--muted); font-size: 13px; }
+    .footLinks{ display:flex; gap:8px; flex-wrap:wrap; }
+    .link{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .link:hover{
+      transform: translateY(-1px);
+      border-color: rgba(134,168,255,.45);
+      background: rgba(134,168,255,.10);
+    }
+
+    /* Small note */
+    .note{
+      margin-top: 10px;
+      color: rgba(168,179,207,.95);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    /* Optional hero image slot */
+    .heroArt{
+      margin-top: 12px;
+      border:1px dashed rgba(255,255,255,.18);
+      background: rgba(255,255,255,.02);
+      border-radius: 18px;
+      padding: 12px;
+      color: rgba(234,240,255,.75);
+      font-size: 12px;
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <header class="top">
+    <div class="top">
       <div class="brand">
-        <h1 data-i18n="brand">Nhà Chung</h1>
-        <span class="tag" data-i18n="subtitle">Không gian số ưu tiên an toàn, riêng tư, không thao túng.</span>
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div class="brandTitle" data-i18n="brand">Nhà Chung</div>
+          <div class="brandSub" data-i18n="subtitle">Không gian số ưu tiên an toàn, riêng tư, không thao túng.</div>
+        </div>
       </div>
 
-      <nav class="nav">
-        <a class="pill" href="https://app.nhachung.org/?lang=vi" id="btnApp" data-i18n="openApp">Mở App</a>
-        <a class="pill" href="https://app.nhachung.org/login?lang=vi" id="btnLogin" data-i18n="login">Đăng nhập</a>
-        <a class="pill" href="/member.html?lang=vi" id="btnMember" data-i18n="member">Thành viên</a>
-        <button class="pill" id="langVI">VI</button>
-        <button class="pill" id="langEN">EN</button>
-      </nav>
-    </header>
+      <div class="topRight">
+        <div class="langSwitch">
+          <span class="langLabel" data-i18n="langLabel">Ngôn ngữ:</span>
+          <button class="chip active" id="btnVI" type="button">VI</button>
+          <button class="chip" id="btnEN" type="button">EN</button>
+        </div>
+        <a class="btn" href="member.html" data-tip="Trang thành viên: hướng dẫn quyền, vai trò, luồng đăng / tải.">
+          <span data-i18n="member">Thành viên</span>
+        </a>
+      </div>
+    </div>
 
     <section class="hero">
-      <div class="heroGrid">
-        <div class="heroCopy">
-          <h2 data-i18n="heroTitle">Một nơi để nội dung quan trọng không bị mất, bóp méo, hay thao túng.</h2>
-          <p class="muted" data-i18n="heroDesc">
-            Nhà Chung là “cổng vào” cho app.nhachung.org. Ở đây anh công bố rõ: nguyên tắc, vai trò, cách dùng, và luồng xem/tải.
-          </p>
-
-          <div class="heroCtas">
-            <a class="pill primary" href="https://app.nhachung.org/?lang=vi" id="ctaStart" data-i18n="ctaStart">Bắt đầu trong App</a>
-            <a class="pill" href="https://app.nhachung.org/api/health" target="_blank" rel="noopener" data-i18n="status">Trạng thái hệ thống</a>
-            <a class="pill" href="#how" data-i18n="howItWorks">Cách hoạt động</a>
+      <div class="heroInner">
+        <div>
+          <h1 class="h1" data-i18n="heroTitle">Một nơi để nội dung quan trọng không bị mất, bóp méo, hay thao túng.</h1>
+          <div class="lead" data-i18n="heroLead">
+            Nhà Chung là “cổng vào” cho app.nhachung.org. Ở đây công bố rõ: nguyên tắc, vai trò, cách dùng, và luồng xem miễn phí – tải về trả phí.
           </div>
 
-          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-            <span class="badge" data-i18n="badge1">Privacy first</span>
-            <span class="badge" data-i18n="badge2">Proof-based</span>
-            <span class="badge" data-i18n="badge3">Xem miễn phí • Tải về trả phí</span>
+          <div class="ctaRow">
+            <a class="btn primary" href="https://app.nhachung.org/?lang=vi" id="goApp" data-tip="Đi thẳng vào App để xem phòng và bài viết đã xuất bản.">
+              <span data-i18n="goApp">Bắt đầu trong App</span>
+            </a>
+
+            <a class="btn" href="https://app.nhachung.org/api/health" target="_blank" rel="noreferrer" data-tip="Kiểm tra DB/KV/Counts đang trỏ đúng environment.">
+              <span data-i18n="health">Trạng thái hệ thống</span>
+            </a>
+
+            <a class="btn" href="#how" data-tip="Giải thích rõ: xem – đăng – tải file – marketplace.">
+              <span data-i18n="how">Cách hoạt động</span>
+            </a>
           </div>
-        </div>
-        <img class="img" src="/assets/hero.jpg" alt="Nha Chung hero" />
-      </div>
-    </section>
 
-    <section class="sec" id="how">
-      <div class="card">
-        <h3 data-i18n="c1t">1) Xem nội dung</h3>
-        <p data-i18n="c1d">Ai cũng có thể vào App để xem những phòng (rooms) và bài viết đã xuất bản.</p>
-      </div>
-      <div class="card">
-        <h3 data-i18n="c2t">2) Đăng bài</h3>
-        <p data-i18n="c2d">Thành viên có quyền (editor/keeper) có thể đăng bài theo từng phòng, giữ lịch sử rõ ràng.</p>
-      </div>
-      <div class="card">
-        <h3 data-i18n="c3t">3) Tải file</h3>
-        <p data-i18n="c3d">Xem miễn phí. Tải về trả phí (Stripe). File riêng tư lưu R2, video dùng Stream signed playback.</p>
-      </div>
-    </section>
-
-    <section class="split">
-      <div class="panel">
-        <img class="img" src="/assets/overview.jpg" alt="Overview" />
-        <div class="pad">
-          <h3 data-i18n="p1t">Những gì được công bố công khai</h3>
-          <ul class="list">
-            <li data-i18n="p1l1">Nguyên tắc: an toàn, riêng tư, không thao túng.</li>
-            <li data-i18n="p1l2">Vai trò: anon, viewer, editor, keeper, admin.</li>
-            <li data-i18n="p1l3">Luồng giá trị: xem miễn phí, tải về trả phí, seller nhận tiền, platform giữ 5%.</li>
-            <li data-i18n="p1l4">Cơ chế proof/audit: ghi dấu hoạt động tối thiểu để chống gian lận (không lưu IP thô).</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="panel">
-        <img class="img" src="/assets/security.jpg" alt="Security" />
-        <div class="pad">
-          <h3 data-i18n="p2t">Điểm khác biệt</h3>
-          <ul class="list">
-            <li data-i18n="p2l1">Không feed, không thuật toán gây nghiện.</li>
-            <li data-i18n="p2l2">Nội dung có “ngữ cảnh + chứng cứ”, giảm bóp méo.</li>
-            <li data-i18n="p2l3">Tệp tin riêng tư: private storage + signed URL.</li>
-            <li data-i18n="p2l4">Chia sẻ theo link phòng/bài viết, kiểm soát theo quyền.</li>
-          </ul>
-
-          <div class="heroCtas" style="margin-top:12px;">
-            <a class="pill primary" href="https://app.nhachung.org/?lang=vi" id="ctaApp2" data-i18n="ctaOpen">Mở App ngay</a>
-            <a class="pill" href="/member.html?lang=vi" id="ctaMember2" data-i18n="ctaMember">Vào trang Thành viên</a>
+          <div class="note" data-i18n="note">
+            Ghi chú: nhachung.org chỉ là “cổng”. Mọi chức năng đăng bài, file, marketplace chạy trong App để đảm bảo quyền và log.
           </div>
+
+          <!-- Nếu muốn chèn ảnh hero thật: bỏ comment khối dưới và đặt file ở /assets/hero.jpg -->
+          <!--
+          <div class="heroArt">
+            <img src="assets/hero.jpg" alt="Nha Chung" style="width:100%;height:auto;border-radius:14px;display:block;">
+          </div>
+          -->
+        </div>
+
+        <aside class="side">
+          <div>
+            <div class="sideTitle" data-i18n="quick">Nút / đường dẫn cần có</div>
+            <div class="sideBox">
+              <div class="sideLine"><span class="mono">app.nhachung.org</span> — <span data-i18n="q1">Vào App</span></div>
+              <div class="sideLine"><span class="mono">/login</span> — <span data-i18n="q2">Đăng nhập bằng key</span></div>
+              <div class="sideLine"><span class="mono">/admin/login</span> — <span data-i18n="q3">Admin cookie</span></div>
+              <div class="sideLine"><span class="mono">/api/rooms</span> — <span data-i18n="q4">Danh sách phòng</span></div>
+              <div class="sideLine"><span class="mono">/api/health</span> — <span data-i18n="q5">Health DB/KV</span></div>
+            </div>
+          </div>
+
+          <div class="sideBox">
+            <div class="sideLine" data-i18n="flowTitle" style="font-weight:700;color:rgba(234,240,255,.92);margin-bottom:8px;">
+              Luồng “xem miễn phí – tải trả phí”
+            </div>
+            <div class="sideLine" data-i18n="flowBody">
+              Người dùng xem nội dung public miễn phí. Khi cần tải file: hệ thống tạo link ký (signed) + thanh toán Stripe cho download. Video dùng Stream signed playback.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="grid3">
+        <div class="card">
+          <h3 data-i18n="c1t">1) Xem nội dung</h3>
+          <p data-i18n="c1b">Ai cũng có thể vào App để xem những phòng (rooms) và bài viết đã xuất bản.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="c2t">2) Đăng bài</h3>
+          <p data-i18n="c2b">Thành viên có quyền (editor/keeper) đăng bài theo từng phòng, giữ lịch sử rõ ràng.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="c3t">3) Tải file</h3>
+          <p data-i18n="c3b">Xem miễn phí. Tải về trả phí (Stripe). File riêng tư lưu R2, video dùng Stream signed playback.</p>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="card">
+          <h3 data-i18n="p1t">Nguyên tắc</h3>
+          <p data-i18n="p1b">Không gamification rác. Không thao túng hành vi. Ưu tiên riêng tư, bằng chứng, và tác động dài hạn.</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="p2t">Vai trò</h3>
+          <p data-i18n="p2b">Viewer: xem. Editor: đăng & quản nội dung của mình. Keeper/Admin: quản trị hệ thống, cấp quyền, cấu hình.</p>
         </div>
       </div>
     </section>
 
-    <section class="card" style="margin-top:18px;">
-      <h3 data-i18n="routesTitle">Nút / đường dẫn cần có</h3>
-      <p class="muted" data-i18n="routesDesc">Anh đặt các nút sau để người dùng không bị lạc:</p>
-
-      <div class="sec" style="grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:12px;">
-        <a class="pill" href="https://app.nhachung.org/?lang=vi" id="lnkHome">app.nhachung.org</a>
-        <a class="pill" href="https://app.nhachung.org/login?lang=vi" id="lnkLogin">/login</a>
-        <a class="pill" href="https://app.nhachung.org/admin/login?lang=vi" id="lnkAdminLogin">/admin/login</a>
-        <a class="pill" href="https://app.nhachung.org/api/rooms" target="_blank" rel="noopener" id="lnkRooms">/api/rooms</a>
-        <a class="pill" href="https://app.nhachung.org/api/health" target="_blank" rel="noopener" id="lnkHealth">/api/health</a>
-        <a class="pill" href="/member.html?lang=vi" id="lnkMember">/member</a>
+    <!-- Footer: yêu cầu “Policy/Legal” + các nút nổi bật -->
+    <footer>
+      <div class="footLeft">
+        <span data-i18n="foot">Nhà Chung — cổng vào App. Nội dung & quyền chạy trong app.nhachung.org.</span>
       </div>
+      <div class="footLinks">
+        <a class="link" href="https://app.nhachung.org/?lang=vi" id="footApp" data-i18n="footApp">Vào App</a>
+        <a class="link" href="https://app.nhachung.org/login?lang=vi" id="footLogin" data-i18n="footLogin">Đăng nhập</a>
+        <a class="link" href="https://app.nhachung.org/admin/login?lang=vi" id="footAdmin" data-i18n="footAdmin">Admin</a>
 
-      <p class="mini" style="margin-top:12px;" data-i18n="noteSmall">
-        Ghi chú: Trang nhachung.org chỉ là “cổng”. Mọi chức năng đăng, file, marketplace chạy trong App.
-      </p>
-    </section>
-
-    <footer class="foot">
-      <div class="mini">
-        <div><b data-i18n="footerBrand">Nhà Chung</b> <span class="muted">—</span> <span data-i18n="footerLine">Không gian số ưu tiên an toàn, riêng tư, không thao túng.</span></div>
-        <div class="mini">© <span id="y"></span> nhachung.org</div>
-      </div>
-      <div class="links mini">
-        <a class="pill" href="/member.html?lang=vi" id="fMember" data-i18n="member">Thành viên</a>
-        <a class="pill" href="https://app.nhachung.org/?lang=vi" id="fApp" data-i18n="openApp">Mở App</a>
-        <a class="pill" href="mailto:admin@nhachung.org">admin@nhachung.org</a>
-        <span class="pill" style="pointer-events:none;">FROM: no-reply@nhachung.org</span>
+        <!-- 2 nút anh yêu cầu thêm: Policy/Legal -->
+        <a class="link" href="policy.html" data-i18n="policy">Policy</a>
+        <a class="link" href="legal.html" data-i18n="legal">Legal</a>
       </div>
     </footer>
   </div>
 
   <script>
+    // -------- i18n (VI/EN) --------
     const I18N = {
       vi: {
-        brand:"Nhà Chung",
-        subtitle:"Không gian số ưu tiên an toàn, riêng tư, không thao túng.",
-        openApp:"Mở App",
-        login:"Đăng nhập",
-        member:"Thành viên",
-        heroTitle:"Một nơi để nội dung quan trọng không bị mất, bóp méo, hay thao túng.",
-        heroDesc:"Nhà Chung là “cổng vào” cho app.nhachung.org. Ở đây công bố rõ: nguyên tắc, vai trò, cách dùng, và luồng xem/tải.",
-        ctaStart:"Bắt đầu trong App",
-        status:"Trạng thái hệ thống",
-        howItWorks:"Cách hoạt động",
-        badge1:"Privacy first",
-        badge2:"Proof-based",
-        badge3:"Xem miễn phí • Tải về trả phí",
-        c1t:"1) Xem nội dung",
-        c1d:"Ai cũng có thể vào App để xem những phòng (rooms) và bài viết đã xuất bản.",
-        c2t:"2) Đăng bài",
-        c2d:"Thành viên có quyền (editor/keeper) có thể đăng bài theo từng phòng, giữ lịch sử rõ ràng.",
-        c3t:"3) Tải file",
-        c3d:"Xem miễn phí. Tải về trả phí (Stripe). File riêng tư lưu R2, video dùng Stream signed playback.",
-        p1t:"Những gì được công bố công khai",
-        p1l1:"Nguyên tắc: an toàn, riêng tư, không thao túng.",
-        p1l2:"Vai trò: anon, viewer, editor, keeper, admin.",
-        p1l3:"Luồng giá trị: xem miễn phí, tải về trả phí, seller nhận tiền, platform giữ 5%.",
-        p1l4:"Cơ chế proof/audit: ghi dấu tối thiểu để chống gian lận (không lưu IP thô).",
-        p2t:"Điểm khác biệt",
-        p2l1:"Không feed, không thuật toán gây nghiện.",
-        p2l2:"Nội dung có “ngữ cảnh + chứng cứ”, giảm bóp méo.",
-        p2l3:"Tệp tin riêng tư: private storage + signed URL.",
-        p2l4:"Chia sẻ theo link phòng/bài viết, kiểm soát theo quyền.",
-        ctaOpen:"Mở App ngay",
-        ctaMember:"Vào trang Thành viên",
-        routesTitle:"Nút / đường dẫn cần có",
-        routesDesc:"Anh đặt các nút sau để người dùng không bị lạc:",
-        noteSmall:"Ghi chú: Trang nhachung.org chỉ là “cổng”. Mọi chức năng đăng, file, marketplace chạy trong App.",
-        footerBrand:"Nhà Chung",
-        footerLine:"Không gian số ưu tiên an toàn, riêng tư, không thao túng."
+        brand: "Nhà Chung",
+        subtitle: "Không gian số ưu tiên an toàn, riêng tư, không thao túng.",
+        langLabel: "Ngôn ngữ:",
+        member: "Thành viên",
+        heroTitle: "Một nơi để nội dung quan trọng không bị mất, bóp méo, hay thao túng.",
+        heroLead: "Nhà Chung là “cổng vào” cho app.nhachung.org. Ở đây công bố rõ: nguyên tắc, vai trò, cách dùng, và luồng xem miễn phí – tải về trả phí.",
+        goApp: "Bắt đầu trong App",
+        health: "Trạng thái hệ thống",
+        how: "Cách hoạt động",
+        note: "Ghi chú: nhachung.org chỉ là “cổng”. Mọi chức năng đăng bài, file, marketplace chạy trong App để đảm bảo quyền và log.",
+        quick: "Nút / đường dẫn cần có",
+        q1: "Vào App",
+        q2: "Đăng nhập bằng key",
+        q3: "Admin cookie",
+        q4: "Danh sách phòng",
+        q5: "Health DB/KV",
+        flowTitle: "Luồng “xem miễn phí – tải trả phí”",
+        flowBody: "Người dùng xem nội dung public miễn phí. Khi cần tải file: hệ thống tạo link ký (signed) + thanh toán Stripe cho download. Video dùng Stream signed playback.",
+        c1t: "1) Xem nội dung",
+        c1b: "Ai cũng có thể vào App để xem những phòng (rooms) và bài viết đã xuất bản.",
+        c2t: "2) Đăng bài",
+        c2b: "Thành viên có quyền (editor/keeper) đăng bài theo từng phòng, giữ lịch sử rõ ràng.",
+        c3t: "3) Tải file",
+        c3b: "Xem miễn phí. Tải về trả phí (Stripe). File riêng tư lưu R2, video dùng Stream signed playback.",
+        p1t: "Nguyên tắc",
+        p1b: "Không gamification rác. Không thao túng hành vi. Ưu tiên riêng tư, bằng chứng, và tác động dài hạn.",
+        p2t: "Vai trò",
+        p2b: "Viewer: xem. Editor: đăng & quản nội dung của mình. Keeper/Admin: quản trị hệ thống, cấp quyền, cấu hình.",
+        foot: "Nhà Chung — cổng vào App. Nội dung & quyền chạy trong app.nhachung.org.",
+        footApp: "Vào App",
+        footLogin: "Đăng nhập",
+        footAdmin: "Admin",
+        policy: "Policy",
+        legal: "Legal",
       },
       en: {
-        brand:"Nha Chung",
-        subtitle:"A private, safe digital space without manipulation.",
-        openApp:"Open App",
-        login:"Login",
-        member:"Member",
-        heroTitle:"A place where important content won’t be lost, twisted, or manipulated.",
-        heroDesc:"nhachung.org is the gateway to app.nhachung.org — where we publish principles, roles, usage flow, and view/download logic.",
-        ctaStart:"Start in the App",
-        status:"System status",
-        howItWorks:"How it works",
-        badge1:"Privacy first",
-        badge2:"Proof-based",
-        badge3:"View free • Pay to download",
-        c1t:"1) View content",
-        c1d:"Anyone can enter the App to view rooms and published posts.",
-        c2t:"2) Post",
-        c2d:"Members with roles (editor/keeper) can post per room with clear history.",
-        c3t:"3) Files",
-        c3d:"Viewing is free. Download is paid (Stripe). Private files in R2, video via Stream signed playback.",
-        p1t:"What we publish publicly",
-        p1l1:"Principles: safety, privacy, no manipulation.",
-        p1l2:"Roles: anon, viewer, editor, keeper, admin.",
-        p1l3:"Value flow: view free, pay to download, seller earns, platform takes 5%.",
-        p1l4:"Proof/audit: minimal logging to prevent abuse (no raw IP stored).",
-        p2t:"What’s different",
-        p2l1:"No feed. No addictive algorithm.",
-        p2l2:"Content is contextual + evidence-based.",
-        p2l3:"Private assets: private storage + signed URLs.",
-        p2l4:"Share via room/post links with permission controls.",
-        ctaOpen:"Open the App",
-        ctaMember:"Go to Member page",
-        routesTitle:"Required buttons / routes",
-        routesDesc:"Add these links so users never get lost:",
-        noteSmall:"Note: nhachung.org is only the gateway. Posting, files, and marketplace run inside the App.",
-        footerBrand:"Nha Chung",
-        footerLine:"A private, safe digital space without manipulation."
+        brand: "Nha Chung",
+        subtitle: "A private, safe digital space without manipulation.",
+        langLabel: "Language:",
+        member: "Member",
+        heroTitle: "A place where important content won’t be lost, distorted, or manipulated.",
+        heroLead: "Nha Chung is the gateway to app.nhachung.org. This page clearly states principles, roles, how to use, and the “view free – download paid” flow.",
+        goApp: "Start in App",
+        health: "System status",
+        how: "How it works",
+        note: "Note: nhachung.org is only a gateway. Posting, files, and marketplace run inside the App to preserve permissions and logs.",
+        quick: "Required links",
+        q1: "Open App",
+        q2: "Login with key",
+        q3: "Admin cookie",
+        q4: "Rooms list",
+        q5: "Health DB/KV",
+        flowTitle: "“View free – download paid” flow",
+        flowBody: "Anyone can view public content for free. For downloads: generate signed link + Stripe payment. Video uses Stream signed playback.",
+        c1t: "1) View content",
+        c1b: "Anyone can enter the App to view rooms and published posts.",
+        c2t: "2) Post",
+        c2b: "Members with permission (editor/keeper) can post per room with clear history.",
+        c3t: "3) Files",
+        c3b: "View is free. Download is paid (Stripe). Private files stored on R2, videos use Stream signed playback.",
+        p1t: "Principles",
+        p1b: "No junk gamification. No behavior manipulation. Privacy-first, proof-based, long-term impact.",
+        p2t: "Roles",
+        p2b: "Viewer: view. Editor: post & manage own content. Keeper/Admin: system governance, permissions, configuration.",
+        foot: "Nha Chung — gateway to the App. Content & permissions run on app.nhachung.org.",
+        footApp: "Open App",
+        footLogin: "Login",
+        footAdmin: "Admin",
+        policy: "Policy",
+        legal: "Legal",
       }
     };
 
-    function qsLang(){
-      const u = new URL(location.href);
-      return (u.searchParams.get("lang") === "en") ? "en" : "vi";
+    function getLang() {
+      const qs = new URLSearchParams(location.search);
+      const q = qs.get("lang");
+      const saved = localStorage.getItem("nhachung_lang");
+      const lang = (q === "en" || q === "vi") ? q : (saved === "en" ? "en" : "vi");
+      return lang;
     }
-    function setLang(lang){
+
+    function setLang(lang) {
+      localStorage.setItem("nhachung_lang", lang);
       document.documentElement.lang = lang;
-      const t = I18N[lang];
-      document.querySelectorAll("[data-i18n]").forEach(el=>{
+
+      // toggle active UI
+      document.getElementById("btnVI").classList.toggle("active", lang === "vi");
+      document.getElementById("btnEN").classList.toggle("active", lang === "en");
+
+      // apply translations
+      const dict = I18N[lang];
+      document.querySelectorAll("[data-i18n]").forEach(el => {
         const k = el.getAttribute("data-i18n");
-        if(t[k]) el.textContent = t[k];
+        if (dict[k]) el.textContent = dict[k];
       });
 
-      // update key links to keep lang consistent
-      const map = (id, href) => { const a = document.getElementById(id); if(a) a.href = href; };
-      map("btnApp", `https://app.nhachung.org/?lang=${lang}`);
-      map("btnLogin", `https://app.nhachung.org/login?lang=${lang}`);
-      map("btnMember", `/member.html?lang=${lang}`);
-      map("ctaStart", `https://app.nhachung.org/?lang=${lang}`);
-      map("ctaApp2", `https://app.nhachung.org/?lang=${lang}`);
-      map("ctaMember2", `/member.html?lang=${lang}`);
-      map("lnkMember", `/member.html?lang=${lang}`);
-      map("lnkAdminLogin", `https://app.nhachung.org/admin/login?lang=${lang}`);
-      map("fMember", `/member.html?lang=${lang}`);
-      map("fApp", `https://app.nhachung.org/?lang=${lang}`);
-
-      // write param
-      const u = new URL(location.href);
-      u.searchParams.set("lang", lang);
-      history.replaceState({}, "", u.toString());
-      document.title = (lang==="en")
-        ? "Nha Chung — A private, safe digital space without manipulation."
-        : "Nhà Chung — Không gian số ưu tiên an toàn, riêng tư, không thao túng.";
+      // update outbound links to app with lang param
+      const appLang = lang;
+      const appBase = "https://app.nhachung.org/";
+      document.getElementById("goApp").href = appBase + "?lang=" + appLang;
+      document.getElementById("footApp").href = appBase + "?lang=" + appLang;
+      document.getElementById("footLogin").href = appBase + "login?lang=" + appLang;
+      document.getElementById("footAdmin").href = appBase + "admin/login?lang=" + appLang;
     }
 
-    document.getElementById("langVI").addEventListener("click", ()=>setLang("vi"));
-    document.getElementById("langEN").addEventListener("click", ()=>setLang("en"));
-    document.getElementById("y").textContent = new Date().getFullYear();
-    setLang(qsLang());
+    // init
+    const lang = getLang();
+    setLang(lang);
+
+    document.getElementById("btnVI").addEventListener("click", () => setLang("vi"));
+    document.getElementById("btnEN").addEventListener("click", () => setLang("en"));
   </script>
 </body>
 </html>
