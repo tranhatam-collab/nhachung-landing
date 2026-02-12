@@ -1,192 +1,218 @@
-```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nhà Chung Cộng Đồng Trí Tuệ - Trang Chủ</title>
-    <style>
-        /* CSS cơ bản cho trang web */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-        }
-        nav {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        section {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .hero {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .hero h2 {
-            font-size: 2.5em;
-        }
-        .cta-button {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .cta-button:hover {
-            background-color: #218838;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        .benefits, .objectives {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-        .benefit-item, .objective-item {
-            flex: 1 1 300px;
-            margin: 10px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nhà Chung • Cổng vào app.nhachung.org</title>
+  <meta name="description" content="Không gian số ưu tiên an toàn, riêng tư, không thao túng. Xem nội dung, tham gia phòng, đăng bài và quản lý quyền truy cập trong App." />
+  <style>
+    :root{
+      --bg:#0b0f14; --card:#111826; --muted:#9aa6b2; --text:#eef2f6;
+      --line:rgba(255,255,255,.10); --soft:rgba(255,255,255,.06);
+      --brand:#38bdf8; --brand2:#a78bfa;
+      --btn:#0f172a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(56,189,248,.12), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(167,139,250,.10), transparent 55%),
+                  linear-gradient(180deg, #0b0f14, #070a0f);
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1100px; margin:0 auto; padding:28px 16px 56px}
+    header{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .logo{font-size:44px; font-weight:850; letter-spacing:-.02em}
+    .lang{display:flex; gap:8px; padding:6px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.03)}
+    .lang button{
+      border:0; background:transparent; color:var(--muted); padding:8px 12px; border-radius:999px; cursor:pointer; font-weight:650
+    }
+    .lang button.active{background:rgba(56,189,248,.14); color:var(--text)}
+    .hero{margin-top:18px; padding:22px; border:1px solid var(--line); border-radius:22px; background:rgba(17,24,38,.75)}
+    .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:18px; align-items:stretch}
+    @media (max-width:900px){ .hero-grid{grid-template-columns:1fr} }
+    h1{margin:0 0 10px; font-size:44px; letter-spacing:-.03em; line-height:1.05}
+    .sub{color:var(--muted); font-size:16px; line-height:1.55}
+    .btns{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 14px; border-radius:14px; border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      transition:.18s ease; position:relative;
+    }
+    .btn.primary{background:linear-gradient(135deg, rgba(56,189,248,.18), rgba(167,139,250,.12)); border-color:rgba(56,189,248,.35)}
+    .btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.18)}
+    .hint{position:absolute; left:10px; top:44px; width:max-content; max-width:320px;
+      padding:8px 10px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(3,7,18,.92); color:var(--muted); font-size:12px; display:none;
+    }
+    .btn:hover .hint{display:block}
+    .panel{
+      border:1px solid var(--soft); border-radius:18px; padding:16px;
+      background:rgba(255,255,255,.03);
+      display:flex; flex-direction:column; gap:10px; justify-content:space-between;
+    }
+    .k{color:var(--muted); font-size:12px}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size:12px; color:rgba(238,242,246,.9)}
+    .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px}
+    @media (max-width:900px){ .grid3{grid-template-columns:1fr} }
+    .card{border:1px solid var(--soft); border-radius:18px; padding:16px; background:rgba(255,255,255,.03)}
+    .card h3{margin:0 0 8px; font-size:16px}
+    .card p{margin:0; color:var(--muted); line-height:1.6}
+    footer{margin-top:22px; padding-top:16px; border-top:1px solid var(--soft); display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between}
+    .links{display:flex; gap:10px; flex-wrap:wrap}
+    .link{padding:10px 12px; border:1px solid var(--soft); border-radius:999px; color:var(--muted); background:rgba(255,255,255,.02)}
+    .link:hover{border-color:rgba(255,255,255,.18); color:var(--text)}
+  </style>
 </head>
 <body>
-
-    <!-- Header -->
+  <div class="wrap">
     <header>
-        <h1>DỰ ÁN NHÀ CHUNG CỘNG ĐỒNG TRÍ TUỆ</h1>
-        <p>HỆ SINH THÁI SỐNG – HỌC – LÀM – ĐẦU TƯ – KHỞI NGHIỆP CỘNG ĐỒNG</p>
+      <div class="logo" id="t_logo">Nhà Chung</div>
+      <div class="lang" aria-label="Language">
+        <button id="btn_vi" class="active">VI</button>
+        <button id="btn_en">EN</button>
+      </div>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="#home">Trang Chủ</a></li>
-            <li><a href="#vision">Tầm Nhìn</a></li>
-            <li><a href="#objectives">Mục Tiêu</a></li>
-            <li><a href="#benefits">Lợi Ích</a></li>
-            <li><a href="#contact">Liên Hệ</a></li>
-        </ul>
-    </nav>
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <h1 id="t_h1">Một nơi để nội dung quan trọng không bị mất, bóp méo, hay thao túng.</h1>
+          <div class="sub" id="t_sub">
+            Nhà Chung là “cổng vào” cho app.nhachung.org. Tại đây công bố nguyên tắc, cách dùng, và các đường dẫn chuẩn để không bị lạc.
+          </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h2>NHÀ CHUNG CỘNG ĐỒNG TRÍ TUỆ</h2>
-        <p>Community Intelligent Shared Living Ecosystem</p>
-        <a href="https://www.thanhtamfoundation.com/thanh-vien" class="cta-button">Đăng Ký Tham Gia Ngay</a>
-    </section>
+          <div class="btns">
+            <a class="btn primary" href="https://app.nhachung.org/" target="_blank" rel="noreferrer">
+              <span id="t_btn_app">Bắt đầu trong App</span>
+              <span class="hint" id="t_hint_app">Vào App để xem phòng, bài viết, file preview, mua/xem/tải theo quyền.</span>
+            </a>
 
-    <!-- Tầm Nhìn Dự Án -->
-    <section id="vision">
-        <h2 class="section-title">II. TẦM NHÌN DỰ ÁN (Vision)</h2>
-        <div class="vision-content">
-            <h3>VIỆT NAM:</h3>
-            <p>Dự án Nhà Chung Cộng Đồng Trí Tuệ hướng tới kiến tạo một hệ sinh thái sống toàn vẹn, nơi con người không chỉ có chỗ ở, mà còn có môi trường học tập, làm việc, khởi nghiệp và đầu tư bền vững cùng nhau. Đây là mô hình tái định nghĩa “nhà ở” từ tài sản cá nhân sang nền tảng phát triển con người – cộng đồng – kinh tế dài hạn.</p>
-            
-            <h3>ENGLISH:</h3>
-            <p>The Community Intelligent Shared Living Ecosystem aims to redefine housing from individual ownership to a holistic platform for living, learning, working, entrepreneurship, and long-term community investment. It is a model designed to support sustainable human development, shared prosperity, and conscious economic growth.</p>
+            <a class="btn" href="https://app.nhachung.org/login" target="_blank" rel="noreferrer">
+              <span id="t_btn_login">Đăng nhập</span>
+              <span class="hint" id="t_hint_login">Nếu báo invalid_key: xoá cookie app.nhachung.org rồi đăng nhập lại.</span>
+            </a>
+
+            <a class="btn" href="https://app.nhachung.org/admin/login" target="_blank" rel="noreferrer">
+              <span id="t_btn_admin">Admin</span>
+              <span class="hint" id="t_hint_admin">Khu quản trị (duyệt thành viên, quản lý rooms, nội dung).</span>
+            </a>
+
+            <a class="btn" href="https://app.nhachung.org/api/health" target="_blank" rel="noreferrer">
+              <span id="t_btn_health">Trạng thái hệ thống</span>
+              <span class="hint" id="t_hint_health">Kiểm tra API sống hay không.</span>
+            </a>
+          </div>
         </div>
-    </section>
 
-    <!-- Mục Tiêu Dự Án -->
-    <section id="objectives">
-        <h2 class="section-title">III. MỤC TIÊU DỰ ÁN (Project Objectives)</h2>
-        <div class="objectives">
-            <div class="objective-item">
-                <h3>VIỆT NAM:</h3>
-                <ul>
-                    <li>Xây dựng hệ thống Nhà Chung mẫu chuẩn sống – học – làm việc – đầu tư</li>
-                    <li>Phát triển cộng đồng chuyên gia, doanh nghiệp, người học và nhà đầu tư cùng đồng hành</li>
-                    <li>Tạo việc làm ổn định cho 10.000 người</li>
-                </ul>
+        <div class="panel">
+          <div>
+            <div class="k" id="t_panel_k">Các đường dẫn chuẩn</div>
+            <div class="mono">
+              app: https://app.nhachung.org/<br/>
+              login: https://app.nhachung.org/login<br/>
+              admin: https://app.nhachung.org/admin/login<br/>
+              member: https://app.nhachung.org/member<br/>
+              health: https://app.nhachung.org/api/health
             </div>
+          </div>
+          <div class="k" id="t_panel_note">Ghi chú: nhachung.org chỉ là “cổng”. Chức năng đăng, file, marketplace chạy trong App.</div>
         </div>
-    </section>
+      </div>
 
-    <!-- Lợi Ích Tham Gia -->
-    <section id="benefits">
-        <h2 class="section-title">Lợi Ích Khi Tham Gia Nhà Chung</h2>
-        <div class="benefits">
-            <div class="benefit-item">
-                <h3>Trải Nghiệm Thực Tế</h3>
-                <p>Quyền sử dụng tối đa 10 đêm trong năm, tham gia sinh hoạt cộng đồng, và chương trình học khởi động.</p>
-            </div>
-            <div class="benefit-item">
-                <h3>Đầu Tư Bền Vững</h3>
-                <p>Trở thành nhà đầu tư với quyền sở hữu, quyết định vận hành, và ưu tiên mở rộng hệ thống.</p>
-            </div>
-            <div class="benefit-item">
-                <h3>Cộng Đồng Ý Nghĩa</h3>
-                <p>Xây dựng cộng đồng kết nối, học tập, và phát triển bản thân cùng nhau.</p>
-            </div>
+      <div class="grid3">
+        <div class="card">
+          <h3 id="t_c1">1) Xem nội dung</h3>
+          <p id="t_c1p">Thành viên được duyệt thủ công mới xem được toàn bộ. Công khai chỉ preview.</p>
         </div>
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="https://www.thanhtamfoundation.com/thanh-vien" class="cta-button">Đăng Ký Trực Tiếp Tại Đây</a>
+        <div class="card">
+          <h3 id="t_c2">2) Đăng bài</h3>
+          <p id="t_c2p">Editor/Member (tuỳ room) có thể đăng. Mọi hoạt động ghi log nội bộ cho admin.</p>
         </div>
+        <div class="card">
+          <h3 id="t_c3">3) File & bán nội dung</h3>
+          <p id="t_c3p">Preview xem online. Mua để xem full và tải 1 lần (PDF hoặc EPUB) + license id + QR verify.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Liên Hệ -->
-    <section id="contact">
-        <h2 class="section-title">Liên Hệ</h2>
-        <p>Hotline: +84 849 153 426 (WhatsApp Only) - Trần Hà Tâm</p>
-        <p>Thông tin chuyển khoản: Nội dung: Họ Tên _ SĐT _ Đầu Tư Cổ Phần Nhà Chung</p>
-        <p>Website: <a href="https://www.thanhtamfoundation.com/thanh-vien">www.thanhtamfoundation.com/thanh-vien</a></p>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Nhà Chung Cộng Đồng Trí Tuệ. All rights reserved.</p>
-        <p>Developed by xAI Grok 4</p>
+      <div class="k">© <span id="t_brand">nhachung.org • Nhà Chung</span></div>
+      <div class="links">
+        <a class="link" href="/policy" id="t_policy">Policy</a>
+        <a class="link" href="/legal" id="t_legal">Legal</a>
+        <a class="link" href="https://app.nhachung.org/member" target="_blank" rel="noreferrer" id="t_member">Member</a>
+      </div>
     </footer>
+  </div>
 
+  <script>
+    const dict = {
+      vi: {
+        t_h1: "Một nơi để nội dung quan trọng không bị mất, bóp méo, hay thao túng.",
+        t_sub: "Nhà Chung là “cổng vào” cho app.nhachung.org. Tại đây công bố nguyên tắc, cách dùng, và các đường dẫn chuẩn để không bị lạc.",
+        t_btn_app: "Bắt đầu trong App",
+        t_hint_app: "Vào App để xem phòng, bài viết, file preview, mua/xem/tải theo quyền.",
+        t_btn_login: "Đăng nhập",
+        t_hint_login: "Nếu báo invalid_key: xoá cookie app.nhachung.org rồi đăng nhập lại.",
+        t_btn_admin: "Admin",
+        t_hint_admin: "Khu quản trị (duyệt thành viên, quản lý rooms, nội dung).",
+        t_btn_health: "Trạng thái hệ thống",
+        t_hint_health: "Kiểm tra API sống hay không.",
+        t_panel_k: "Các đường dẫn chuẩn",
+        t_panel_note: "Ghi chú: nhachung.org chỉ là “cổng”. Chức năng đăng, file, marketplace chạy trong App.",
+        t_c1: "1) Xem nội dung",
+        t_c1p: "Thành viên được duyệt thủ công mới xem được toàn bộ. Công khai chỉ preview.",
+        t_c2: "2) Đăng bài",
+        t_c2p: "Editor/Member (tuỳ room) có thể đăng. Mọi hoạt động ghi log nội bộ cho admin.",
+        t_c3: "3) File & bán nội dung",
+        t_c3p: "Preview xem online. Mua để xem full và tải 1 lần (PDF hoặc EPUB) + license id + QR verify.",
+        t_policy: "Policy",
+        t_legal: "Legal",
+        t_member: "Member"
+      },
+      en: {
+        t_h1: "A place where important content won’t be lost, distorted, or manipulated.",
+        t_sub: "Nhà Chung is the gateway to app.nhachung.org. This page publishes the principles, how-to, and the correct paths so you don’t get lost.",
+        t_btn_app: "Open the App",
+        t_hint_app: "Go to the App for rooms, posts, previews, purchase/view/download by rights.",
+        t_btn_login: "Log in",
+        t_hint_login: "If you see invalid_key: clear cookies for app.nhachung.org and log in again.",
+        t_btn_admin: "Admin",
+        t_hint_admin: "Admin area (approve members, manage rooms and content).",
+        t_btn_health: "System status",
+        t_hint_health: "Check API health.",
+        t_panel_k: "Canonical paths",
+        t_panel_note: "Note: nhachung.org is only the gateway. Posting/files/marketplace live in the App.",
+        t_c1: "1) View content",
+        t_c1p: "Manual approval required for full access. Public sees preview only.",
+        t_c2: "2) Publish",
+        t_c2p: "Editors/Members (per room) can publish. Activity logs are private for admins.",
+        t_c3: "3) Files & selling",
+        t_c3p: "Online preview. Purchase to view full and download once (PDF or EPUB) + license id + QR verification.",
+        t_policy: "Policy",
+        t_legal: "Legal",
+        t_member: "Member"
+      }
+    };
+
+    function setLang(lang){
+      for (const k in dict[lang]) {
+        const el = document.getElementById(k);
+        if (el) el.textContent = dict[lang][k];
+      }
+      document.getElementById("btn_vi").classList.toggle("active", lang==="vi");
+      document.getElementById("btn_en").classList.toggle("active", lang==="en");
+      document.documentElement.lang = lang;
+      localStorage.setItem("lang", lang);
+    }
+
+    document.getElementById("btn_vi").addEventListener("click", ()=>setLang("vi"));
+    document.getElementById("btn_en").addEventListener("click", ()=>setLang("en"));
+    setLang(localStorage.getItem("lang") || "vi");
+  </script>
 </body>
 </html>
-```
