@@ -4,215 +4,515 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nhà Chung • Cổng vào app.nhachung.org</title>
-  <meta name="description" content="Không gian số ưu tiên an toàn, riêng tư, không thao túng. Xem nội dung, tham gia phòng, đăng bài và quản lý quyền truy cập trong App." />
+  <meta name="description" content="Cổng vào app.nhachung.org. Công bố nguyên tắc, cách dùng, và đường dẫn chuẩn để không bị lạc." />
+  <meta name="color-scheme" content="light dark" />
   <style>
     :root{
-      --bg:#0b0f14; --card:#111826; --muted:#9aa6b2; --text:#eef2f6;
-      --line:rgba(255,255,255,.10); --soft:rgba(255,255,255,.06);
-      --brand:#38bdf8; --brand2:#a78bfa;
-      --btn:#0f172a;
+      --bg: #0b0f17;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --line: rgba(255,255,255,.12);
+      --brand: #d6b36a; /* warm gold */
+      --brand2:#9bd0ff; /* cool accent */
+      --good:#7ee787;
+      --bad:#ff7b72;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 20px;
+      --radius2: 16px;
+      --max: 1100px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f6f7fb;
+        --panel: rgba(0,0,0,.04);
+        --panel2: rgba(0,0,0,.06);
+        --text: rgba(0,0,0,.88);
+        --muted: rgba(0,0,0,.60);
+        --line: rgba(0,0,0,.10);
+        --shadow: 0 18px 60px rgba(20,20,20,.12);
+      }
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family:var(--font);
+      background:
+        radial-gradient(900px 500px at 20% -10%, rgba(214,179,106,.20), transparent 60%),
+        radial-gradient(700px 500px at 100% 20%, rgba(155,208,255,.16), transparent 60%),
+        radial-gradient(700px 500px at 40% 120%, rgba(126,231,135,.10), transparent 60%),
+        var(--bg);
       color:var(--text);
-      background: radial-gradient(1200px 600px at 20% 0%, rgba(56,189,248,.12), transparent 60%),
-                  radial-gradient(900px 500px at 90% 10%, rgba(167,139,250,.10), transparent 55%),
-                  linear-gradient(180deg, #0b0f14, #070a0f);
     }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:1100px; margin:0 auto; padding:28px 16px 56px}
-    header{display:flex; align-items:center; justify-content:space-between; gap:12px}
-    .logo{font-size:44px; font-weight:850; letter-spacing:-.02em}
-    .lang{display:flex; gap:8px; padding:6px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.03)}
-    .lang button{
-      border:0; background:transparent; color:var(--muted); padding:8px 12px; border-radius:999px; cursor:pointer; font-weight:650
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px 44px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-bottom:18px;
     }
-    .lang button.active{background:rgba(56,189,248,.14); color:var(--text)}
-    .hero{margin-top:18px; padding:22px; border:1px solid var(--line); border-radius:22px; background:rgba(17,24,38,.75)}
-    .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:18px; align-items:stretch}
-    @media (max-width:900px){ .hero-grid{grid-template-columns:1fr} }
-    h1{margin:0 0 10px; font-size:44px; letter-spacing:-.03em; line-height:1.05}
-    .sub{color:var(--muted); font-size:16px; line-height:1.55}
-    .btns{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+    .brand{
+      display:flex;align-items:flex-end;gap:10px;
+    }
+    .brand h1{margin:0;font-size:44px;letter-spacing:-.02em}
+    .brand .tag{font-size:14px;color:var(--muted);margin-bottom:6px}
+    .lang{
+      display:flex;align-items:center;gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:var(--panel);
+      backdrop-filter: blur(10px);
+    }
+    .lang span{color:var(--muted);font-size:14px}
+    .seg{
+      display:flex;gap:8px;
+      padding:4px;
+      border-radius:999px;
+      background:rgba(0,0,0,.08);
+    }
+    .seg button{
+      border:0;cursor:pointer;
+      padding:8px 12px;border-radius:999px;
+      background:transparent;color:var(--muted);
+      font-weight:600;
+    }
+    .seg button.active{
+      background:var(--panel2);
+      color:var(--text);
+      box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    }
+
+    .hero{
+      margin-top:10px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, var(--panel), transparent);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:0;
+    }
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns:1fr}
+    }
+    .heroLeft{padding:26px 22px 20px}
+    .heroTitle{
+      margin:0;
+      font-size:52px;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+    @media (max-width: 520px){
+      .brand h1{font-size:38px}
+      .heroTitle{font-size:40px}
+    }
+    .heroLead{
+      margin:12px 0 18px;
+      font-size:18px;
+      color:var(--muted);
+      line-height:1.6;
+      max-width: 56ch;
+    }
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .chip{
+      font-size:13px;color:var(--muted);
+      border:1px solid var(--line);
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
     .btn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:12px 14px; border-radius:14px; border:1px solid var(--line);
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:var(--panel);
+      color:var(--text);
+      font-weight:700;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{transform:translateY(-1px);background:var(--panel2);border-color:rgba(214,179,106,.35)}
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(214,179,106,.22), rgba(155,208,255,.14));
+      border-color:rgba(214,179,106,.35);
+    }
+    .btn small{font-weight:600;color:var(--muted)}
+    .btn .dot{width:8px;height:8px;border-radius:999px;background:var(--brand)}
+    .btn .ext{opacity:.75}
+
+    .heroRight{
+      border-left:1px solid var(--line);
+      background:
+        radial-gradient(420px 320px at 70% 30%, rgba(214,179,106,.20), transparent 62%),
+        radial-gradient(420px 320px at 30% 80%, rgba(155,208,255,.18), transparent 62%),
+        rgba(255,255,255,.02);
+      min-height: 320px;
+      position:relative;
+    }
+    @media (max-width: 920px){
+      .heroRight{border-left:0;border-top:1px solid var(--line);min-height:240px}
+    }
+    .mock{
+      position:absolute;inset:18px;
+      border-radius:var(--radius2);
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      overflow:hidden;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted);
+      text-align:center;
+      padding:18px;
+    }
+    .mock strong{color:var(--text)}
+    .mock img{
+      width:100%;height:100%;object-fit:cover;display:none;
+    }
+    .mock.hasImg img{display:block}
+    .mock.hasImg .ph{display:none}
+
+    .section{
+      margin-top:18px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:var(--panel);
+      box-shadow: 0 10px 40px rgba(0,0,0,.15);
+      overflow:hidden;
+    }
+    .section h2{
+      margin:0;
+      padding:18px 20px 10px;
+      font-size:18px;
+      color:var(--muted);
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .linksGrid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:12px;
+      padding:0 20px 18px;
+    }
+    @media (max-width: 920px){
+      .linksGrid{grid-template-columns:1fr}
+    }
+    .card{
+      border:1px solid var(--line);
       background:rgba(255,255,255,.03);
-      transition:.18s ease; position:relative;
+      border-radius:16px;
+      padding:14px;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
+      position:relative;
+      overflow:hidden;
     }
-    .btn.primary{background:linear-gradient(135deg, rgba(56,189,248,.18), rgba(167,139,250,.12)); border-color:rgba(56,189,248,.35)}
-    .btn:hover{transform:translateY(-1px); border-color:rgba(255,255,255,.18)}
-    .hint{position:absolute; left:10px; top:44px; width:max-content; max-width:320px;
-      padding:8px 10px; border-radius:12px; border:1px solid var(--line);
-      background:rgba(3,7,18,.92); color:var(--muted); font-size:12px; display:none;
+    .card:hover{transform:translateY(-1px);background:rgba(255,255,255,.06);border-color:rgba(155,208,255,.35)}
+    .card .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .card .v{margin-top:6px;font-weight:800}
+    .card .d{margin-top:8px;color:var(--muted);line-height:1.45;font-size:14px}
+    .card .hint{
+      margin-top:10px;font-size:12px;color:var(--muted);
+      display:flex;gap:10px;flex-wrap:wrap
     }
-    .btn:hover .hint{display:block}
-    .panel{
-      border:1px solid var(--soft); border-radius:18px; padding:16px;
+    .pill{
+      border:1px solid var(--line);
+      padding:6px 10px;border-radius:999px;
+      background:rgba(0,0,0,.05);
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:12px;
+      padding:0 20px 20px;
+    }
+    @media (max-width: 920px){ .steps{grid-template-columns:1fr} }
+    .step{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
       background:rgba(255,255,255,.03);
-      display:flex; flex-direction:column; gap:10px; justify-content:space-between;
     }
-    .k{color:var(--muted); font-size:12px}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size:12px; color:rgba(238,242,246,.9)}
-    .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px}
-    @media (max-width:900px){ .grid3{grid-template-columns:1fr} }
-    .card{border:1px solid var(--soft); border-radius:18px; padding:16px; background:rgba(255,255,255,.03)}
-    .card h3{margin:0 0 8px; font-size:16px}
-    .card p{margin:0; color:var(--muted); line-height:1.6}
-    footer{margin-top:22px; padding-top:16px; border-top:1px solid var(--soft); display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between}
-    .links{display:flex; gap:10px; flex-wrap:wrap}
-    .link{padding:10px 12px; border:1px solid var(--soft); border-radius:999px; color:var(--muted); background:rgba(255,255,255,.02)}
-    .link:hover{border-color:rgba(255,255,255,.18); color:var(--text)}
+    .step h3{margin:0 0 8px;font-size:18px}
+    .step p{margin:0;color:var(--muted);line-height:1.55}
+
+    footer{
+      margin-top:18px;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      color:var(--muted);
+      flex-wrap:wrap;
+    }
+    .footLinks{display:flex;gap:14px;flex-wrap:wrap}
+    .footLinks a{
+      padding:8px 10px;border-radius:12px;border:1px solid transparent;
+      transition:all .12s ease;
+    }
+    .footLinks a:hover{border-color:var(--line);background:var(--panel)}
+    .mini{font-size:12px;color:var(--muted)}
+    .statusDot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.25);display:inline-block}
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <header>
-      <div class="logo" id="t_logo">Nhà Chung</div>
-      <div class="lang" aria-label="Language">
-        <button id="btn_vi" class="active">VI</button>
-        <button id="btn_en">EN</button>
-      </div>
-    </header>
-
-    <section class="hero">
-      <div class="hero-grid">
+    <div class="topbar">
+      <div class="brand">
         <div>
-          <h1 id="t_h1">Một nơi để nội dung quan trọng không bị mất, bóp méo, hay thao túng.</h1>
-          <div class="sub" id="t_sub">
+          <h1>Nhà Chung</h1>
+          <div class="tag" data-i18n="tag">Không gian số ưu tiên an toàn, riêng tư, không thao túng.</div>
+        </div>
+      </div>
+
+      <div class="lang" aria-label="Language switcher">
+        <span data-i18n="langLabel">Ngôn ngữ:</span>
+        <div class="seg">
+          <button id="btnVI" class="active" type="button">VI</button>
+          <button id="btnEN" type="button">EN</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div class="heroGrid">
+        <div class="heroLeft">
+          <h2 class="heroTitle" data-i18n="heroTitle">Một nơi để nội dung quan trọng không bị mất, bóp méo, hay thao túng.</h2>
+          <p class="heroLead" data-i18n="heroLead">
             Nhà Chung là “cổng vào” cho app.nhachung.org. Tại đây công bố nguyên tắc, cách dùng, và các đường dẫn chuẩn để không bị lạc.
-          </div>
+          </p>
 
-          <div class="btns">
-            <a class="btn primary" href="https://app.nhachung.org/" target="_blank" rel="noreferrer">
-              <span id="t_btn_app">Bắt đầu trong App</span>
-              <span class="hint" id="t_hint_app">Vào App để xem phòng, bài viết, file preview, mua/xem/tải theo quyền.</span>
+          <div class="ctaRow">
+            <a class="btn primary" href="https://app.nhachung.org/" target="_blank" rel="noopener">
+              <span class="dot"></span>
+              <span data-i18n="ctaStart">Bắt đầu trong App</span>
+              <span class="ext">↗</span>
             </a>
-
-            <a class="btn" href="https://app.nhachung.org/login" target="_blank" rel="noreferrer">
-              <span id="t_btn_login">Đăng nhập</span>
-              <span class="hint" id="t_hint_login">Nếu báo invalid_key: xoá cookie app.nhachung.org rồi đăng nhập lại.</span>
+            <a class="btn" href="https://app.nhachung.org/api/health" target="_blank" rel="noopener">
+              <span class="statusDot"></span>
+              <span data-i18n="ctaHealth">Trạng thái hệ thống</span>
+              <small class="ext">↗</small>
             </a>
-
-            <a class="btn" href="https://app.nhachung.org/admin/login" target="_blank" rel="noreferrer">
-              <span id="t_btn_admin">Admin</span>
-              <span class="hint" id="t_hint_admin">Khu quản trị (duyệt thành viên, quản lý rooms, nội dung).</span>
-            </a>
-
-            <a class="btn" href="https://app.nhachung.org/api/health" target="_blank" rel="noreferrer">
-              <span id="t_btn_health">Trạng thái hệ thống</span>
-              <span class="hint" id="t_hint_health">Kiểm tra API sống hay không.</span>
+            <a class="btn" href="#how">
+              <span data-i18n="ctaHow">Cách hoạt động</span>
             </a>
           </div>
+
+          <div class="chips">
+            <div class="chip">Privacy-first</div>
+            <div class="chip">Proof-based</div>
+            <div class="chip" data-i18n="chipPay">Xem miễn phí • Tải về trả phí</div>
+          </div>
+
+          <p class="mini" style="margin-top:14px" data-i18n="noteInvalid">
+            Nếu đăng nhập báo <strong>invalid_key</strong>: xoá cookie/localStorage của <strong>app.nhachung.org</strong> rồi đăng nhập lại, hoặc yêu cầu gửi lại link đăng nhập mới.
+          </p>
         </div>
 
-        <div class="panel">
-          <div>
-            <div class="k" id="t_panel_k">Các đường dẫn chuẩn</div>
-            <div class="mono">
-              app: https://app.nhachung.org/<br/>
-              login: https://app.nhachung.org/login<br/>
-              admin: https://app.nhachung.org/admin/login<br/>
-              member: https://app.nhachung.org/member<br/>
-              health: https://app.nhachung.org/api/health
+        <div class="heroRight">
+          <div class="mock" id="mock">
+            <!-- Nếu có ảnh hero, bật class hasImg bằng JS (xem script) -->
+            <div class="ph">
+              <div style="max-width:420px">
+                <strong data-i18n="mockTitle">NhaChung Hero</strong><br/>
+                <span data-i18n="mockDesc">Đặt ảnh hero tại /assets/hero.jpg (hoặc .png/.webp) để trang nhìn “sang” ngay.</span>
+              </div>
             </div>
+            <img alt="Nhà Chung hero" src="/assets/hero.jpg" onerror="this.closest('#mock').classList.remove('hasImg')" />
           </div>
-          <div class="k" id="t_panel_note">Ghi chú: nhachung.org chỉ là “cổng”. Chức năng đăng, file, marketplace chạy trong App.</div>
         </div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-top:18px">
+      <h2 data-i18n="navTitle">Nút / đường dẫn cần có</h2>
+      <div class="linksGrid">
+        <a class="card" href="https://app.nhachung.org/" target="_blank" rel="noopener">
+          <div class="k">app.nhachung.org</div>
+          <div class="v" data-i18n="navApp">Vào App</div>
+          <div class="d" data-i18n="navAppDesc">Xem phòng, bài viết, file preview, mua/xem/tải theo quyền.</div>
+          <div class="hint"><span class="pill">Public: preview</span><span class="pill">Member: full</span></div>
+        </a>
+
+        <a class="card" href="https://app.nhachung.org/login" target="_blank" rel="noopener">
+          <div class="k">/login</div>
+          <div class="v" data-i18n="navLogin">Đăng nhập</div>
+          <div class="d" data-i18n="navLoginDesc">Magic link qua email. Nếu lỗi token cũ: xoá cookie rồi thử lại.</div>
+          <div class="hint"><span class="pill">Email</span><span class="pill">Private</span></div>
+        </a>
+
+        <a class="card" href="https://app.nhachung.org/admin/login" target="_blank" rel="noopener">
+          <div class="k">/admin/login</div>
+          <div class="v" data-i18n="navAdmin">Admin</div>
+          <div class="d" data-i18n="navAdminDesc">Duyệt thành viên, quản lý rooms, nội dung, marketplace.</div>
+          <div class="hint"><span class="pill">Allowlist IP</span><span class="pill">Admin token</span></div>
+        </a>
+
+        <a class="card" href="https://app.nhachung.org/member" target="_blank" rel="noopener">
+          <div class="k">/member</div>
+          <div class="v" data-i18n="navMember">Khu thành viên</div>
+          <div class="d" data-i18n="navMemberDesc">Vào dashboard thành viên để xem/chia sẻ/bán theo quyền.</div>
+          <div class="hint"><span class="pill">Approved only</span><span class="pill">Share: internal/public</span></div>
+        </a>
+
+        <a class="card" href="https://app.nhachung.org/api/health" target="_blank" rel="noopener">
+          <div class="k">/api/health</div>
+          <div class="v" data-i18n="navHealth">System health</div>
+          <div class="d" data-i18n="navHealthDesc">Kiểm tra API sống hay không.</div>
+          <div class="hint"><span class="pill">JSON</span><span class="pill">Status</span></div>
+        </a>
+
+        <a class="card" href="/member.html">
+          <div class="k">nhachung.org</div>
+          <div class="v" data-i18n="navGate">Trang trung chuyển</div>
+          <div class="d" data-i18n="navGateDesc">Nếu người dùng bị lạc, quay về đây rồi đi tiếp.</div>
+          <div class="hint"><span class="pill">Gate</span><span class="pill">Docs</span></div>
+        </a>
       </div>
 
-      <div class="grid3">
-        <div class="card">
-          <h3 id="t_c1">1) Xem nội dung</h3>
-          <p id="t_c1p">Thành viên được duyệt thủ công mới xem được toàn bộ. Công khai chỉ preview.</p>
+      <div class="mini" style="padding:0 20px 18px" data-i18n="navNote">
+        Ghi chú: nhachung.org chỉ là “cổng”. Mọi chức năng đăng bài, file, marketplace chạy trong App.
+      </div>
+    </div>
+
+    <div class="section" id="how">
+      <h2 data-i18n="howTitle">Cách hoạt động</h2>
+      <div class="steps">
+        <div class="step">
+          <h3 data-i18n="s1">1) Xem nội dung</h3>
+          <p data-i18n="s1d">Công khai chỉ preview. Thành viên được admin duyệt thủ công mới xem được toàn bộ.</p>
         </div>
-        <div class="card">
-          <h3 id="t_c2">2) Đăng bài</h3>
-          <p id="t_c2p">Editor/Member (tuỳ room) có thể đăng. Mọi hoạt động ghi log nội bộ cho admin.</p>
+        <div class="step">
+          <h3 data-i18n="s2">2) Đăng bài</h3>
+          <p data-i18n="s2d">Member/Editor (tuỳ room) có thể đăng. Mọi hoạt động ghi log nội bộ cho admin.</p>
         </div>
-        <div class="card">
-          <h3 id="t_c3">3) File & bán nội dung</h3>
-          <p id="t_c3p">Preview xem online. Mua để xem full và tải 1 lần (PDF hoặc EPUB) + license id + QR verify.</p>
+        <div class="step">
+          <h3 data-i18n="s3">3) File & bán nội dung</h3>
+          <p data-i18n="s3d">Xem online bằng preview. Mua để xem full + tải 1 lần (chọn PDF hoặc EPUB) kèm license id + QR verify.</p>
         </div>
       </div>
-    </section>
+    </div>
 
     <footer>
-      <div class="k">© <span id="t_brand">nhachung.org • Nhà Chung</span></div>
-      <div class="links">
-        <a class="link" href="/policy" id="t_policy">Policy</a>
-        <a class="link" href="/legal" id="t_legal">Legal</a>
-        <a class="link" href="https://app.nhachung.org/member" target="_blank" rel="noreferrer" id="t_member">Member</a>
+      <div class="mini">© <span id="y"></span> nhachung.org • Nhà Chung</div>
+      <div class="footLinks">
+        <a href="/policy.html" data-i18n="footPolicy">Policy</a>
+        <a href="/legal.html" data-i18n="footLegal">Legal</a>
+        <a href="https://app.nhachung.org/member" target="_blank" rel="noopener">Member ↗</a>
       </div>
     </footer>
   </div>
 
   <script>
-    const dict = {
+    const I18N = {
       vi: {
-        t_h1: "Một nơi để nội dung quan trọng không bị mất, bóp méo, hay thao túng.",
-        t_sub: "Nhà Chung là “cổng vào” cho app.nhachung.org. Tại đây công bố nguyên tắc, cách dùng, và các đường dẫn chuẩn để không bị lạc.",
-        t_btn_app: "Bắt đầu trong App",
-        t_hint_app: "Vào App để xem phòng, bài viết, file preview, mua/xem/tải theo quyền.",
-        t_btn_login: "Đăng nhập",
-        t_hint_login: "Nếu báo invalid_key: xoá cookie app.nhachung.org rồi đăng nhập lại.",
-        t_btn_admin: "Admin",
-        t_hint_admin: "Khu quản trị (duyệt thành viên, quản lý rooms, nội dung).",
-        t_btn_health: "Trạng thái hệ thống",
-        t_hint_health: "Kiểm tra API sống hay không.",
-        t_panel_k: "Các đường dẫn chuẩn",
-        t_panel_note: "Ghi chú: nhachung.org chỉ là “cổng”. Chức năng đăng, file, marketplace chạy trong App.",
-        t_c1: "1) Xem nội dung",
-        t_c1p: "Thành viên được duyệt thủ công mới xem được toàn bộ. Công khai chỉ preview.",
-        t_c2: "2) Đăng bài",
-        t_c2p: "Editor/Member (tuỳ room) có thể đăng. Mọi hoạt động ghi log nội bộ cho admin.",
-        t_c3: "3) File & bán nội dung",
-        t_c3p: "Preview xem online. Mua để xem full và tải 1 lần (PDF hoặc EPUB) + license id + QR verify.",
-        t_policy: "Policy",
-        t_legal: "Legal",
-        t_member: "Member"
+        tag: "Không gian số ưu tiên an toàn, riêng tư, không thao túng.",
+        langLabel: "Ngôn ngữ:",
+        heroTitle: "Một nơi để nội dung quan trọng không bị mất, bóp méo, hay thao túng.",
+        heroLead: "Nhà Chung là “cổng vào” cho app.nhachung.org. Tại đây công bố nguyên tắc, cách dùng, và các đường dẫn chuẩn để không bị lạc.",
+        ctaStart: "Bắt đầu trong App",
+        ctaHealth: "Trạng thái hệ thống",
+        ctaHow: "Cách hoạt động",
+        chipPay: "Xem miễn phí • Tải về trả phí",
+        noteInvalid: "Nếu đăng nhập báo invalid_key: xoá cookie/localStorage của app.nhachung.org rồi đăng nhập lại, hoặc yêu cầu gửi lại link đăng nhập mới.",
+        mockTitle:"NhaChung Hero",
+        mockDesc:"Đặt ảnh hero tại /assets/hero.jpg (hoặc .png/.webp) để trang nhìn “sang” ngay.",
+        navTitle:"Nút / đường dẫn cần có",
+        navApp:"Vào App",
+        navAppDesc:"Xem phòng, bài viết, file preview, mua/xem/tải theo quyền.",
+        navLogin:"Đăng nhập",
+        navLoginDesc:"Magic link qua email. Nếu lỗi token cũ: xoá cookie rồi thử lại.",
+        navAdmin:"Admin",
+        navAdminDesc:"Duyệt thành viên, quản lý rooms, nội dung, marketplace.",
+        navMember:"Khu thành viên",
+        navMemberDesc:"Vào dashboard thành viên để xem/chia sẻ/bán theo quyền.",
+        navHealth:"System health",
+        navHealthDesc:"Kiểm tra API sống hay không.",
+        navGate:"Trang trung chuyển",
+        navGateDesc:"Nếu người dùng bị lạc, quay về đây rồi đi tiếp.",
+        navNote:"Ghi chú: nhachung.org chỉ là “cổng”. Mọi chức năng đăng bài, file, marketplace chạy trong App.",
+        howTitle:"Cách hoạt động",
+        s1:"1) Xem nội dung",
+        s1d:"Công khai chỉ preview. Thành viên được admin duyệt thủ công mới xem được toàn bộ.",
+        s2:"2) Đăng bài",
+        s2d:"Member/Editor (tuỳ room) có thể đăng. Mọi hoạt động ghi log nội bộ cho admin.",
+        s3:"3) File & bán nội dung",
+        s3d:"Xem online bằng preview. Mua để xem full + tải 1 lần (chọn PDF hoặc EPUB) kèm license id + QR verify.",
+        footPolicy:"Policy",
+        footLegal:"Legal"
       },
       en: {
-        t_h1: "A place where important content won’t be lost, distorted, or manipulated.",
-        t_sub: "Nhà Chung is the gateway to app.nhachung.org. This page publishes the principles, how-to, and the correct paths so you don’t get lost.",
-        t_btn_app: "Open the App",
-        t_hint_app: "Go to the App for rooms, posts, previews, purchase/view/download by rights.",
-        t_btn_login: "Log in",
-        t_hint_login: "If you see invalid_key: clear cookies for app.nhachung.org and log in again.",
-        t_btn_admin: "Admin",
-        t_hint_admin: "Admin area (approve members, manage rooms and content).",
-        t_btn_health: "System status",
-        t_hint_health: "Check API health.",
-        t_panel_k: "Canonical paths",
-        t_panel_note: "Note: nhachung.org is only the gateway. Posting/files/marketplace live in the App.",
-        t_c1: "1) View content",
-        t_c1p: "Manual approval required for full access. Public sees preview only.",
-        t_c2: "2) Publish",
-        t_c2p: "Editors/Members (per room) can publish. Activity logs are private for admins.",
-        t_c3: "3) Files & selling",
-        t_c3p: "Online preview. Purchase to view full and download once (PDF or EPUB) + license id + QR verification.",
-        t_policy: "Policy",
-        t_legal: "Legal",
-        t_member: "Member"
+        tag: "A digital space that prioritizes safety, privacy, and non-manipulation.",
+        langLabel: "Language:",
+        heroTitle: "A place where important content won’t be lost, distorted, or manipulated.",
+        heroLead: "Nhà Chung is the gateway to app.nhachung.org. This page publishes principles, usage flow, and official links so people don’t get lost.",
+        ctaStart: "Start in the App",
+        ctaHealth: "System status",
+        ctaHow: "How it works",
+        chipPay: "Free preview • Paid download",
+        noteInvalid: "If login shows invalid_key: clear cookies/localStorage for app.nhachung.org and request a fresh login link.",
+        mockTitle:"NhaChung Hero",
+        mockDesc:"Place a hero image at /assets/hero.jpg (or .png/.webp) for a premium look.",
+        navTitle:"Essential links",
+        navApp:"Open the App",
+        navAppDesc:"Browse rooms, posts, file previews, purchase/view/download by access rights.",
+        navLogin:"Login",
+        navLoginDesc:"Email magic link. If token is old: clear cookies and retry.",
+        navAdmin:"Admin",
+        navAdminDesc:"Approve members, manage rooms, content, marketplace.",
+        navMember:"Member area",
+        navMemberDesc:"Member dashboard for viewing, sharing, selling based on permissions.",
+        navHealth:"System health",
+        navHealthDesc:"Check if the API is alive.",
+        navGate:"Back to gateway",
+        navGateDesc:"If users get lost, return here and continue.",
+        navNote:"Note: nhachung.org is only the gateway. Posting, files, and marketplace run inside the App.",
+        howTitle:"How it works",
+        s1:"1) View content",
+        s1d:"Public sees previews only. Full access requires manual admin approval.",
+        s2:"2) Publish",
+        s2d:"Member/Editor (per room policy) can publish. All actions are logged internally for admin.",
+        s3:"3) Files & selling",
+        s3d:"Preview online. Purchase to unlock full viewing + one-time download (choose PDF or EPUB) with license id + QR verification.",
+        footPolicy:"Policy",
+        footLegal:"Legal"
       }
     };
 
+    const y = new Date().getFullYear();
+    document.getElementById("y").textContent = y;
+
+    const btnVI = document.getElementById("btnVI");
+    const btnEN = document.getElementById("btnEN");
+
     function setLang(lang){
-      for (const k in dict[lang]) {
-        const el = document.getElementById(k);
-        if (el) el.textContent = dict[lang][k];
-      }
-      document.getElementById("btn_vi").classList.toggle("active", lang==="vi");
-      document.getElementById("btn_en").classList.toggle("active", lang==="en");
-      document.documentElement.lang = lang;
-      localStorage.setItem("lang", lang);
+      document.documentElement.lang = lang === "en" ? "en" : "vi";
+      btnVI.classList.toggle("active", lang === "vi");
+      btnEN.classList.toggle("active", lang === "en");
+
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const k = el.getAttribute("data-i18n");
+        if (I18N[lang] && I18N[lang][k]) el.textContent = I18N[lang][k];
+      });
+
+      localStorage.setItem("NHACHUNG_LANG", lang);
     }
 
-    document.getElementById("btn_vi").addEventListener("click", ()=>setLang("vi"));
-    document.getElementById("btn_en").addEventListener("click", ()=>setLang("en"));
-    setLang(localStorage.getItem("lang") || "vi");
+    btnVI.addEventListener("click", ()=>setLang("vi"));
+    btnEN.addEventListener("click", ()=>setLang("en"));
+
+    // hero image auto-detect
+    const mock = document.getElementById("mock");
+    const img = mock.querySelector("img");
+    img.onload = ()=>mock.classList.add("hasImg");
+
+    // init lang
+    const saved = localStorage.getItem("NHACHUNG_LANG");
+    setLang(saved === "en" ? "en" : "vi");
   </script>
 </body>
 </html>
