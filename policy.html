@@ -1,47 +1,44 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Policy — Nhà Chung</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Policy • Nhà Chung</title>
+  <meta name="description" content="Chính sách sử dụng và quyền riêng tư cho Nhà Chung."/>
   <style>
-    :root{--bg:#070a12;--fg:#eaf0ff;--muted:#a8b3cf;--border:rgba(255,255,255,.10);--radius:22px}
-    *{box-sizing:border-box}
-    body{margin:0;color:var(--fg);background:linear-gradient(180deg,#070a12,#0b0f19);font-family:Inter,"Noto Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial}
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 54px}
-    .card{border:1px solid var(--border);background:rgba(255,255,255,.03);border-radius:var(--radius);padding:18px}
-    h1{margin:0;font-size:32px;letter-spacing:-0.04em}
-    p,li{color:var(--muted);line-height:1.75}
-    ul{margin:10px 0 0;padding-left:18px}
-    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .btn{border:1px solid var(--border);background:rgba(255,255,255,.03);padding:10px 14px;border-radius:999px;font-weight:600}
-    .btn:hover{border-color:rgba(134,168,255,.45);background:rgba(134,168,255,.10)}
-    .muted{color:var(--muted)}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;background:#0b0f17;color:rgba(255,255,255,.92)}
+    .wrap{max-width:920px;margin:0 auto;padding:28px 18px 44px}
+    a{color:inherit}
+    .card{border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px;background:rgba(255,255,255,.06)}
+    h1{margin:0 0 10px;font-size:34px}
+    h2{margin:18px 0 8px;font-size:18px;color:rgba(255,255,255,.72);text-transform:uppercase;letter-spacing:.08em}
+    p{margin:10px 0;color:rgba(255,255,255,.74);line-height:1.65}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+    .btn{display:inline-block;border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none}
   </style>
 </head>
 <body>
   <div class="wrap">
+    <div class="top">
+      <a class="btn" href="/">← nhachung.org</a>
+      <a class="btn" href="https://app.nhachung.org/" target="_blank" rel="noopener">app.nhachung.org ↗</a>
+    </div>
+
     <div class="card">
       <h1>Policy</h1>
-      <p class="muted">Chính sách vận hành cốt lõi của Nhà Chung và App.</p>
+      <p>nhachung.org là “cổng vào”. Các chức năng tài khoản, nội dung, file, marketplace vận hành trong app.nhachung.org.</p>
 
-      <ul>
-        <li><b>Privacy first:</b> dữ liệu và file ưu tiên riêng tư, hạn chế lộ danh tính.</li>
-        <li><b>Proof-based:</b> nội dung quan trọng đi kèm bằng chứng (khi cần) và có log thay đổi.</li>
-        <li><b>No manipulation:</b> không gamification rác, không cơ chế gây nghiện.</li>
-        <li><b>View free – download paid:</b> xem/stream miễn phí; tải file là hành động có kiểm soát, có thể yêu cầu thanh toán.</li>
-        <li><b>Abuse control:</b> có quyền khóa key/tài khoản vi phạm, chặn spam, ngăn lạm dụng tải file.</li>
-      </ul>
+      <h2>Privacy</h2>
+      <p>Ưu tiên quyền riêng tư. Công khai chỉ preview. Thành viên được duyệt thủ công mới xem nội dung đầy đủ.</p>
 
-      <div class="row">
-        <a class="btn" href="index.html">Home</a>
-        <a class="btn" href="member.html">Member</a>
-        <a class="btn" href="legal.html">Legal</a>
-      </div>
+      <h2>Content & Access</h2>
+      <p>Quyền xem, chia sẻ, bán nội dung do chính sách từng phòng (room) quyết định và do admin duyệt.</p>
+
+      <h2>Files & Purchases</h2>
+      <p>Nội dung số có thể xem online. Tải file có thể là quyền trả phí. Ebook cho phép tải 1 lần (chọn PDF hoặc EPUB) kèm license id + QR verify.</p>
+
+      <h2>Security</h2>
+      <p>Nếu đăng nhập báo invalid_key: xoá cookie/localStorage của app.nhachung.org và yêu cầu gửi lại link đăng nhập mới.</p>
     </div>
   </div>
 </body>
