@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Nhà Chung — Nơi Cam Kết Được Ghi Nhận</title>
+  <meta name="description" content="Nền tảng tối giản, riêng tư, không theo dõi. Dành cho cam kết, biên nhận, và quản trị minh bạch." />
+  <meta name="theme-color" content="#0b0f0c" />
+
+  <!-- Canonical / Social -->
+  <link rel="canonical" href="https://nhachung.org/" />
+  <meta property="og:title" content="Nhà Chung — Nơi Cam Kết Được Ghi Nhận" />
+  <meta property="og:description" content="Nền tảng tối giản, riêng tư, không theo dõi. Dành cho cam kết, biên nhận, và quản trị minh bạch." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nhachung.org/" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="icon" href="/assets/favicon.svg" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="/assets/site.css" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Nhà Chung",
+    "url":"https://nhachung.org/",
+    "description":"Nền tảng tối giản, riêng tư, không theo dõi. Dành cho cam kết, biên nhận, và quản trị minh bạch.",
+    "inLanguage":["vi","en"]
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Nhà Chung">
+      <span class="logo" aria-hidden="true">NC</span>
+      <span class="brand__name">Nhà Chung</span>
+    </a>
+
+    <nav class="nav" aria-label="Điều hướng">
+      <a class="nav__link" href="#features" data-href="#features">Tính năng</a>
+      <a class="nav__link" href="#privacy" data-href="#privacy">Riêng tư</a>
+      <a class="nav__link" href="#how" data-href="#how">Cách dùng</a>
+      <a class="nav__link" href="/legal/terms.html">Điều khoản</a>
+    </nav>
+
+    <div class="topbar__actions">
+      <a class="btn btn--ghost" id="btnOpenApp" href="https://app.nhachung.org/r/home" rel="noopener">Vào Ứng Dụng</a>
+      <button class="lang" id="langBtn" type="button" aria-label="Đổi ngôn ngữ">VI</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero__inner">
+        <h1 id="t-hero-title">Nơi Cam Kết Được Ghi Nhận, Và Trách Nhiệm Được Tôn Trọng.</h1>
+        <p class="lead" id="t-hero-desc">Một nền tảng tối giản, riêng tư, không theo dõi. Dành cho cam kết, biên nhận, và quản trị minh bạch.</p>
+
+        <div class="hero__cta">
+          <a class="btn" id="btnStart" href="https://app.nhachung.org/r/home" rel="noopener">Bắt đầu</a>
+          <a class="btn btn--ghost" id="btnStatus" href="https://app.nhachung.org/r/status" rel="noopener">Trạng thái hệ thống</a>
+        </div>
+
+        <div class="chips">
+          <span class="chip" id="t-chip-1">Không theo dõi</span>
+          <span class="chip" id="t-chip-2">Không analytics</span>
+          <span class="chip" id="t-chip-3">Tối giản</span>
+          <span class="chip" id="t-chip-4">Có thể kiểm chứng</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section__head">
+        <h2 id="t-feat-title">3 lớp nền tảng</h2>
+        <p class="muted" id="t-feat-desc">Tách rõ Landing, App, và API để không lỗi vặt và dễ mở rộng lâu dài.</p>
+      </div>
+
+      <div class="grid3">
+        <article class="card">
+          <h3 id="t-feat-1-title">Cam Kết</h3>
+          <p class="muted" id="t-feat-1-desc">Tạo cam kết có biên nhận: ID, thời điểm, hash, chữ ký.</p>
+          <div class="card__actions">
+            <a class="link" href="https://app.nhachung.org/r/create" rel="noopener" id="t-feat-1-cta">Mở trang tạo</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 id="t-feat-2-title">Xác Minh</h3>
+          <p class="muted" id="t-feat-2-desc">Tra cứu và xác minh biên nhận theo ID, đọc được bằng mắt thường và máy.</p>
+          <div class="card__actions">
+            <a class="link" href="https://app.nhachung.org/r/verify" rel="noopener" id="t-feat-2-cta">Mở trang xác minh</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 id="t-feat-3-title">Quản Trị</h3>
+          <p class="muted" id="t-feat-3-desc">Admin thao tác qua UI + token, có audit logs, sẵn sàng nâng cấp role-based.</p>
+          <div class="card__actions">
+            <a class="link" href="https://app.nhachung.org/r/admin" rel="noopener" id="t-feat-3-cta">Mở Admin</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="note card card--flat">
+        <div class="note__row">
+          <div>
+            <div class="note__title" id="t-arch-title">Kiến trúc chuẩn (không trộn)</div>
+            <div class="muted" id="t-arch-desc">Landing chỉ giới thiệu. App chỉ UI. API chỉ JSON. Không “đá nhau” routing nữa.</div>
+          </div>
+          <button class="btn btn--ghost" id="btnCopyMap" type="button">Copy sơ đồ</button>
+        </div>
+        <pre class="output" id="outMap" aria-live="polite"></pre>
+      </div>
+    </section>
+
+    <section class="section" id="privacy">
+      <div class="section__head">
+        <h2 id="t-privacy-title">Riêng tư & Bảo mật</h2>
+        <p class="muted" id="t-privacy-desc">Thiết kế “privacy-first” ngay từ kiến trúc, không phải vá sau.</p>
+      </div>
+
+      <div class="grid2">
+        <article class="card">
+          <h3 id="t-privacy-1-title">Không theo dõi</h3>
+          <p class="muted" id="t-privacy-1-desc">Không gắn tracker, không pixel, không analytics mặc định.</p>
+        </article>
+
+        <article class="card">
+          <h3 id="t-privacy-2-title">CSP nghiêm</h3>
+          <p class="muted" id="t-privacy-2-desc">Chỉ cho phép tài nguyên nội bộ và App/API đã chốt. Giảm rủi ro XSS.</p>
+        </article>
+
+        <article class="card">
+          <h3 id="t-privacy-3-title">Token không lưu ở Landing</h3>
+          <p class="muted" id="t-privacy-3-desc">Landing không dính admin token. Admin chỉ ở App.</p>
+        </article>
+
+        <article class="card">
+          <h3 id="t-privacy-4-title">Có thể kiểm chứng</h3>
+          <p class="muted" id="t-privacy-4-desc">Biên nhận có hash + signature để đối chiếu và audit.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="section__head">
+        <h2 id="t-how-title">Cách dùng nhanh</h2>
+        <p class="muted" id="t-how-desc">Bắt đầu bằng trải nghiệm người dùng (UI), sau đó mới mở rộng quyền và quy trình.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__n">1</div>
+          <div>
+            <div class="step__t" id="t-step-1-title">Vào App</div>
+            <div class="muted" id="t-step-1-desc">Mở app.nhachung.org và chọn “Tạo”.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__n">2</div>
+          <div>
+            <div class="step__t" id="t-step-2-title">Tạo cam kết</div>
+            <div class="muted" id="t-step-2-desc">Tạo biên nhận và nhận ID. (Admin thì dùng token.)</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__n">3</div>
+          <div>
+            <div class="step__t" id="t-step-3-title">Xác minh</div>
+            <div class="muted" id="t-step-3-desc">Dán ID vào trang “Xác minh” để xem lại dữ liệu.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta card">
+        <h3 id="t-cta-title">Sẵn sàng thử nghiệm ngay</h3>
+        <p class="muted" id="t-cta-desc">Bạn có thể bắt đầu cho người dùng đăng/đọc trên App, và admin quản trị bằng token.</p>
+        <div class="row">
+          <a class="btn" href="https://app.nhachung.org/r/home" rel="noopener" id="t-cta-btn-1">Mở App</a>
+          <a class="btn btn--ghost" href="https://app.nhachung.org/r/admin" rel="noopener" id="t-cta-btn-2">Mở Admin</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__left">
+        <div class="footer__brand">© <span id="year"></span> Nhà Chung</div>
+        <div class="muted" id="t-footer-note">Không theo dõi. Không analytics. Tối giản và riêng tư.</div>
+      </div>
+      <div class="footer__right">
+        <a class="link" href="/legal/privacy.html">Privacy</a>
+        <a class="link" href="/legal/terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/config.js"></script>
+  <script src="/assets/site.js"></script>
+</body>
+</html>
