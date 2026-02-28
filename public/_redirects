@@ -1,8 +1,7 @@
-# Default
-/*        /index.html    200
-# Clean legal routes
-/legal/privacy    /legal/privacy.html   301
-/legal/terms      /legal/terms.html     301
-
-# Optional: normalize www -> apex (Cloudflare Pages may handle, but keep anyway)
-https://www.nhachung.org/*  https://nhachung.org/:splat  301
+// public/assets/config.js
+window.NHACHUNG = {
+  LANDING_BASE: "https://nhachung.org",
+  APP_BASE: "https://app.nhachung.org",
+  API_BASE: "https://api.nhachung.org",
+  DEFAULT_LANG: "vi"
+};
