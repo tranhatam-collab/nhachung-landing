@@ -280,3 +280,17 @@ hr.sep{
   .brand{min-width:auto}
   .nav{display:none} /* mobile: keep clean; later add menu drawer */
 }
+.glass-card{ /* alias */
+  border-radius: var(--radius);
+  border:1px solid var(--line);
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+  padding:22px;
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+.glass-card:hover{
+  transform: translateY(-6px);
+  background: var(--glass2);
+  box-shadow: 0 22px 70px rgba(0,0,0,.55);
+}
