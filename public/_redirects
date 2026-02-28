@@ -1,10 +1,4 @@
-# ---- Contract redirects (Landing -> App) ----
-/app      https://app.nhachung.org/r/home?lang=vi      302
-/verify   https://app.nhachung.org/r/verify?lang=vi    302
-/admin    https://app.nhachung.org/r/admin?lang=vi     302
-
-# Optional convenience (không bắt buộc)
-/app/*    https://app.nhachung.org/r/home?lang=vi      302
-
-# Keep landing resilient: any unknown path -> landing
-/*        /index.html                                   200
+/app     https://app.nhachung.org/r/home?lang=vi   302
+/verify  https://app.nhachung.org/r/verify?lang=vi 302
+/admin   https://app.nhachung.org/r/admin?lang=vi  302
+/*       /index.html                               200
