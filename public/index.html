@@ -1,132 +1,747 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-theme="dark">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#0b0f0c" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0b0f0c" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f2efe8" media="(prefers-color-scheme: light)">
 
-<title>Nhà Chung — Cam kết được ghi nhận, trách nhiệm được tôn trọng</title>
-<meta name="description" content="Nhà Chung là nền tảng tối giản và minh bạch để đăng nội dung, tạo cam kết, phát hành biên nhận hash + chữ ký, và quản trị rõ ràng." />
-<link rel="canonical" href="https://nhachung.org/" />
+  <title>Nhà Chung | Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng</title>
+  <meta name="description" content="Nhà Chung là hệ sinh thái sống–học–làm–đầu tư–cộng đồng: không gian ở thật, công việc thật, cộng đồng tin cậy, dòng tiền thật. Kết nối app nội bộ và vận hành minh bạch." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
 
-<meta property="og:title" content="Nhà Chung" />
-<meta property="og:description" content="Cam kết được ghi nhận. Trách nhiệm được tôn trọng." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://nhachung.org/" />
-<meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://nhachung.org/" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="preload" href="/assets/site.css" as="style" />
+  <link rel="stylesheet" href="/assets/site.css" />
 
-<link rel="icon" href="/assets/favicon.svg" />
-<link rel="stylesheet" href="/assets/site.css" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nhà Chung" />
+  <meta property="og:title" content="Nhà Chung | Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng" />
+  <meta property="og:description" content="Một hệ sinh thái sống–học–làm–đầu tư–cộng đồng: nơi con người có không gian ở thật, công việc thật, cộng đồng tin cậy, giá trị thật và dòng tiền thật." />
+  <meta property="og:url" content="https://nhachung.org/" />
+  <meta property="og:image" content="/assets/og.png" />
+  <meta property="og:image:alt" content="Nhà Chung - Hệ sinh thái sống học làm đầu tư cộng đồng" />
 
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "Organization",
- "name": "Nhà Chung",
- "url": "https://nhachung.org",
- "sameAs": []
-}
-</script>
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nhà Chung | Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng" />
+  <meta name="twitter:description" content="Hệ sinh thái sống–học–làm–đầu tư–cộng đồng: nơi con người có không gian ở thật, công việc thật, cộng đồng tin cậy, giá trị thật và dòng tiền thật." />
+  <meta name="twitter:image" content="/assets/og.png" />
+
+  <!-- Structured Data: Organization + WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Nhà Chung",
+    "url":"https://nhachung.org/",
+    "logo":"https://nhachung.org/assets/favicon.svg",
+    "sameAs":[]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Nhà Chung",
+    "url":"https://nhachung.org/",
+    "inLanguage":["vi","en"],
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://nhachung.org/?q={search_term_string}",
+      "query-input":"required name=search_term_string"
+    }
+  }
+  </script>
+
+  <style>
+    /* Safety baseline (site.css will own the full design). Keep tiny to avoid FOUC. */
+    :root{--bg:#0b0f0c;--fg:#eef2ea}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
 </head>
 
 <body>
+  <a class="sr-only" href="#main">Bỏ qua điều hướng</a>
 
-<header class="header">
-  <div class="container nav">
-    <div class="brand">
-      <div class="logo">NC</div>
-      <div class="brand-name">Nhà Chung</div>
-    </div>
+  <!-- Header -->
+  <header class="nc-topbar" role="banner">
+    <div class="nc-topbar__inner">
+      <a class="nc-brand" href="#top" data-scroll>
+        <span class="nc-logo" aria-hidden="true">NC</span>
+        <span class="nc-brand__text">
+          <span class="nc-brand__name" data-i18n="brand.name">Nhà Chung</span>
+          <span class="nc-brand__tag" data-i18n="brand.tag">Sống • Học • Làm • Đầu tư • Cộng đồng</span>
+        </span>
+      </a>
 
-    <nav>
-      <a href="#features">Tính năng</a>
-      <a href="#how">Cách hoạt động</a>
-      <a href="#trust">Minh bạch</a>
-      <a href="#faq">FAQ</a>
-      <a href="/app">Ứng dụng</a>
-    </nav>
-  </div>
-</header>
+      <nav class="nc-nav" aria-label="Điều hướng chính">
+        <a class="nc-nav__link" href="#features" data-scroll data-i18n="nav.features">Tính năng</a>
+        <a class="nc-nav__link" href="#modules" data-scroll data-i18n="nav.modules">Modules</a>
+        <a class="nc-nav__link" href="#levels" data-scroll data-i18n="nav.levels">Cấp độ</a>
+        <a class="nc-nav__link" href="#roadmap" data-scroll data-i18n="nav.roadmap">Lộ trình</a>
+        <a class="nc-nav__link" href="#faq" data-scroll data-i18n="nav.faq">FAQ</a>
+      </nav>
 
-<section class="hero">
-  <div class="container hero-inner">
-    <h1>Cam Kết Được Ghi Nhận.<br>Trách Nhiệm Được Tôn Trọng.</h1>
-    <p>Một nền tảng tối giản, riêng tư và minh bạch cho cá nhân, nhóm và tổ chức.</p>
-    <div class="hero-actions">
-      <a href="/app" class="btn btn-primary">Vào ứng dụng</a>
-      <a href="#features" class="btn btn-ghost">Tìm hiểu thêm</a>
-    </div>
-  </div>
-</section>
+      <div class="nc-actions">
+        <a class="nc-btn nc-btn--ghost" href="/verify" data-i18n="cta.verify">Xác minh</a>
+        <a class="nc-btn" href="/app" data-i18n="cta.openApp">Vào App</a>
 
-<section id="features" class="section">
-  <div class="container">
-    <h2>Tính năng chính</h2>
-    <div class="grid-3">
-      <div class="card">
-        <h3>Tạo cam kết</h3>
-        <p>Đăng nội dung và tạo biên nhận có hash + chữ ký xác minh.</p>
+        <div class="nc-lang" role="group" aria-label="Ngôn ngữ">
+          <button class="nc-lang__btn" id="langBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+            <span id="langLabel">VI</span>
+            <span aria-hidden="true" class="nc-lang__chev">▾</span>
+          </button>
+          <div class="nc-lang__menu" id="langMenu" role="listbox" aria-label="Chọn ngôn ngữ" hidden>
+            <button type="button" class="nc-lang__item" role="option" data-lang="vi" aria-selected="true">Tiếng Việt</button>
+            <button type="button" class="nc-lang__item" role="option" data-lang="en" aria-selected="false">English</button>
+          </div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Xác minh minh bạch</h3>
-        <p>Tra cứu theo ID, kiểm tra tính toàn vẹn dữ liệu.</p>
+
+      <button class="nc-burger" id="burger" type="button" aria-label="Mở menu" aria-expanded="false">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div class="nc-mobile" id="mobileNav" hidden>
+      <a class="nc-mobile__link" href="#features" data-scroll data-i18n="nav.features">Tính năng</a>
+      <a class="nc-mobile__link" href="#modules" data-scroll data-i18n="nav.modules">Modules</a>
+      <a class="nc-mobile__link" href="#levels" data-scroll data-i18n="nav.levels">Cấp độ</a>
+      <a class="nc-mobile__link" href="#roadmap" data-scroll data-i18n="nav.roadmap">Lộ trình</a>
+      <a class="nc-mobile__link" href="#faq" data-scroll data-i18n="nav.faq">FAQ</a>
+      <div class="nc-mobile__cta">
+        <a class="nc-btn nc-btn--ghost" href="/admin" data-i18n="cta.admin">Admin</a>
+        <a class="nc-btn" href="/app" data-i18n="cta.openApp">Vào App</a>
       </div>
-      <div class="card">
-        <h3>Quản trị rõ ràng</h3>
-        <p>Admin token riêng, audit log đầy đủ.</p>
+    </div>
+  </header>
+
+  <main id="main" class="nc-main" role="main">
+    <!-- Hero -->
+    <section class="nc-hero" id="top">
+      <div class="nc-hero__inner">
+        <div class="nc-hero__copy">
+          <p class="nc-kicker" data-i18n="hero.kicker">Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng</p>
+          <h1 class="nc-h1" data-i18n="hero.h1">Nơi Con Người Có Không Gian Ở Thật, Công Việc Thật, Cộng Đồng Thật, Và Dòng Tiền Thật.</h1>
+          <p class="nc-lead" data-i18n="hero.lead">
+            Nhà Chung không phải bất động sản. Không phải mạng xã hội giải trí. Không phải câu lạc bộ đầu tư.
+            Đây là một hệ điều hành cho cộng đồng: online + offline, minh bạch, bảo mật, và vận hành bền vững.
+          </p>
+
+          <div class="nc-hero__cta">
+            <a class="nc-btn nc-btn--xl" href="/app" data-i18n="cta.primary">Bắt đầu trong App</a>
+            <a class="nc-btn nc-btn--ghost nc-btn--xl" href="#features" data-scroll data-i18n="cta.secondary">Xem sơ đồ & tính năng</a>
+          </div>
+
+          <div class="nc-badges" aria-label="Cam kết nền tảng">
+            <span class="nc-badge" data-i18n="badges.private">Riêng tư, không theo dõi</span>
+            <span class="nc-badge" data-i18n="badges.real">Giá trị thật, vận hành thật</span>
+            <span class="nc-badge" data-i18n="badges.secure">Bảo mật cao, phân quyền rõ</span>
+            <span class="nc-badge" data-i18n="badges.mobile">Mobile-first + Dark mode</span>
+          </div>
+        </div>
+
+        <div class="nc-hero__panel">
+          <div class="nc-panel">
+            <div class="nc-panel__head">
+              <div class="nc-panel__title" data-i18n="hero.panel.title">3 miền hệ thống</div>
+              <div class="nc-panel__hint" data-i18n="hero.panel.hint">Tách lớp rõ ràng để không “vỡ contract”.</div>
+            </div>
+
+            <div class="nc-triplet" role="list">
+              <div class="nc-triplet__item" role="listitem">
+                <div class="nc-triplet__k" data-i18n="hero.panel.landing.k">nhachung.org</div>
+                <div class="nc-triplet__v" data-i18n="hero.panel.landing.v">Trang chủ + SEO + sơ đồ tổng thể</div>
+                <div class="nc-triplet__a"><a class="nc-link" href="https://nhachung.org/" target="_blank" rel="noopener">https://nhachung.org</a></div>
+              </div>
+              <div class="nc-triplet__item" role="listitem">
+                <div class="nc-triplet__k" data-i18n="hero.panel.app.k">app.nhachung.org</div>
+                <div class="nc-triplet__v" data-i18n="hero.panel.app.v">NhaChung Social OS (nội bộ)</div>
+                <div class="nc-triplet__a"><a class="nc-link" href="/app">/app → app.nhachung.org</a></div>
+              </div>
+              <div class="nc-triplet__item" role="listitem">
+                <div class="nc-triplet__k" data-i18n="hero.panel.api.k">api.nhachung.org</div>
+                <div class="nc-triplet__v" data-i18n="hero.panel.api.v">API + DB + Auth + Audit</div>
+                <div class="nc-triplet__a"><a class="nc-link" href="https://api.nhachung.org/" target="_blank" rel="noopener">https://api.nhachung.org</a></div>
+              </div>
+            </div>
+
+            <div class="nc-panel__foot">
+              <a class="nc-btn nc-btn--ghost" href="/admin" data-i18n="cta.admin">Admin</a>
+              <a class="nc-btn" href="/verify" data-i18n="cta.verify">Xác minh</a>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- What is -->
+    <section class="nc-section" id="what">
+      <div class="nc-section__inner">
+        <h2 class="nc-h2" data-i18n="what.h2">Nhà Chung Là Gì?</h2>
+        <p class="nc-text" data-i18n="what.p1">
+          Nhà Chung là hệ sinh thái sống – học – làm – đầu tư – cộng đồng, nơi con người có không gian ở thật, công việc thật,
+          cộng đồng tin cậy, giá trị thật và dòng tiền thật. Mục tiêu là tạo nơi “thuộc về” và mở rộng mạng lưới từ 100 → 1.000 → 10.000 người.
+        </p>
+
+        <div class="nc-3col">
+          <div class="nc-card">
+            <h3 class="nc-h3" data-i18n="what.not.h3">Nhà Chung Không Phải</h3>
+            <ul class="nc-list">
+              <li data-i18n="what.not.li1">Bất động sản thuần mua bán</li>
+              <li data-i18n="what.not.li2">Mạng xã hội giải trí</li>
+              <li data-i18n="what.not.li3">Câu lạc bộ đầu tư “hô hào ROI”</li>
+            </ul>
+          </div>
+          <div class="nc-card">
+            <h3 class="nc-h3" data-i18n="what.is.h3">Nhà Chung Là</h3>
+            <ul class="nc-list">
+              <li data-i18n="what.is.li1">Không gian sống hồi phục</li>
+              <li data-i18n="what.is.li2">Hệ thống công việc & dự án chung</li>
+              <li data-i18n="what.is.li3">Vận hành minh bạch, phân quyền rõ</li>
+            </ul>
+          </div>
+          <div class="nc-card">
+            <h3 class="nc-h3" data-i18n="what.value.h3">Giá Trị Cốt Lõi</h3>
+            <ul class="nc-list">
+              <li data-i18n="what.value.li1">Tin cậy dài hạn</li>
+              <li data-i18n="what.value.li2">Đóng góp đo được</li>
+              <li data-i18n="what.value.li3">Kinh tế cộng đồng bền vững</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problems + Solutions -->
+    <section class="nc-section" id="features">
+      <div class="nc-section__inner">
+        <h2 class="nc-h2" data-i18n="features.h2">Nhà Chung Giải Quyết Vấn Đề Gì?</h2>
+        <p class="nc-text" data-i18n="features.p1">
+          Con người sống rời rạc. Công việc tách khỏi đời sống. Đầu tư thiếu hệ sinh thái bảo vệ. Thiếu cộng đồng tin cậy lâu dài.
+          Thiếu không gian sống hồi phục. Nhà Chung thiết kế lại 5 không gian: sống, làm việc, học tập, đầu tư và cộng đồng.
+        </p>
+
+        <div class="nc-grid2">
+          <div class="nc-card nc-card--glass">
+            <h3 class="nc-h3" data-i18n="features.left.h3">5 “đứt gãy” phổ biến</h3>
+            <ol class="nc-steps">
+              <li data-i18n="features.left.li1">Sống rời rạc, thiếu nơi thuộc về</li>
+              <li data-i18n="features.left.li2">Công việc tách khỏi đời sống</li>
+              <li data-i18n="features.left.li3">Đầu tư thiếu cấu trúc bảo vệ</li>
+              <li data-i18n="features.left.li4">Cộng đồng thiếu tin cậy dài hạn</li>
+              <li data-i18n="features.left.li5">Thiếu không gian hồi phục bền</li>
+            </ol>
+          </div>
+
+          <div class="nc-card nc-card--glass">
+            <h3 class="nc-h3" data-i18n="features.right.h3">5 “không gian” được tái thiết kế</h3>
+            <div class="nc-pills" role="list">
+              <span class="nc-pill" role="listitem" data-i18n="features.right.p1">Không gian sống</span>
+              <span class="nc-pill" role="listitem" data-i18n="features.right.p2">Không gian làm việc</span>
+              <span class="nc-pill" role="listitem" data-i18n="features.right.p3">Không gian học tập</span>
+              <span class="nc-pill" role="listitem" data-i18n="features.right.p4">Không gian đầu tư</span>
+              <span class="nc-pill" role="listitem" data-i18n="features.right.p5">Không gian cộng đồng</span>
+            </div>
+            <p class="nc-text nc-text--muted" data-i18n="features.right.note">
+              Trục online (NhaChung Social OS) kết nối trục offline (Nhà Chung vật lý), giúp vận hành minh bạch và có trách nhiệm.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="nc-section" id="architecture">
+      <div class="nc-section__inner">
+        <h2 class="nc-h2" data-i18n="arch.h2">Kiến Trúc Tổng Thể</h2>
+        <p class="nc-text" data-i18n="arch.p1">
+          Hệ thống có 2 lớp: Không gian vật lý và Không gian số. App nội bộ là “hệ điều hành” để quản lý nhà ở, đầu tư, dự án, học tập và cộng đồng.
+        </p>
+
+        <div class="nc-arch">
+          <div class="nc-arch__col">
+            <div class="nc-card">
+              <h3 class="nc-h3" data-i18n="arch.physical.h3">Lớp Không Gian Vật Lý</h3>
+              <ul class="nc-list">
+                <li data-i18n="arch.physical.li1">Nhà Chung (co-living)</li>
+                <li data-i18n="arch.physical.li2">Vườn & nông nghiệp</li>
+                <li data-i18n="arch.physical.li3">Không gian làm việc</li>
+                <li data-i18n="arch.physical.li4">Không gian học tập</li>
+                <li data-i18n="arch.physical.li5">Không gian trải nghiệm</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="nc-arch__mid" aria-hidden="true">
+            <div class="nc-arch__line"></div>
+            <div class="nc-arch__node">↔</div>
+            <div class="nc-arch__line"></div>
+          </div>
+
+          <div class="nc-arch__col">
+            <div class="nc-card">
+              <h3 class="nc-h3" data-i18n="arch.digital.h3">Lớp Không Gian Số (NhaChung Social OS)</h3>
+              <p class="nc-text nc-text--muted" data-i18n="arch.digital.p1">
+                Mạng xã hội nội bộ cao cấp dành cho thành viên đã xác thực. Kết nối online + offline. Vận hành minh bạch, phân quyền rõ ràng.
+              </p>
+              <div class="nc-arch__links">
+                <a class="nc-link" href="/app" data-i18n="arch.digital.app">Mở app.nhachung.org</a>
+                <span class="nc-dot" aria-hidden="true">•</span>
+                <a class="nc-link" href="https://api.nhachung.org/" target="_blank" rel="noopener" data-i18n="arch.digital.api">Mở api.nhachung.org</a>
+                <span class="nc-dot" aria-hidden="true">•</span>
+                <a class="nc-link" href="/admin" data-i18n="arch.digital.admin">Mở Admin</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nc-callout">
+          <div class="nc-callout__title" data-i18n="arch.contract.title">Contract cố định (không thay đổi giữa các bước)</div>
+          <div class="nc-callout__body">
+            <code>Landing</code>: <span>https://nhachung.org</span>
+            <span class="nc-dot" aria-hidden="true">•</span>
+            <code>App</code>: <span>https://app.nhachung.org</span>
+            <span class="nc-dot" aria-hidden="true">•</span>
+            <code>API</code>: <span>https://api.nhachung.org</span>
+          </div>
+          <div class="nc-callout__hint" data-i18n="arch.contract.hint">Các đường /app /verify /admin trên landing sẽ redirect sang app theo hợp đồng này.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modules -->
+    <section class="nc-section" id="modules">
+      <div class="nc-section__inner">
+        <h2 class="nc-h2" data-i18n="modules.h2">10 Modules Bắt Buộc</h2>
+        <p class="nc-text" data-i18n="modules.p1">
+          Đây là cấu trúc lõi của NhaChung Social OS. Mỗi module là một “khối vận hành” có dữ liệu thật, quyền thật, trách nhiệm thật.
+        </p>
+
+        <div class="nc-modules">
+          <article class="nc-module">
+            <h3 class="nc-h3">1. Profile Thành Viên</h3>
+            <p class="nc-text nc-text--muted">Core Identity Layer: vai trò, dự án, kỹ năng, mức đầu tư, số ngày cư trú, điểm đóng góp.</p>
+          </article>
+          <article class="nc-module">
+            <h3 class="nc-h3">2. Newsfeed Nội Bộ</h3>
+            <p class="nc-text nc-text--muted">Không giải trí. Chỉ báo cáo tiến độ, chia sẻ học tập, kêu gọi dự án, lịch hoạt động.</p>
+          </article>
+          <article class="nc-module">
+            <h3 class="nc-h3">3. Module Nhà Ở</h3>
+            <p class="nc-text nc-text--muted">Danh sách nhà, đặt phòng, quyền sử dụng, bảo trì, phân bổ quyền lợi.</p>
+          </article>
+          <article class="nc-module">
+            <h3 class="nc-h3">4. Module Đầu Tư</h3>
+            <p class="nc-text nc-text--muted">Tổng vốn, người tham gia, tiến độ, báo cáo lợi nhuận, báo cáo sử dụng vốn.</p>
+          </article>
+          <article class="nc-module">
+            <h3 class="nc-h3">5. Module Học Tập</h3>
+            <p class="nc-text nc-text--muted">Lịch học, video, tài liệu, bài tập, tiến độ học, đánh giá.</p>
+          </article>
+          <article class="nc-module">
+            <h3 class="nc-h3">6. Module Dự Án Chung</h3>
+            <p class="nc-text nc-text--muted">Tạo dự án, tuyển người, giao việc, timeline, báo cáo tuần, chấm điểm đóng góp.</p>
+          </article>
+          <article class="nc-module">
+            <h3 class="nc-h3">7. Sự Kiện & Trải Nghiệm</h3>
+            <p class="nc-text nc-text--muted">Retreat, workshop, tham quan, du lịch trải nghiệm, đăng ký offline.</p>
+          </article>
+          <article class="nc-module">
+            <h3 class="nc-h3">8. Kết Nối 1-1</h3>
+            <p class="nc-text nc-text--muted">Nhắn tin nội bộ, hẹn gặp, lịch riêng, không quảng cáo.</p>
+          </article>
+          <article class="nc-module">
+            <h3 class="nc-h3">9. Dashboard Cá Nhân</h3>
+            <p class="nc-text nc-text--muted">Vốn đầu tư, số ngày ở, dự án tham gia, điểm đóng góp, mục tiêu cá nhân.</p>
+          </article>
+          <article class="nc-module">
+            <h3 class="nc-h3">10. Admin Control Panel</h3>
+            <p class="nc-text nc-text--muted">Duyệt thành viên, phân quyền, quản lý nhà, quản lý vốn, kiểm duyệt nội dung, xuất báo cáo.</p>
+          </article>
+        </div>
+
+        <div class="nc-section__cta">
+          <a class="nc-btn" href="/app" data-i18n="modules.cta">Mở Social OS</a>
+          <a class="nc-btn nc-btn--ghost" href="/admin" data-i18n="modules.ctaAdmin">Mở Admin</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Levels -->
+    <section class="nc-section" id="levels">
+      <div class="nc-section__inner">
+        <h2 class="nc-h2" data-i18n="levels.h2">Phân Tầng Thành Viên</h2>
+        <p class="nc-text" data-i18n="levels.p1">
+          Mỗi cấp độ mở khóa tính năng khác nhau. Mục tiêu là tạo trải nghiệm an toàn, đúng quyền, đúng trách nhiệm.
+        </p>
+
+        <div class="nc-levels">
+          <div class="nc-level"><div class="nc-level__n">Level 1</div><div class="nc-level__t" data-i18n="levels.l1">Người Quan Tâm</div><div class="nc-level__d" data-i18n="levels.l1d">Xem giới thiệu, đăng ký quan tâm, đọc tài liệu công khai.</div></div>
+          <div class="nc-level"><div class="nc-level__n">Level 2</div><div class="nc-level__t" data-i18n="levels.l2">Thành Viên Học Tập</div><div class="nc-level__d" data-i18n="levels.l2d">Tham gia học, nhận nhiệm vụ, báo cáo tiến độ.</div></div>
+          <div class="nc-level"><div class="nc-level__n">Level 3</div><div class="nc-level__t" data-i18n="levels.l3">Thành Viên Cư Trú</div><div class="nc-level__d" data-i18n="levels.l3d">Đặt lịch nhà ở, theo dõi số ngày sử dụng, tham gia vận hành.</div></div>
+          <div class="nc-level"><div class="nc-level__n">Level 4</div><div class="nc-level__t" data-i18n="levels.l4">Nhà Đầu Tư</div><div class="nc-level__d" data-i18n="levels.l4d">Theo dõi dự án, báo cáo vốn, phân bổ, dòng tiền và minh bạch.</div></div>
+          <div class="nc-level"><div class="nc-level__n">Level 5</div><div class="nc-level__t" data-i18n="levels.l5">Leader</div><div class="nc-level__d" data-i18n="levels.l5d">Quản trị nhóm, duyệt dự án, điều phối nhân sự, chịu trách nhiệm vận hành.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Design principles -->
+    <section class="nc-section" id="design">
+      <div class="nc-section__inner">
+        <h2 class="nc-h2" data-i18n="design.h2">UI/UX: Sang Trọng – Tối Giản – Tin Cậy</h2>
+        <p class="nc-text" data-i18n="design.p1">
+          Không giống Facebook. Không giống diễn đàn. Không “màu mè”. Trải nghiệm phải tĩnh, thông minh, an toàn, và hướng vào hành động thật.
+        </p>
+
+        <div class="nc-3col">
+          <div class="nc-card">
+            <h3 class="nc-h3" data-i18n="design.c1.h3">Phong cách</h3>
+            <ul class="nc-list">
+              <li data-i18n="design.c1.li1">Minimal cao cấp</li>
+              <li data-i18n="design.c1.li2">Typography rõ ràng</li>
+              <li data-i18n="design.c1.li3">Dark mode + Light mode</li>
+            </ul>
+          </div>
+          <div class="nc-card">
+            <h3 class="nc-h3" data-i18n="design.c2.h3">Cảm giác</h3>
+            <ul class="nc-list">
+              <li data-i18n="design.c2.li1">An toàn và tôn trọng</li>
+              <li data-i18n="design.c2.li2">Tĩnh lặng, không gây nghiện</li>
+              <li data-i18n="design.c2.li3">Thông minh, rõ trách nhiệm</li>
+            </ul>
+          </div>
+          <div class="nc-card">
+            <h3 class="nc-h3" data-i18n="design.c3.h3">Nguyên tắc</h3>
+            <ul class="nc-list">
+              <li data-i18n="design.c3.li1">Không theo dõi, không ad-tech</li>
+              <li data-i18n="design.c3.li2">Phân quyền theo vai trò</li>
+              <li data-i18n="design.c3.li3">Audit log để minh bạch</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section class="nc-section" id="roadmap">
+      <div class="nc-section__inner">
+        <h2 class="nc-h2" data-i18n="roadmap.h2">Lộ Trình Triển Khai 30/60/90 Ngày</h2>
+        <p class="nc-text" data-i18n="roadmap.p1">
+          Đi theo thứ tự để chắc nền: Identity → Newsfeed → Dashboard → (Nhà ở/Đầu tư/Học tập) → (Dự án/Sự kiện/Nhắn tin) → Mobile.
+        </p>
+
+        <div class="nc-roadmap">
+          <div class="nc-rm">
+            <div class="nc-rm__k">30</div>
+            <div class="nc-rm__t" data-i18n="roadmap.d30.t">Giai đoạn 1</div>
+            <ul class="nc-list">
+              <li data-i18n="roadmap.d30.li1">Core identity (Profile)</li>
+              <li data-i18n="roadmap.d30.li2">Newsfeed nội bộ</li>
+              <li data-i18n="roadmap.d30.li3">Dashboard cá nhân</li>
+            </ul>
+          </div>
+          <div class="nc-rm">
+            <div class="nc-rm__k">60</div>
+            <div class="nc-rm__t" data-i18n="roadmap.d60.t">Giai đoạn 2</div>
+            <ul class="nc-list">
+              <li data-i18n="roadmap.d60.li1">Module đầu tư</li>
+              <li data-i18n="roadmap.d60.li2">Module nhà ở</li>
+              <li data-i18n="roadmap.d60.li3">Module học tập</li>
+            </ul>
+          </div>
+          <div class="nc-rm">
+            <div class="nc-rm__k">90</div>
+            <div class="nc-rm__t" data-i18n="roadmap.d90.t">Giai đoạn 3</div>
+            <ul class="nc-list">
+              <li data-i18n="roadmap.d90.li1">Dự án chung + chấm điểm đóng góp</li>
+              <li data-i18n="roadmap.d90.li2">Sự kiện & trải nghiệm</li>
+              <li data-i18n="roadmap.d90.li3">Nhắn tin 1-1 + app mobile</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="nc-section__cta">
+          <a class="nc-btn nc-btn--xl" href="/app" data-i18n="roadmap.cta">Mở App để trải nghiệm</a>
+          <a class="nc-btn nc-btn--ghost nc-btn--xl" href="/admin" data-i18n="roadmap.cta2">Mở Admin</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="nc-section" id="faq">
+      <div class="nc-section__inner">
+        <h2 class="nc-h2" data-i18n="faq.h2">FAQ</h2>
+
+        <div class="nc-faq">
+          <details class="nc-faq__item">
+            <summary class="nc-faq__q" data-i18n="faq.q1">Nhà Chung khác gì với co-living bình thường?</summary>
+            <div class="nc-faq__a" data-i18n="faq.a1">
+              Co-living thường chỉ là “ở chung”. Nhà Chung là hệ sinh thái: ở – làm – học – đầu tư – cộng đồng, có vận hành minh bạch và nền tảng số nội bộ để kết nối online + offline.
+            </div>
+          </details>
+
+          <details class="nc-faq__item">
+            <summary class="nc-faq__q" data-i18n="faq.q2">Tại sao cần mạng xã hội nội bộ?</summary>
+            <div class="nc-faq__a" data-i18n="faq.a2">
+              Để hoạt động thật không rơi vào rời rạc: cập nhật tiến độ, chia sẻ học tập, phân công dự án, ghi nhận đóng góp, và tạo tin cậy dài hạn. Không dành cho giải trí.
+            </div>
+          </details>
+
+          <details class="nc-faq__item">
+            <summary class="nc-faq__q" data-i18n="faq.q3">Có công khai dữ liệu hay theo dõi người dùng không?</summary>
+            <div class="nc-faq__a" data-i18n="faq.a3">
+              Không theo dõi. Không ad-tech. Nội dung nội bộ chỉ dành cho thành viên đã xác thực và phân quyền. Landing chỉ phục vụ giới thiệu và điều hướng.
+            </div>
+          </details>
+
+          <details class="nc-faq__item">
+            <summary class="nc-faq__q" data-i18n="faq.q4">Điểm đóng góp cộng đồng là gì?</summary>
+            <div class="nc-faq__a" data-i18n="faq.a4">
+              Là thước đo nội bộ để ghi nhận mức độ đóng góp vào dự án và cộng đồng (không phải token đầu cơ). Dùng để minh bạch và phân bổ quyền lợi theo cấu trúc vận hành.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="nc-section nc-section--cta" id="start">
+      <div class="nc-section__inner">
+        <div class="nc-ctaBox">
+          <div class="nc-ctaBox__copy">
+            <h2 class="nc-h2" data-i18n="ctaBlock.h2">Bắt đầu bằng trải nghiệm thật.</h2>
+            <p class="nc-text" data-i18n="ctaBlock.p1">
+              Vào App để xem cấu trúc Social OS. Dùng Verify để xác minh biên nhận. Dùng Admin để quản trị vận hành.
+            </p>
+          </div>
+          <div class="nc-ctaBox__btns">
+            <a class="nc-btn nc-btn--xl" href="/app" data-i18n="ctaBlock.app">Vào App</a>
+            <a class="nc-btn nc-btn--ghost nc-btn--xl" href="/verify" data-i18n="ctaBlock.verify">Xác minh</a>
+            <a class="nc-btn nc-btn--ghost nc-btn--xl" href="/admin" data-i18n="ctaBlock.admin">Admin</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legal strip -->
+    <section class="nc-section nc-section--legal" id="legal">
+      <div class="nc-section__inner">
+        <div class="nc-legal">
+          <div class="nc-legal__left">
+            <div class="nc-legal__brand">Nhà Chung</div>
+            <div class="nc-legal__muted" data-i18n="legal.note">Landing phục vụ giới thiệu. App nội bộ dành cho thành viên đã xác thực.</div>
+          </div>
+          <div class="nc-legal__right">
+            <a class="nc-link" href="/legal/privacy.html" data-i18n="legal.privacy">Privacy</a>
+            <span class="nc-dot" aria-hidden="true">•</span>
+            <a class="nc-link" href="/legal/terms.html" data-i18n="legal.terms">Terms</a>
+            <span class="nc-dot" aria-hidden="true">•</span>
+            <a class="nc-link" href="https://api.nhachung.org/" target="_blank" rel="noopener">API</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nc-footer" role="contentinfo">
+    <div class="nc-footer__inner">
+      <div>© <span id="year"></span> <span data-i18n="brand.name">Nhà Chung</span></div>
+      <div class="nc-footer__muted" data-i18n="footer.muted">Sống – Học – Làm – Đầu tư – Cộng đồng.</div>
     </div>
-  </div>
-</section>
+  </footer>
 
-<section id="how" class="section section-dark">
-  <div class="container">
-    <h2>Cách hoạt động</h2>
-    <ol class="steps">
-      <li>Tạo nội dung trong App.</li>
-      <li>Hệ thống phát hành hash và chữ ký.</li>
-      <li>Biên nhận có thể xác minh công khai.</li>
-    </ol>
-  </div>
-</section>
+  <!-- Config + i18n runtime -->
+  <script src="/assets/config.js"></script>
+  <script>
+    (function () {
+      // Contract (fixed): /app /verify /admin are handled by _redirects on Pages.
+      // This JS only handles language + UX; it never changes routing contract.
 
-<section id="trust" class="section">
-  <div class="container">
-    <h2>Minh bạch & Riêng tư</h2>
-    <p>Không tracking. Không analytics. Không phụ thuộc thư viện ngoài.</p>
-  </div>
-</section>
+      const $ = (s, r=document) => r.querySelector(s);
+      const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 
-<section id="faq" class="section section-dark">
-  <div class="container">
-    <h2>Câu hỏi thường gặp</h2>
-    <div class="faq-item">
-      <h4>Nhà Chung có thu thập dữ liệu cá nhân không?</h4>
-      <p>Không. Hệ thống tối giản và không theo dõi.</p>
+      const state = {
+        lang: "vi",
+        dict: null
+      };
+
+      function safeLang(l) {
+        return (l === "en" || l === "vi") ? l : "vi";
+      }
+
+      function getLangFromURL() {
+        const u = new URL(location.href);
+        const q = u.searchParams.get("lang");
+        if (q) return safeLang(q);
+        const h = (location.hash || "").toLowerCase();
+        if (h.includes("lang=en")) return "en";
+        if (h.includes("lang=vi")) return "vi";
+        const saved = localStorage.getItem("NHACHUNG_LANG");
+        if (saved) return safeLang(saved);
+        return (window.NHACHUNG && window.NHACHUNG.DEFAULT_LANG) ? safeLang(window.NHACHUNG.DEFAULT_LANG) : "vi";
+      }
+
+      async function loadI18n() {
+        // i18n.json must exist; if not, keep VI labels as-is (no crash).
+        try {
+          const res = await fetch("/assets/i18n.json", { cache: "no-store" });
+          if (!res.ok) return null;
+          return await res.json();
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function t(key, fallback) {
+        if (!state.dict) return fallback || key;
+        const entry = state.dict[key];
+        if (!entry) return fallback || key;
+        const v = entry[state.lang];
+        return v || fallback || key;
+      }
+
+      function applyText() {
+        $$("[data-i18n]").forEach(el => {
+          const key = el.getAttribute("data-i18n") || "";
+          const current = (el.textContent || "").trim();
+          el.textContent = t(key, current);
+        });
+
+        // Update lang badge
+        const lbl = $("#langLabel");
+        if (lbl) lbl.textContent = (state.lang || "vi").toUpperCase();
+
+        // Update doc lang
+        document.documentElement.lang = state.lang;
+
+        // Update aria-selected on menu
+        $$("#langMenu [data-lang]").forEach(btn => {
+          const l = btn.getAttribute("data-lang");
+          btn.setAttribute("aria-selected", l === state.lang ? "true" : "false");
+        });
+      }
+
+      function setLang(next) {
+        state.lang = safeLang(next);
+        localStorage.setItem("NHACHUNG_LANG", state.lang);
+
+        // Keep URL stable: add ?lang=... without breaking anchors
+        const u = new URL(location.href);
+        u.searchParams.set("lang", state.lang);
+        history.replaceState({}, "", u.toString());
+
+        applyText();
+      }
+
+      function toggleLangMenu(open) {
+        const btn = $("#langBtn");
+        const menu = $("#langMenu");
+        if (!btn || !menu) return;
+        const isOpen = (open !== undefined) ? !!open : (btn.getAttribute("aria-expanded") !== "true");
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        menu.hidden = !isOpen;
+      }
+
+      function setupLang() {
+        const btn = $("#langBtn");
+        const menu = $("#langMenu");
+        if (!btn || !menu) return;
+
+        btn.addEventListener("click", () => toggleLangMenu());
+        document.addEventListener("click", (e) => {
+          if (!menu.hidden) {
+            const within = btn.contains(e.target) || menu.contains(e.target);
+            if (!within) toggleLangMenu(false);
+          }
+        });
+
+        $$("#langMenu [data-lang]").forEach(item => {
+          item.addEventListener("click", () => {
+            const l = item.getAttribute("data-lang");
+            toggleLangMenu(false);
+            setLang(l);
+          });
+        });
+      }
+
+      function setupScroll() {
+        // Smooth scroll for internal anchors only
+        $$("a[data-scroll]").forEach(a => {
+          a.addEventListener("click", (e) => {
+            const href = a.getAttribute("href") || "";
+            if (!href.startsWith("#")) return;
+            const id = href.slice(1);
+            const target = document.getElementById(id);
+            if (!target) return;
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
+      }
+
+      function setupBurger() {
+        const burger = $("#burger");
+        const mobile = $("#mobileNav");
+        if (!burger || !mobile) return;
+
+        function setOpen(open) {
+          burger.setAttribute("aria-expanded", open ? "true" : "false");
+          mobile.hidden = !open;
+        }
+
+        burger.addEventListener("click", () => {
+          const open = burger.getAttribute("aria-expanded") !== "true";
+          setOpen(open);
+        });
+
+        // Close on nav click
+        $$("#mobileNav a").forEach(a => {
+          a.addEventListener("click", () => setOpen(false));
+        });
+
+        // Close on escape
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") setOpen(false);
+        });
+      }
+
+      function setYear() {
+        const y = $("#year");
+        if (y) y.textContent = String(new Date().getFullYear());
+      }
+
+      // Boot
+      (async function boot() {
+        state.lang = getLangFromURL();
+        state.dict = await loadI18n();
+
+        setupLang();
+        setupScroll();
+        setupBurger();
+        setYear();
+
+        applyText();
+
+        // If user comes with #features, keep it (do not rewrite hash). The anchor is in-page.
+        // No more runtime routing modifications here.
+      })();
+    })();
+  </script>
+
+  <!-- Non-essential: tiny noscript note -->
+  <noscript>
+    <div style="padding:12px;margin:12px;border:1px solid rgba(255,255,255,.18);border-radius:10px">
+      Trang vẫn đọc được không cần JavaScript. Tuy nhiên chuyển ngôn ngữ và menu mobile cần bật JavaScript.
     </div>
-  </div>
-</section>
-
-<section class="cta">
-  <div class="container cta-inner">
-    <h2>Sẵn sàng bắt đầu?</h2>
-    <a href="/app" class="btn btn-primary">Truy cập ứng dụng</a>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container footer-inner">
-    <div>© Nhà Chung</div>
-    <div class="footer-links">
-      <a href="/verify">Xác minh</a>
-      <a href="/admin">Quản trị</a>
-      <a href="/legal/privacy.html">Chính sách</a>
-      <a href="/legal/terms.html">Điều khoản</a>
-    </div>
-  </div>
-</footer>
-
-<script src="/assets/site.js"></script>
-
+  </noscript>
 </body>
 </html>
