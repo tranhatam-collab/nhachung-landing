@@ -1,7 +1,10 @@
-// public/assets/config.js
-window.NHACHUNG = {
-  LANDING_BASE: "https://nhachung.org",
-  APP_BASE: "https://app.nhachung.org",
-  API_BASE: "https://api.nhachung.org",
-  DEFAULT_LANG: "vi"
-};
+# ---- Contract redirects (Landing -> App) ----
+/app      https://app.nhachung.org/r/home?lang=vi      302
+/verify   https://app.nhachung.org/r/verify?lang=vi    302
+/admin    https://app.nhachung.org/r/admin?lang=vi     302
+
+# Optional convenience (không bắt buộc)
+/app/*    https://app.nhachung.org/r/home?lang=vi      302
+
+# Keep landing resilient: any unknown path -> landing
+/*        /index.html                                   200
