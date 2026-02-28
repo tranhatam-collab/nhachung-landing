@@ -1,15 +1,11 @@
-/* public/assets/site.js
-   - No external libs
-   - VI default, EN toggle
-   - Robust router (no null render)
-   - Status/Verify pages call API_BASE
-*/
 (function () {
   "use strict";
 
-  const cfg = window.NHACHUNG_CONFIG;
+  const cfg = window.NHACHUNG_APP_CONFIG;
   const app = document.getElementById("app");
   const langBtn = document.getElementById("langBtn");
+  const tokenChip = document.getElementById("tokenChip");
+  const tokenState = document.getElementById("tokenState");
 
   if (!cfg || !app) return;
 
@@ -18,7 +14,7 @@
     dict: null
   };
 
-  function $(sel, root = document) { return root.querySelector(sel); }
+  const $ = (sel, root = document) => root.querySelector(sel);
 
   function escapeHtml(s) {
     return String(s)
@@ -34,31 +30,73 @@
     return (d && d[key]) || key;
   }
 
+  function getAdminToken() {
+    try { return localStorage.getItem(cfg.STORAGE_KEYS.adminToken) || ""; } catch (_) { return ""; }
+  }
+
+  function setAdminToken(v) {
+    try { localStorage.setItem(cfg.STORAGE_KEYS.adminToken, v || ""); } catch (_) {}
+    paintTokenState();
+  }
+
+  function clearAdminToken() {
+    try { localStorage.removeItem(cfg.STORAGE_KEYS.adminToken); } catch (_) {}
+    paintTokenState();
+  }
+
+  function paintTokenState() {
+    const tok = getAdminToken();
+    tokenState.textContent = tok ? "ON" : "OFF";
+    tokenState.style.opacity = tok ? "1" : ".7";
+  }
+
   async function loadI18n() {
     const res = await fetch("/assets/i18n.json", { cache: "no-store" });
     if (!res.ok) throw new Error("i18n_load_failed");
     state.dict = await res.json();
-    if (!cfg.SUPPORTED_LANGS.includes(state.lang)) state.lang = cfg.DEFAULT_LANG;
   }
 
   function setLang(next) {
     state.lang = next;
     document.documentElement.lang = next;
     langBtn.textContent = next.toUpperCase();
-    // keep lang in URL for share
+    try { localStorage.setItem(cfg.STORAGE_KEYS.lang, next); } catch (_) {}
+
     const u = new URL(location.href);
     u.searchParams.set("lang", next);
     history.replaceState({}, "", u.toString());
     render();
   }
 
-  // ---- Routing
-  function getPath() {
-    // Use pathname (Pages redirect fallback serves index.html)
-    // Normalize trailing slash
-    let p = location.pathname || "/";
+  function loadLangFromStorageOrUrl() {
+    try {
+      const u = new URL(location.href);
+      const q = u.searchParams.get("lang");
+      const saved = localStorage.getItem(cfg.STORAGE_KEYS.lang);
+      const lang = q || saved || cfg.DEFAULT_LANG;
+      if (cfg.SUPPORTED_LANGS.includes(lang)) state.lang = lang;
+    } catch (_) {}
+  }
+
+  // ---- Routing (supports legacy /r/home)
+  function normalizePath(p) {
+    if (!p) return "/";
+    // legacy pattern: /r/home -> /
+    if (p.startsWith("/r/")) {
+      const tail = p.slice(3);
+      if (tail === "home") return "/";
+      if (tail === "admin") return cfg.ROUTES.admin;
+      if (tail === "create") return cfg.ROUTES.create;
+      if (tail === "verify") return cfg.ROUTES.verify;
+      if (tail === "status") return cfg.ROUTES.status;
+      return "/" + tail;
+    }
     if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
     return p;
+  }
+
+  function getPath() {
+    return normalizePath(location.pathname || "/");
   }
 
   function navTo(path) {
@@ -76,60 +114,58 @@
     });
   }
 
-  // ---- Network helpers
+  document.addEventListener("click", (e) => {
+    const a = e.target && e.target.closest && e.target.closest("[data-nav]");
+    if (!a) return;
+    e.preventDefault();
+    navTo(a.getAttribute("data-nav") || "/");
+  });
+
+  window.addEventListener("popstate", () => render());
+
+  // ---- Network
   function withTimeout(promise, ms) {
     let to;
     const tmo = new Promise((_, rej) => { to = setTimeout(() => rej(new Error("timeout")), ms); });
     return Promise.race([promise, tmo]).finally(() => clearTimeout(to));
   }
 
-  async function apiGet(path) {
+  async function apiFetch(path, opts = {}) {
     const url = cfg.API_BASE.replace(/\/+$/, "") + path;
-    const res = await withTimeout(fetch(url, { headers: { "accept": "application/json" } }), cfg.FETCH_TIMEOUT_MS);
+    const res = await withTimeout(fetch(url, opts), cfg.FETCH_TIMEOUT_MS);
     const text = await res.text();
-    let data = null;
+    let data;
     try { data = JSON.parse(text); } catch (_) { data = { raw: text }; }
-    if (!res.ok) {
-      return { ok: false, status: res.status, data };
-    }
-    return { ok: true, status: res.status, data };
+    return { ok: res.ok, status: res.status, data };
+  }
+
+  function pretty(obj) {
+    return JSON.stringify(obj, null, 2);
   }
 
   // ---- Views
   function viewHome() {
-    const createLink = cfg.APP_BASE.replace(/\/+$/, "") + "/#/admin";
-    const appLink = cfg.APP_BASE.replace(/\/+$/, "") + "/";
-
     return `
       <section class="hero">
-        <h1>${escapeHtml(t("hero_title"))}</h1>
-        <p>${escapeHtml(t("hero_sub"))}</p>
+        <h1>${escapeHtml(t("home_title"))}</h1>
+        <p>${escapeHtml(t("home_sub"))}</p>
       </section>
 
       <section class="grid">
         <article class="card">
-          <h2>${escapeHtml(t("card_create_title"))}</h2>
-          <p>${escapeHtml(t("card_create_desc"))}</p>
+          <h2>${escapeHtml(t("create_title"))}</h2>
+          <p>${escapeHtml(t("create_sub"))}</p>
           <div class="row">
-            <a class="btn btn--primary" href="${escapeHtml(createLink)}" rel="noopener"> ${escapeHtml(t("btn_go_admin"))} </a>
-            <a class="btn" href="${escapeHtml(appLink)}" rel="noopener"> ${escapeHtml(t("cta_open_app"))} </a>
-          </div>
-          <p class="muted" style="margin-top:12px">${escapeHtml(t("note_privacy"))}</p>
-        </article>
-
-        <article class="card">
-          <h2>${escapeHtml(t("card_verify_title"))}</h2>
-          <p>${escapeHtml(t("card_verify_desc"))}</p>
-          <div class="row">
-            <button class="btn" id="goVerify" type="button">${escapeHtml(t("btn_go_verify"))}</button>
+            <button class="btn btn--primary" id="goCreate" type="button">${escapeHtml(t("nav_create"))}</button>
+            <button class="btn" id="goAdmin" type="button">${escapeHtml(t("nav_admin"))}</button>
           </div>
         </article>
 
         <article class="card">
-          <h2>${escapeHtml(t("card_status_title"))}</h2>
-          <p>${escapeHtml(t("card_status_desc"))}</p>
+          <h2>${escapeHtml(t("verify_title"))}</h2>
+          <p>${escapeHtml(t("verify_sub"))}</p>
           <div class="row">
-            <button class="btn" id="goStatus" type="button">${escapeHtml(t("btn_go_status"))}</button>
+            <button class="btn" id="goVerify" type="button">${escapeHtml(t("nav_verify"))}</button>
           </div>
         </article>
 
@@ -144,47 +180,52 @@
     `;
   }
 
-  function viewStatus() {
+  function viewCreate() {
     return `
       <section class="hero">
-        <h1>${escapeHtml(t("status_title"))}</h1>
-        <p>${escapeHtml(t("status_sub"))}</p>
+        <h1>${escapeHtml(t("create_title"))}</h1>
+        <p>${escapeHtml(t("create_sub"))}</p>
       </section>
 
       <section class="grid">
         <article class="card">
-          <h2>${escapeHtml(t("status_testdb"))}</h2>
-          <p class="muted">GET ${escapeHtml(cfg.API_BASE + cfg.ENDPOINTS.testDb)}</p>
-          <div class="row">
-            <button class="btn" id="runTestDb" type="button">${escapeHtml(t("run"))}</button>
+          <h2>${escapeHtml(t("create_title"))}</h2>
+          <div class="two">
+            <div class="field">
+              <div class="label">${escapeHtml(t("member_id"))}</div>
+              <input class="input" id="member_id" placeholder="${escapeHtml(t("member_id"))}" />
+            </div>
+            <div class="field">
+              <div class="label">${escapeHtml(t("project_id"))}</div>
+              <input class="input" id="project_id" placeholder="${escapeHtml(t("project_id"))}" />
+            </div>
+            <div class="field">
+              <div class="label">${escapeHtml(t("title"))}</div>
+              <input class="input" id="title" placeholder="${escapeHtml(t("title"))}" />
+            </div>
+            <div class="field">
+              <div class="label">${escapeHtml(t("difficulty"))}</div>
+              <input class="input" id="difficulty" value="2" placeholder="${escapeHtml(t("difficulty"))}" />
+            </div>
           </div>
-          <pre class="output" id="outTestDb">{}</pre>
+
+          <div class="row">
+            <button class="btn btn--primary" id="btnCreate" type="button">${escapeHtml(t("btn_create"))}</button>
+            <button class="btn btn--ghost" id="btnShowCurl" type="button">${escapeHtml(t("btn_show_curl"))}</button>
+            <button class="btn" id="btnGoAdmin" type="button">${escapeHtml(t("nav_admin"))}</button>
+          </div>
+          <div class="small" style="margin-top:8px">${escapeHtml(t("curl_note"))}</div>
+
+          <pre class="output" id="outCreate">{}</pre>
+          <pre class="output" id="outCurl" style="display:none">{}</pre>
         </article>
 
         <article class="card">
-          <h2>${escapeHtml(t("status_list"))}</h2>
-          <p class="muted">GET ${escapeHtml(cfg.API_BASE + cfg.ENDPOINTS.listCommitments)}</p>
+          <h2>${escapeHtml(t("list_title"))}</h2>
           <div class="row">
-            <button class="btn" id="runList" type="button">${escapeHtml(t("run"))}</button>
+            <button class="btn" id="btnList" type="button">${escapeHtml(t("btn_list"))}</button>
           </div>
           <pre class="output" id="outList">{}</pre>
-        </article>
-
-        <article class="card">
-          <h2>${escapeHtml(t("status_msg404"))}</h2>
-          <p class="muted">GET ${escapeHtml(cfg.API_BASE + "/message")}</p>
-          <div class="row">
-            <button class="btn" id="runMsg" type="button">${escapeHtml(t("run"))}</button>
-          </div>
-          <pre class="output" id="outMsg">{}</pre>
-        </article>
-
-        <article class="card wide">
-          <div class="kv">
-            <div class="muted">${escapeHtml(t("api_base"))}</div>
-            <code>${escapeHtml(cfg.API_BASE)}</code>
-            <button class="btn btn--ghost" id="copyApi2" type="button">${escapeHtml(t("copy"))}</button>
-          </div>
         </article>
       </section>
     `;
@@ -200,10 +241,11 @@
       <section class="grid">
         <article class="card wide">
           <div class="field">
+            <div class="label">${escapeHtml(t("verify_title"))}</div>
             <input class="input" id="verifyId" placeholder="${escapeHtml(t("verify_placeholder"))}" />
           </div>
           <div class="row">
-            <button class="btn btn--primary" id="btnVerify" type="button">${escapeHtml(t("verify_btn"))}</button>
+            <button class="btn btn--primary" id="btnVerify" type="button">${escapeHtml(t("btn_verify"))}</button>
           </div>
           <pre class="output" id="outVerify">{}</pre>
         </article>
@@ -211,9 +253,47 @@
     `;
   }
 
+  function viewStatus() {
+    return `
+      <section class="hero">
+        <h1>${escapeHtml(t("status_title"))}</h1>
+        <p>${escapeHtml(t("status_sub"))}</p>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Test DB</h2>
+          <p class="muted">GET ${escapeHtml(cfg.API_BASE + cfg.ENDPOINTS.testDb)}</p>
+          <div class="row"><button class="btn" id="runTestDb" type="button">${escapeHtml(t("run"))}</button></div>
+          <pre class="output" id="outTestDb">{}</pre>
+        </article>
+
+        <article class="card">
+          <h2>List commitments</h2>
+          <p class="muted">GET ${escapeHtml(cfg.API_BASE + cfg.ENDPOINTS.listCommitments)}</p>
+          <div class="row"><button class="btn" id="runList" type="button">${escapeHtml(t("run"))}</button></div>
+          <pre class="output" id="outList">{}</pre>
+        </article>
+
+        <article class="card">
+          <h2>Message (expect 404)</h2>
+          <p class="muted">GET ${escapeHtml(cfg.API_BASE + "/message")}</p>
+          <div class="row"><button class="btn" id="runMsg" type="button">${escapeHtml(t("run"))}</button></div>
+          <pre class="output" id="outMsg">{}</pre>
+        </article>
+
+        <article class="card wide">
+          <div class="kv">
+            <div class="muted">${escapeHtml(t("api_base"))}</div>
+            <code>${escapeHtml(cfg.API_BASE)}</code>
+            <button class="btn btn--ghost" id="copyApi2" type="button">${escapeHtml(t("copy"))}</button>
+          </div>
+        </article>
+      </section>
+    `;
+  }
+
   function viewAdmin() {
-    const adminLink = cfg.APP_BASE.replace(/\/+$/, "") + "/#/admin";
-    const appLink = cfg.APP_BASE.replace(/\/+$/, "") + "/";
     return `
       <section class="hero">
         <h1>${escapeHtml(t("admin_title"))}</h1>
@@ -222,74 +302,100 @@
 
       <section class="grid">
         <article class="card">
-          <h2>App/Admin</h2>
-          <p class="muted">${escapeHtml(cfg.APP_BASE)}</p>
-          <div class="row">
-            <a class="btn btn--primary" href="${escapeHtml(adminLink)}" rel="noopener">${escapeHtml(t("open_admin_app"))}</a>
-            <a class="btn" href="${escapeHtml(appLink)}" rel="noopener">${escapeHtml(t("open_user_app"))}</a>
+          <h2>${escapeHtml(t("admin_token"))}</h2>
+          <div class="field">
+            <input class="input" id="adminToken" placeholder="Paste ADMIN_TOKEN_V2" />
           </div>
+          <div class="row">
+            <button class="btn btn--primary" id="btnSaveToken" type="button">${escapeHtml(t("btn_save"))}</button>
+            <button class="btn" id="btnClearToken" type="button">${escapeHtml(t("btn_clear"))}</button>
+          </div>
+          <pre class="output" id="outToken">{}</pre>
         </article>
 
         <article class="card">
-          <h2>${escapeHtml(t("card_status_title"))}</h2>
-          <p>${escapeHtml(t("card_status_desc"))}</p>
+          <h2>${escapeHtml(t("audit_title"))}</h2>
           <div class="row">
-            <button class="btn" id="goStatus2" type="button">${escapeHtml(t("btn_go_status"))}</button>
+            <button class="btn" id="btnAudit" type="button">${escapeHtml(t("btn_audit"))}</button>
           </div>
+          <pre class="output" id="outAudit">{}</pre>
         </article>
       </section>
     `;
   }
 
-  function viewNotFound(path) {
+  function viewNotFound(p) {
     return `
       <section class="hero">
         <h1>404</h1>
-        <p class="muted">${escapeHtml(t("err_not_found"))} ${escapeHtml(path)}</p>
+        <p class="muted">Not found: ${escapeHtml(p)}</p>
       </section>
       <section class="grid">
         <article class="card">
-          <div class="row">
-            <button class="btn" id="goHome" type="button">${escapeHtml(t("nav_home"))}</button>
-          </div>
+          <div class="row"><button class="btn" id="goHome" type="button">${escapeHtml(t("nav_home"))}</button></div>
         </article>
       </section>
     `;
   }
 
-  function routeToView(path) {
-    if (path === cfg.ROUTES.home) return viewHome();
-    if (path === cfg.ROUTES.status) return viewStatus();
-    if (path === cfg.ROUTES.verify) return viewVerify();
-    if (path === cfg.ROUTES.admin) return viewAdmin();
-    return viewNotFound(path);
+  function routeToView(p) {
+    if (p === cfg.ROUTES.home) return viewHome();
+    if (p === cfg.ROUTES.create) return viewCreate();
+    if (p === cfg.ROUTES.verify) return viewVerify();
+    if (p === cfg.ROUTES.status) return viewStatus();
+    if (p === cfg.ROUTES.admin) return viewAdmin();
+    return viewNotFound(p);
   }
 
+  // ---- Wiring helpers
   function wireCommon() {
-    const copy = async (id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const text = el.textContent || cfg.API_BASE;
-      try {
-        await navigator.clipboard.writeText(text);
-        // tiny feedback
-      } catch (_) {}
+    markActiveNav();
+
+    const copyText = async (text) => {
+      try { await navigator.clipboard.writeText(text); } catch (_) {}
     };
+
+    const c1 = $("#copyApi");
+    if (c1) c1.addEventListener("click", () => copyText(cfg.API_BASE));
+    const c2 = $("#copyApi2");
+    if (c2) c2.addEventListener("click", () => copyText(cfg.API_BASE));
 
     const go = (id, path) => {
       const b = document.getElementById(id);
       if (b) b.addEventListener("click", () => navTo(path));
     };
 
-    go("goStatus", cfg.ROUTES.status);
-    go("goStatus2", cfg.ROUTES.status);
+    go("goCreate", cfg.ROUTES.create);
+    go("goAdmin", cfg.ROUTES.admin);
     go("goVerify", cfg.ROUTES.verify);
     go("goHome", cfg.ROUTES.home);
 
-    const c1 = document.getElementById("copyApi");
-    if (c1) c1.addEventListener("click", () => copy("apiBase"));
-    const c2 = document.getElementById("copyApi2");
-    if (c2) c2.addEventListener("click", () => navigator.clipboard.writeText(cfg.API_BASE).catch(()=>{}));
+    // token chip quick jump
+    if (tokenChip) tokenChip.onclick = () => navTo(cfg.ROUTES.admin);
+  }
+
+  function setOut(el, objOrText) {
+    if (!el) return;
+    el.textContent = typeof objOrText === "string" ? objOrText : pretty(objOrText);
+  }
+
+  function needTokenOrExplain(outEl) {
+    const tok = getAdminToken();
+    if (!tok) {
+      setOut(outEl, { ok: false, error: t("err_need_token") });
+      return "";
+    }
+    return tok;
+  }
+
+  async function runGet(outEl, path) {
+    setOut(outEl, t("loading"));
+    try {
+      const r = await apiFetch(path, { headers: { "accept": "application/json" } });
+      setOut(outEl, r.data);
+    } catch (e) {
+      setOut(outEl, (e && e.message === "timeout") ? t("err_timeout") : t("err_api_unreachable"));
+    }
   }
 
   function wireStatus() {
@@ -297,25 +403,14 @@
     const outList = $("#outList");
     const outMsg = $("#outMsg");
 
-    async function run(outEl, path) {
-      if (!outEl) return;
-      outEl.textContent = t("loading");
-      try {
-        const r = await apiGet(path);
-        outEl.textContent = JSON.stringify(r.data, null, 2);
-      } catch (e) {
-        outEl.textContent = (e && e.message === "timeout") ? t("err_timeout") : t("err_api_unreachable");
-      }
-    }
-
     const b1 = $("#runTestDb");
-    if (b1) b1.addEventListener("click", () => run(outTestDb, cfg.ENDPOINTS.testDb));
+    if (b1) b1.onclick = () => runGet(outTestDb, cfg.ENDPOINTS.testDb);
 
     const b2 = $("#runList");
-    if (b2) b2.addEventListener("click", () => run(outList, cfg.ENDPOINTS.listCommitments));
+    if (b2) b2.onclick = () => runGet(outList, cfg.ENDPOINTS.listCommitments);
 
     const b3 = $("#runMsg");
-    if (b3) b3.addEventListener("click", () => run(outMsg, "/message"));
+    if (b3) b3.onclick = () => runGet(outMsg, "/message");
   }
 
   function wireVerify() {
@@ -324,70 +419,179 @@
     const btn = $("#btnVerify");
     if (!btn || !input || !out) return;
 
-    btn.addEventListener("click", async () => {
+    btn.onclick = async () => {
       const id = (input.value || "").trim();
-      if (!id) { out.textContent = "{}"; return; }
-      out.textContent = t("loading");
+      if (!id) return setOut(out, {});
+      setOut(out, t("loading"));
       try {
-        const r = await apiGet(cfg.ENDPOINTS.getCommitment + encodeURIComponent(id));
-        out.textContent = JSON.stringify(r.data, null, 2);
+        const r = await apiFetch(cfg.ENDPOINTS.getCommitment + encodeURIComponent(id), {
+          headers: { "accept": "application/json" }
+        });
+        setOut(out, r.data);
       } catch (e) {
-        out.textContent = (e && e.message === "timeout") ? t("err_timeout") : t("err_api_unreachable");
+        setOut(out, (e && e.message === "timeout") ? t("err_timeout") : t("err_api_unreachable"));
       }
-    });
+    };
   }
 
-  function wireHome() {
-    // nothing heavy; buttons are wired via wireCommon
+  function wireCreate() {
+    const outCreate = $("#outCreate");
+    const outCurl = $("#outCurl");
+    const outList = $("#outList");
+
+    const member = $("#member_id");
+    const project = $("#project_id");
+    const title = $("#title");
+    const diff = $("#difficulty");
+
+    const btnCreate = $("#btnCreate");
+    const btnShowCurl = $("#btnShowCurl");
+    const btnGoAdmin = $("#btnGoAdmin");
+    const btnList = $("#btnList");
+
+    if (btnGoAdmin) btnGoAdmin.onclick = () => navTo(cfg.ROUTES.admin);
+
+    if (btnList) btnList.onclick = () => runGet(outList, cfg.ENDPOINTS.listCommitments);
+
+    if (btnShowCurl) btnShowCurl.onclick = () => {
+      const tok = getAdminToken() || "<ADMIN_TOKEN_V2>";
+      const payload = {
+        member_id: (member?.value || "m1").trim(),
+        project_id: (project?.value || "p1").trim(),
+        title: (title?.value || "Prod Test").trim(),
+        difficulty: Number((diff?.value || "2").trim()) || 2
+      };
+      const curl =
+`BASE="${cfg.API_BASE}"
+curl -s -X POST "$BASE${cfg.ENDPOINTS.createCommitment}" \\
+  -H "Content-Type: application/json" \\
+  -H "x-admin-token: ${tok}" \\
+  -d '${JSON.stringify(payload)}' | cat`;
+      if (outCurl) {
+        outCurl.style.display = "block";
+        setOut(outCurl, curl);
+      }
+    };
+
+    if (btnCreate) btnCreate.onclick = async () => {
+      const tok = needTokenOrExplain(outCreate);
+      if (!tok) return;
+
+      const payload = {
+        member_id: (member?.value || "").trim(),
+        project_id: (project?.value || "").trim(),
+        title: (title?.value || "").trim(),
+        difficulty: Number((diff?.value || "2").trim()) || 2
+      };
+
+      if (!payload.member_id || !payload.project_id || !payload.title) {
+        return setOut(outCreate, { ok: false, error: "missing_fields" });
+      }
+
+      setOut(outCreate, t("loading"));
+      try {
+        const r = await apiFetch(cfg.ENDPOINTS.createCommitment, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "accept": "application/json",
+            "x-admin-token": tok
+          },
+          body: JSON.stringify(payload)
+        });
+        setOut(outCreate, r.data);
+
+        // refresh list right away
+        runGet(outList, cfg.ENDPOINTS.listCommitments);
+      } catch (e) {
+        setOut(outCreate, (e && e.message === "timeout") ? t("err_timeout") : t("err_api_unreachable"));
+      }
+    };
+  }
+
+  function wireAdmin() {
+    const input = $("#adminToken");
+    const out = $("#outToken");
+    const outAudit = $("#outAudit");
+
+    const btnSave = $("#btnSaveToken");
+    const btnClear = $("#btnClearToken");
+    const btnAudit = $("#btnAudit");
+
+    // show current (masked)
+    const current = getAdminToken();
+    if (input) input.value = current ? current : "";
+
+    if (btnSave) btnSave.onclick = () => {
+      const v = (input?.value || "").trim();
+      if (!v) return setOut(out, { ok: false, error: "empty_token" });
+      setAdminToken(v);
+      setOut(out, { ok: true, saved: true });
+    };
+
+    if (btnClear) btnClear.onclick = () => {
+      clearAdminToken();
+      if (input) input.value = "";
+      setOut(out, { ok: true, cleared: true });
+    };
+
+    if (btnAudit) btnAudit.onclick = async () => {
+      const tok = needTokenOrExplain(outAudit);
+      if (!tok) return;
+
+      setOut(outAudit, t("loading"));
+      try {
+        const r = await apiFetch(cfg.ENDPOINTS.adminAudit, {
+          headers: {
+            "accept": "application/json",
+            "x-admin-token": tok
+          }
+        });
+        setOut(outAudit, r.data);
+      } catch (e) {
+        setOut(outAudit, (e && e.message === "timeout") ? t("err_timeout") : t("err_api_unreachable"));
+      }
+    };
   }
 
   function render() {
     const p = getPath();
-    markActiveNav();
-
     app.innerHTML = routeToView(p);
 
+    // Always wire common (safe)
     wireCommon();
+
+    // Route-specific wiring
     if (p === cfg.ROUTES.status) wireStatus();
     if (p === cfg.ROUTES.verify) wireVerify();
-    if (p === cfg.ROUTES.home) wireHome();
+    if (p === cfg.ROUTES.create) wireCreate();
+    if (p === cfg.ROUTES.admin) wireAdmin();
 
-    // Safe: never references missing nodes (no null innerHTML)
-  }
-
-  function bootNav() {
-    document.addEventListener("click", (e) => {
-      const a = e.target && e.target.closest && e.target.closest("[data-nav]");
-      if (!a) return;
-      e.preventDefault();
-      const to = a.getAttribute("data-nav") || "/";
-      navTo(to);
-    });
-
-    window.addEventListener("popstate", () => render());
+    paintTokenState();
   }
 
   async function boot() {
     await loadI18n();
-
-    // Initialize lang from URL if present
-    try {
-      const u = new URL(location.href);
-      const lang = u.searchParams.get("lang");
-      if (lang && cfg.SUPPORTED_LANGS.includes(lang)) state.lang = lang;
-    } catch (_) {}
+    loadLangFromStorageOrUrl();
 
     langBtn.addEventListener("click", () => {
-      const idx = cfg.SUPPORTED_LANGS.indexOf(state.lang);
-      const next = cfg.SUPPORTED_LANGS[(idx + 1) % cfg.SUPPORTED_LANGS.length];
+      const i = cfg.SUPPORTED_LANGS.indexOf(state.lang);
+      const next = cfg.SUPPORTED_LANGS[(i + 1) % cfg.SUPPORTED_LANGS.length];
       setLang(next);
     });
 
-    bootNav();
+    // If user hits legacy path (/r/home), normalize once
+    const normalized = normalizePath(location.pathname);
+    if (normalized !== location.pathname) {
+      const u = new URL(location.href);
+      u.pathname = normalized;
+      history.replaceState({}, "", u.toString());
+    }
+
     render();
   }
 
   boot().catch(() => {
-    app.innerHTML = `<section class="hero"><h1>Nhà Chung</h1><p class="muted">Boot failed.</p></section>`;
+    app.innerHTML = `<section class="hero"><h1>App</h1><p class="muted">Boot failed.</p></section>`;
   });
 })();
