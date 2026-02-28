@@ -1,0 +1,12 @@
+# Pages: serve index.html for app-like routes (no 404)
+# Keep legal pages as real HTML files
+
+/legal/*  /legal/:splat  200
+/assets/* /assets/:splat 200
+
+/status   /index.html    200
+/verify   /index.html    200
+/admin    /index.html    200
+
+# Default
+/*        /index.html    200
