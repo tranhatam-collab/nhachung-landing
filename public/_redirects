@@ -1,12 +1,8 @@
-# Pages: serve index.html for app-like routes (no 404)
-# Keep legal pages as real HTML files
-
-/legal/*  /legal/:splat  200
-/assets/* /assets/:splat 200
-
-/status   /index.html    200
-/verify   /index.html    200
-/admin    /index.html    200
-
 # Default
 /*        /index.html    200
+# Clean legal routes
+/legal/privacy    /legal/privacy.html   301
+/legal/terms      /legal/terms.html     301
+
+# Optional: normalize www -> apex (Cloudflare Pages may handle, but keep anyway)
+https://www.nhachung.org/*  https://nhachung.org/:splat  301
