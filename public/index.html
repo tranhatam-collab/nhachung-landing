@@ -3,60 +3,241 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="dark light" />
-  <title>Nhà Chung</title>
-  <meta name="description" content="Nền tảng tối giản, riêng tư, không theo dõi. Dành cho cam kết, biên nhận, và quản trị minh bạch." />
-
+  <title>Nhà Chung — Nền tảng cam kết, biên nhận, và quản trị minh bạch</title>
+  <meta name="description" content="Nền tảng tối giản, riêng tư, không theo dõi. Ghi nhận cam kết, tạo biên nhận (hash + chữ ký), và quản trị minh bạch." />
+  <meta name="theme-color" content="#0b0f0c" />
   <link rel="icon" href="/assets/favicon.svg" />
-  <link rel="manifest" href="/manifest.json" />
   <link rel="stylesheet" href="/assets/site.css" />
 
   <link rel="canonical" href="https://nhachung.org/" />
-  <meta property="og:title" content="Nhà Chung" />
-  <meta property="og:description" content="Cam kết được ghi nhận, trách nhiệm được tôn trọng." />
+  <link rel="alternate" hreflang="vi" href="https://nhachung.org/?lang=vi" />
+  <link rel="alternate" hreflang="en" href="https://nhachung.org/?lang=en" />
+  <meta property="og:title" content="Nhà Chung — Cam kết được ghi nhận, trách nhiệm được tôn trọng" />
+  <meta property="og:description" content="Tối giản. Riêng tư. Không theo dõi. Biên nhận hash + chữ ký. Quản trị minh bạch." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nhachung.org/" />
+  <meta name="twitter:card" content="summary" />
 
-  <script>
-    // Small guard: force hash-less routes to work with Pages redirect fallback
-    // Site uses pushState; Pages serves index.html for /status, /verify, /admin
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Nhà Chung",
+    "url":"https://nhachung.org/",
+    "description":"Nền tảng tối giản, riêng tư, không theo dõi. Ghi nhận cam kết, tạo biên nhận (hash + chữ ký), và quản trị minh bạch."
+  }
   </script>
 </head>
 
 <body>
   <header class="topbar">
-    <a class="brand" href="/" data-nav="/">
+    <a class="brand" href="/" aria-label="Nhà Chung">
       <span class="logo" aria-hidden="true">NC</span>
-      <span class="brand__name">Nhà Chung</span>
+      <span class="brand__name" data-i18n="brand_name">Nhà Chung</span>
     </a>
 
     <nav class="nav" aria-label="Primary">
-      <a class="nav__link" href="/" data-nav="/">Trang chủ</a>
-      <a class="nav__link" href="/status" data-nav="/status">Trạng thái</a>
-      <a class="nav__link" href="/verify" data-nav="/verify">Xác minh</a>
-      <a class="nav__link" href="/admin" data-nav="/admin">Admin</a>
+      <a class="nav__link" href="#why" data-i18n="nav_why">Vì sao</a>
+      <a class="nav__link" href="#features" data-i18n="nav_features">Tính năng</a>
+      <a class="nav__link" href="#how" data-i18n="nav_how">Cách dùng</a>
+      <a class="nav__link" href="#trust" data-i18n="nav_trust">Tin cậy</a>
+      <a class="nav__link" href="#start" data-i18n="nav_start">Bắt đầu</a>
     </nav>
 
-    <button class="lang" id="langBtn" type="button" aria-label="Language">VI</button>
+    <div class="actions">
+      <button class="lang" id="langBtn" type="button" aria-label="Language">VI</button>
+      <a class="btn btn--ghost" id="btnOpenAppTop" href="#" data-i18n="btn_open_app">Vào App</a>
+    </div>
   </header>
 
   <main class="wrap">
-    <!-- Single mount point: no more "Cannot set properties of null" -->
-    <div id="app" class="app" aria-live="polite"></div>
+    <section class="hero" id="top">
+      <div class="hero__left">
+        <h1 data-i18n="hero_h1">Nói Cam Kết Được Ghi Nhận, Và Trách Nhiệm Được Tôn Trọng.</h1>
+        <p class="lead" data-i18n="hero_lead">
+          Một nền tảng tối giản, riêng tư, không theo dõi. Dành cho cam kết, biên nhận (hash + chữ ký), và quản trị minh bạch.
+        </p>
+
+        <div class="cta">
+          <a class="btn" id="btnOpenApp" href="#" data-i18n="cta_primary">Bắt đầu tại App</a>
+          <a class="btn btn--ghost" id="btnOpenAPI" href="#" data-i18n="cta_secondary">Kiểm tra API</a>
+        </div>
+
+        <div class="badges">
+          <span class="badge" data-i18n="badge_privacy">Không theo dõi</span>
+          <span class="badge" data-i18n="badge_fast">Nhanh, nhẹ</span>
+          <span class="badge" data-i18n="badge_proof">Biên nhận hash + chữ ký</span>
+        </div>
+      </div>
+
+      <div class="hero__right" aria-hidden="true">
+        <div class="glass">
+          <div class="glass__title" data-i18n="panel_title">Biên nhận (minh hoạ)</div>
+          <div class="mono">
+            <div>receipt_id: <span class="muted">cmt_3bd2d05f…</span></div>
+            <div>hash: <span class="muted">2e81ec48…</span></div>
+            <div>signature: <span class="muted">f5c61682…</span></div>
+          </div>
+          <div class="glass__hint" data-i18n="panel_hint">Dùng để xác minh và đối chiếu sau này.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="section__head">
+        <h2 data-i18n="why_h2">Vì Sao Cần “Nhà Chung”?</h2>
+        <p class="muted" data-i18n="why_p">Bởi vì mọi hệ sinh thái bền vững đều cần một chỗ ghi nhận trách nhiệm — rõ ràng, kiểm tra được, và không làm phiền đời sống riêng tư.</p>
+      </div>
+
+      <div class="grid3">
+        <article class="card">
+          <h3 data-i18n="why_c1_h">Cam kết không còn “nói cho vui”</h3>
+          <p data-i18n="why_c1_p">Mỗi cam kết có ID, thời gian, hash, chữ ký. Không tranh cãi bằng cảm tính.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="why_c2_h">Minh bạch nhưng vẫn riêng tư</h3>
+          <p data-i18n="why_c2_p">Không tracking. Không analytics. Chỉ lưu những gì cần thiết để xác minh.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="why_c3_h">Quản trị gọn và có kỷ luật</h3>
+          <p data-i18n="why_c3_p">Admin tách biệt. Có audit logs. Có nguyên tắc quyền hạn (role-based) theo lộ trình.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section__head">
+        <h2 data-i18n="feat_h2">Tính Năng</h2>
+        <p class="muted" data-i18n="feat_p">Thiết kế để chạy thật: ít rủi ro, ít phụ thuộc, dễ mở rộng.</p>
+      </div>
+
+      <div class="grid2">
+        <article class="card">
+          <h3 data-i18n="feat_1_h">Tạo cam kết + biên nhận</h3>
+          <ul class="list">
+            <li data-i18n="feat_1_l1">Sinh commitment ID</li>
+            <li data-i18n="feat_1_l2">Tạo hash biên nhận</li>
+            <li data-i18n="feat_1_l3">Ký bằng SIGNING_SECRET</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="feat_2_h">Xác minh</h3>
+          <ul class="list">
+            <li data-i18n="feat_2_l1">Tra cứu theo ID</li>
+            <li data-i18n="feat_2_l2">Đối chiếu hash</li>
+            <li data-i18n="feat_2_l3">Kiểm tra chữ ký</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="feat_3_h">Admin & Audit</h3>
+          <ul class="list">
+            <li data-i18n="feat_3_l1">Admin token lưu local (browser)</li>
+            <li data-i18n="feat_3_l2">API có kiểm soát truy cập</li>
+            <li data-i18n="feat_3_l3">Audit logs truy vết thao tác</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="feat_4_h">Bảo mật mặc định</h3>
+          <ul class="list">
+            <li data-i18n="feat_4_l1">CSP chặt</li>
+            <li data-i18n="feat_4_l2">Không CDN, không thư viện ngoài</li>
+            <li data-i18n="feat_4_l3">Tách rõ nhachung.org / app / api</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="section__head">
+        <h2 data-i18n="how_h2">Cách Dùng (Nói Ngắn)</h2>
+        <p class="muted" data-i18n="how_p">Bạn có thể bắt đầu ngay bằng App. Landing này chỉ là “bản đồ”.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__n">1</div>
+          <div class="step__body">
+            <div class="step__t" data-i18n="how_s1_t">Vào App</div>
+            <div class="step__d" data-i18n="how_s1_d">Mở app.nhachung.org và xem trạng thái hệ thống.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__n">2</div>
+          <div class="step__body">
+            <div class="step__t" data-i18n="how_s2_t">Nhập Admin Token (chỉ dành cho quản trị)</div>
+            <div class="step__d" data-i18n="how_s2_d">Token lưu trên trình duyệt, không gửi đi chỗ khác ngoài API.</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__n">3</div>
+          <div class="step__body">
+            <div class="step__t" data-i18n="how_s3_t">Tạo cam kết và nhận biên nhận</div>
+            <div class="step__d" data-i18n="how_s3_d">Hệ thống trả về ID + hash + chữ ký để xác minh.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="trust">
+      <div class="section__head">
+        <h2 data-i18n="trust_h2">Tin Cậy & Kiểm Chứng</h2>
+        <p class="muted" data-i18n="trust_p">Không cần “tin lời”. Chỉ cần đối chiếu dữ liệu.</p>
+      </div>
+
+      <div class="grid3">
+        <article class="card">
+          <h3 data-i18n="trust_1_h">Hash receipt</h3>
+          <p data-i18n="trust_1_p">Nội dung được băm để tạo dấu vân tay. Thay 1 ký tự là hash khác.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="trust_2_h">Signature</h3>
+          <p data-i18n="trust_2_p">Chữ ký số giúp xác minh biên nhận do đúng hệ thống phát hành.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="trust_3_h">Audit logs</h3>
+          <p data-i18n="trust_3_p">Quản trị phải để lại dấu vết, giảm rủi ro thao tác tùy tiện.</p>
+        </article>
+      </div>
+
+      <div class="card note" id="start">
+        <h3 data-i18n="start_h">Bắt đầu ngay</h3>
+        <p class="muted" data-i18n="start_p">Nếu bạn là người dùng: vào App. Nếu bạn là kỹ thuật: kiểm tra API. Nếu bạn là quản trị: mở Admin.</p>
+        <div class="cta">
+          <a class="btn" id="btnStartApp" href="#" data-i18n="btn_open_app">Vào App</a>
+          <a class="btn btn--ghost" id="btnStartAdmin" href="#" data-i18n="btn_open_admin">Mở Admin</a>
+          <a class="btn btn--ghost" id="btnStartApi" href="#" data-i18n="btn_open_api">Mở API</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2 data-i18n="legal_h2">Pháp lý cơ bản</h2>
+        <p class="muted" data-i18n="legal_p">Trang này không tracking. App/API có lưu dữ liệu tối thiểu để vận hành cam kết và kiểm chứng.</p>
+      </div>
+      <div class="row">
+        <a class="link" href="/legal/privacy.html" data-i18n="legal_privacy">Chính sách quyền riêng tư</a>
+        <span class="sep">•</span>
+        <a class="link" href="/legal/terms.html" data-i18n="legal_terms">Điều khoản sử dụng</a>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
-    <div class="footer__links">
-      <a href="/legal/privacy.html">Privacy</a>
-      <span class="dot">•</span>
-      <a href="/legal/terms.html">Terms</a>
+    <div class="footer__inner">
+      <div class="muted">© <span id="year"></span> <span data-i18n="brand_name">Nhà Chung</span></div>
+      <div class="muted">
+        <span data-i18n="footer_note">Tối giản. Riêng tư. Không theo dõi.</span>
+      </div>
     </div>
-    <div class="muted">© <span id="y"></span> Nhà Chung</div>
   </footer>
 
   <script src="/assets/config.js"></script>
-  <script src="/assets/site.js" defer></script>
-  <script>
-    document.getElementById("y").textContent = String(new Date().getFullYear());
-  </script>
+  <script src="/assets/site.js"></script>
 </body>
 </html>
