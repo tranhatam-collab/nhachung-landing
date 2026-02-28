@@ -1,0 +1,20 @@
+{
+  "vi": {
+    "t-hero-title": "Nơi Cam Kết Được Ghi Nhận, Và Trách Nhiệm Được Tôn Trọng.",
+    "t-hero-desc": "Một nền tảng tối giản, riêng tư, không theo dõi. Dành cho cam kết, biên nhận, và quản trị minh bạch.",
+    "t-chip-1": "Không theo dõi",
+    "t-chip-2": "Không analytics",
+    "t-chip-3": "Tối giản",
+    "t-chip-4": "Có thể kiểm chứng",
+
+    "t-feat-title": "3 lớp nền tảng",
+    "t-feat-desc": "Tách rõ Landing, App, và API để không lỗi vặt và dễ mở rộng lâu dài.",
+    "t-feat-1-title": "Cam Kết",
+    "t-feat-1-desc": "Tạo cam kết có biên nhận: ID, thời điểm, hash, chữ ký.",
+    "t-feat-1-cta": "Mở trang tạo",
+    "t-feat-2-title": "Xác Minh",
+    "t-feat-2-desc": "Tra cứu và xác minh biên nhận theo ID, đọc được bằng mắt thường và máy.",
+    "t-feat-2-cta": "Mở trang xác minh",
+    "t-feat-3-title": "Quản Trị",
+    "t-feat-3-desc": "Admin thao tác qua UI + token, có audit logs, sẵn sàng nâng cấp role-based.",
+   
