@@ -59,7 +59,7 @@
   </script>
 
   <style>
-    /* Safety baseline (site.css will own the full design). Keep tiny to avoid FOUC. */
+    /* Safety baseline: avoid flash while site.css loads */
     :root{--bg:#0b0f0c;--fg:#eef2ea}
     html,body{height:100%}
     body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
@@ -74,7 +74,7 @@
   <!-- Header -->
   <header class="nc-topbar" role="banner">
     <div class="nc-topbar__inner">
-      <a class="nc-brand" href="#top" data-scroll>
+      <a class="nc-brand" href="#top" data-scroll aria-label="Về đầu trang">
         <span class="nc-logo" aria-hidden="true">NC</span>
         <span class="nc-brand__text">
           <span class="nc-brand__name" data-i18n="brand.name">Nhà Chung</span>
@@ -83,11 +83,11 @@
       </a>
 
       <nav class="nc-nav" aria-label="Điều hướng chính">
-        <a class="nc-nav__link" href="#features" data-scroll data-i18n="nav.features">Tính năng</a>
-        <a class="nc-nav__link" href="#modules" data-scroll data-i18n="nav.modules">Modules</a>
-        <a class="nc-nav__link" href="#levels" data-scroll data-i18n="nav.levels">Cấp độ</a>
-        <a class="nc-nav__link" href="#roadmap" data-scroll data-i18n="nav.roadmap">Lộ trình</a>
-        <a class="nc-nav__link" href="#faq" data-scroll data-i18n="nav.faq">FAQ</a>
+        <a class="nc-nav__link" href="#features" data-scroll data-nav="features" data-i18n="nav.features">Tính năng</a>
+        <a class="nc-nav__link" href="#modules" data-scroll data-nav="modules" data-i18n="nav.modules">Modules</a>
+        <a class="nc-nav__link" href="#levels" data-scroll data-nav="levels" data-i18n="nav.levels">Cấp độ</a>
+        <a class="nc-nav__link" href="#roadmap" data-scroll data-nav="roadmap" data-i18n="nav.roadmap">Lộ trình</a>
+        <a class="nc-nav__link" href="#faq" data-scroll data-nav="faq" data-i18n="nav.faq">FAQ</a>
       </nav>
 
       <div class="nc-actions">
@@ -112,11 +112,11 @@
     </div>
 
     <div class="nc-mobile" id="mobileNav" hidden>
-      <a class="nc-mobile__link" href="#features" data-scroll data-i18n="nav.features">Tính năng</a>
-      <a class="nc-mobile__link" href="#modules" data-scroll data-i18n="nav.modules">Modules</a>
-      <a class="nc-mobile__link" href="#levels" data-scroll data-i18n="nav.levels">Cấp độ</a>
-      <a class="nc-mobile__link" href="#roadmap" data-scroll data-i18n="nav.roadmap">Lộ trình</a>
-      <a class="nc-mobile__link" href="#faq" data-scroll data-i18n="nav.faq">FAQ</a>
+      <a class="nc-mobile__link" href="#features" data-scroll data-nav="features" data-i18n="nav.features">Tính năng</a>
+      <a class="nc-mobile__link" href="#modules" data-scroll data-nav="modules" data-i18n="nav.modules">Modules</a>
+      <a class="nc-mobile__link" href="#levels" data-scroll data-nav="levels" data-i18n="nav.levels">Cấp độ</a>
+      <a class="nc-mobile__link" href="#roadmap" data-scroll data-nav="roadmap" data-i18n="nav.roadmap">Lộ trình</a>
+      <a class="nc-mobile__link" href="#faq" data-scroll data-nav="faq" data-i18n="nav.faq">FAQ</a>
       <div class="nc-mobile__cta">
         <a class="nc-btn nc-btn--ghost" href="/admin" data-i18n="cta.admin">Admin</a>
         <a class="nc-btn" href="/app" data-i18n="cta.openApp">Vào App</a>
@@ -327,46 +327,16 @@
         </p>
 
         <div class="nc-modules">
-          <article class="nc-module">
-            <h3 class="nc-h3">1. Profile Thành Viên</h3>
-            <p class="nc-text nc-text--muted">Core Identity Layer: vai trò, dự án, kỹ năng, mức đầu tư, số ngày cư trú, điểm đóng góp.</p>
-          </article>
-          <article class="nc-module">
-            <h3 class="nc-h3">2. Newsfeed Nội Bộ</h3>
-            <p class="nc-text nc-text--muted">Không giải trí. Chỉ báo cáo tiến độ, chia sẻ học tập, kêu gọi dự án, lịch hoạt động.</p>
-          </article>
-          <article class="nc-module">
-            <h3 class="nc-h3">3. Module Nhà Ở</h3>
-            <p class="nc-text nc-text--muted">Danh sách nhà, đặt phòng, quyền sử dụng, bảo trì, phân bổ quyền lợi.</p>
-          </article>
-          <article class="nc-module">
-            <h3 class="nc-h3">4. Module Đầu Tư</h3>
-            <p class="nc-text nc-text--muted">Tổng vốn, người tham gia, tiến độ, báo cáo lợi nhuận, báo cáo sử dụng vốn.</p>
-          </article>
-          <article class="nc-module">
-            <h3 class="nc-h3">5. Module Học Tập</h3>
-            <p class="nc-text nc-text--muted">Lịch học, video, tài liệu, bài tập, tiến độ học, đánh giá.</p>
-          </article>
-          <article class="nc-module">
-            <h3 class="nc-h3">6. Module Dự Án Chung</h3>
-            <p class="nc-text nc-text--muted">Tạo dự án, tuyển người, giao việc, timeline, báo cáo tuần, chấm điểm đóng góp.</p>
-          </article>
-          <article class="nc-module">
-            <h3 class="nc-h3">7. Sự Kiện & Trải Nghiệm</h3>
-            <p class="nc-text nc-text--muted">Retreat, workshop, tham quan, du lịch trải nghiệm, đăng ký offline.</p>
-          </article>
-          <article class="nc-module">
-            <h3 class="nc-h3">8. Kết Nối 1-1</h3>
-            <p class="nc-text nc-text--muted">Nhắn tin nội bộ, hẹn gặp, lịch riêng, không quảng cáo.</p>
-          </article>
-          <article class="nc-module">
-            <h3 class="nc-h3">9. Dashboard Cá Nhân</h3>
-            <p class="nc-text nc-text--muted">Vốn đầu tư, số ngày ở, dự án tham gia, điểm đóng góp, mục tiêu cá nhân.</p>
-          </article>
-          <article class="nc-module">
-            <h3 class="nc-h3">10. Admin Control Panel</h3>
-            <p class="nc-text nc-text--muted">Duyệt thành viên, phân quyền, quản lý nhà, quản lý vốn, kiểm duyệt nội dung, xuất báo cáo.</p>
-          </article>
+          <article class="nc-module"><h3 class="nc-h3">1. Profile Thành Viên</h3><p class="nc-text nc-text--muted">Core Identity Layer: vai trò, dự án, kỹ năng, mức đầu tư, số ngày cư trú, điểm đóng góp.</p></article>
+          <article class="nc-module"><h3 class="nc-h3">2. Newsfeed Nội Bộ</h3><p class="nc-text nc-text--muted">Không giải trí. Chỉ báo cáo tiến độ, chia sẻ học tập, kêu gọi dự án, lịch hoạt động.</p></article>
+          <article class="nc-module"><h3 class="nc-h3">3. Module Nhà Ở</h3><p class="nc-text nc-text--muted">Danh sách nhà, đặt phòng, quyền sử dụng, bảo trì, phân bổ quyền lợi.</p></article>
+          <article class="nc-module"><h3 class="nc-h3">4. Module Đầu Tư</h3><p class="nc-text nc-text--muted">Tổng vốn, người tham gia, tiến độ, báo cáo lợi nhuận, báo cáo sử dụng vốn.</p></article>
+          <article class="nc-module"><h3 class="nc-h3">5. Module Học Tập</h3><p class="nc-text nc-text--muted">Lịch học, video, tài liệu, bài tập, tiến độ học, đánh giá.</p></article>
+          <article class="nc-module"><h3 class="nc-h3">6. Module Dự Án Chung</h3><p class="nc-text nc-text--muted">Tạo dự án, tuyển người, giao việc, timeline, báo cáo tuần, chấm điểm đóng góp.</p></article>
+          <article class="nc-module"><h3 class="nc-h3">7. Sự Kiện & Trải Nghiệm</h3><p class="nc-text nc-text--muted">Retreat, workshop, tham quan, du lịch trải nghiệm, đăng ký offline.</p></article>
+          <article class="nc-module"><h3 class="nc-h3">8. Kết Nối 1-1</h3><p class="nc-text nc-text--muted">Nhắn tin nội bộ, hẹn gặp, lịch riêng, không quảng cáo.</p></article>
+          <article class="nc-module"><h3 class="nc-h3">9. Dashboard Cá Nhân</h3><p class="nc-text nc-text--muted">Vốn đầu tư, số ngày ở, dự án tham gia, điểm đóng góp, mục tiêu cá nhân.</p></article>
+          <article class="nc-module"><h3 class="nc-h3">10. Admin Control Panel</h3><p class="nc-text nc-text--muted">Duyệt thành viên, phân quyền, quản lý nhà, quản lý vốn, kiểm duyệt nội dung, xuất báo cáo.</p></article>
         </div>
 
         <div class="nc-section__cta">
@@ -390,43 +360,6 @@
           <div class="nc-level"><div class="nc-level__n">Level 3</div><div class="nc-level__t" data-i18n="levels.l3">Thành Viên Cư Trú</div><div class="nc-level__d" data-i18n="levels.l3d">Đặt lịch nhà ở, theo dõi số ngày sử dụng, tham gia vận hành.</div></div>
           <div class="nc-level"><div class="nc-level__n">Level 4</div><div class="nc-level__t" data-i18n="levels.l4">Nhà Đầu Tư</div><div class="nc-level__d" data-i18n="levels.l4d">Theo dõi dự án, báo cáo vốn, phân bổ, dòng tiền và minh bạch.</div></div>
           <div class="nc-level"><div class="nc-level__n">Level 5</div><div class="nc-level__t" data-i18n="levels.l5">Leader</div><div class="nc-level__d" data-i18n="levels.l5d">Quản trị nhóm, duyệt dự án, điều phối nhân sự, chịu trách nhiệm vận hành.</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Design principles -->
-    <section class="nc-section" id="design">
-      <div class="nc-section__inner">
-        <h2 class="nc-h2" data-i18n="design.h2">UI/UX: Sang Trọng – Tối Giản – Tin Cậy</h2>
-        <p class="nc-text" data-i18n="design.p1">
-          Không giống Facebook. Không giống diễn đàn. Không “màu mè”. Trải nghiệm phải tĩnh, thông minh, an toàn, và hướng vào hành động thật.
-        </p>
-
-        <div class="nc-3col">
-          <div class="nc-card">
-            <h3 class="nc-h3" data-i18n="design.c1.h3">Phong cách</h3>
-            <ul class="nc-list">
-              <li data-i18n="design.c1.li1">Minimal cao cấp</li>
-              <li data-i18n="design.c1.li2">Typography rõ ràng</li>
-              <li data-i18n="design.c1.li3">Dark mode + Light mode</li>
-            </ul>
-          </div>
-          <div class="nc-card">
-            <h3 class="nc-h3" data-i18n="design.c2.h3">Cảm giác</h3>
-            <ul class="nc-list">
-              <li data-i18n="design.c2.li1">An toàn và tôn trọng</li>
-              <li data-i18n="design.c2.li2">Tĩnh lặng, không gây nghiện</li>
-              <li data-i18n="design.c2.li3">Thông minh, rõ trách nhiệm</li>
-            </ul>
-          </div>
-          <div class="nc-card">
-            <h3 class="nc-h3" data-i18n="design.c3.h3">Nguyên tắc</h3>
-            <ul class="nc-list">
-              <li data-i18n="design.c3.li1">Không theo dõi, không ad-tech</li>
-              <li data-i18n="design.c3.li2">Phân quyền theo vai trò</li>
-              <li data-i18n="design.c3.li3">Audit log để minh bạch</li>
-            </ul>
-          </div>
         </div>
       </div>
     </section>
@@ -569,44 +502,32 @@
       const $ = (s, r=document) => r.querySelector(s);
       const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
 
-      const state = {
-        lang: "vi",
-        dict: null
-      };
+      const state = { lang: "vi", dict: null };
 
-      function safeLang(l) {
-        return (l === "en" || l === "vi") ? l : "vi";
-      }
+      function safeLang(l) { return (l === "en" || l === "vi") ? l : "vi"; }
 
       function getLangFromURL() {
         const u = new URL(location.href);
         const q = u.searchParams.get("lang");
         if (q) return safeLang(q);
-        const h = (location.hash || "").toLowerCase();
-        if (h.includes("lang=en")) return "en";
-        if (h.includes("lang=vi")) return "vi";
         const saved = localStorage.getItem("NHACHUNG_LANG");
         if (saved) return safeLang(saved);
         return (window.NHACHUNG && window.NHACHUNG.DEFAULT_LANG) ? safeLang(window.NHACHUNG.DEFAULT_LANG) : "vi";
       }
 
       async function loadI18n() {
-        // i18n.json must exist; if not, keep VI labels as-is (no crash).
         try {
           const res = await fetch("/assets/i18n.json", { cache: "no-store" });
           if (!res.ok) return null;
           return await res.json();
-        } catch (_) {
-          return null;
-        }
+        } catch (_) { return null; }
       }
 
       function t(key, fallback) {
         if (!state.dict) return fallback || key;
         const entry = state.dict[key];
         if (!entry) return fallback || key;
-        const v = entry[state.lang];
-        return v || fallback || key;
+        return entry[state.lang] || fallback || key;
       }
 
       function applyText() {
@@ -616,14 +537,11 @@
           el.textContent = t(key, current);
         });
 
-        // Update lang badge
         const lbl = $("#langLabel");
         if (lbl) lbl.textContent = (state.lang || "vi").toUpperCase();
 
-        // Update doc lang
         document.documentElement.lang = state.lang;
 
-        // Update aria-selected on menu
         $$("#langMenu [data-lang]").forEach(btn => {
           const l = btn.getAttribute("data-lang");
           btn.setAttribute("aria-selected", l === state.lang ? "true" : "false");
@@ -634,7 +552,6 @@
         state.lang = safeLang(next);
         localStorage.setItem("NHACHUNG_LANG", state.lang);
 
-        // Keep URL stable: add ?lang=... without breaking anchors
         const u = new URL(location.href);
         u.searchParams.set("lang", state.lang);
         history.replaceState({}, "", u.toString());
@@ -666,15 +583,13 @@
 
         $$("#langMenu [data-lang]").forEach(item => {
           item.addEventListener("click", () => {
-            const l = item.getAttribute("data-lang");
             toggleLangMenu(false);
-            setLang(l);
+            setLang(item.getAttribute("data-lang"));
           });
         });
       }
 
       function setupScroll() {
-        // Smooth scroll for internal anchors only
         $$("a[data-scroll]").forEach(a => {
           a.addEventListener("click", (e) => {
             const href = a.getAttribute("href") || "";
@@ -696,6 +611,7 @@
         function setOpen(open) {
           burger.setAttribute("aria-expanded", open ? "true" : "false");
           mobile.hidden = !open;
+          document.body.classList.toggle("nc-menu-open", open);
         }
 
         burger.addEventListener("click", () => {
@@ -703,15 +619,8 @@
           setOpen(open);
         });
 
-        // Close on nav click
-        $$("#mobileNav a").forEach(a => {
-          a.addEventListener("click", () => setOpen(false));
-        });
-
-        // Close on escape
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") setOpen(false);
-        });
+        $$("#mobileNav a").forEach(a => a.addEventListener("click", () => setOpen(false)));
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
       }
 
       function setYear() {
@@ -719,7 +628,33 @@
         if (y) y.textContent = String(new Date().getFullYear());
       }
 
-      // Boot
+      // Scroll spy: highlight current section in nav (underline + active)
+      function setupScrollSpy() {
+        const sections = ["features","modules","levels","roadmap","faq"]
+          .map(id => document.getElementById(id))
+          .filter(Boolean);
+
+        if (!sections.length) return;
+
+        const links = $$("[data-nav]");
+        function setActive(id) {
+          links.forEach(a => a.classList.toggle("is-active", a.getAttribute("data-nav") === id));
+        }
+
+        const io = new IntersectionObserver((entries) => {
+          const visible = entries
+            .filter(e => e.isIntersecting)
+            .sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
+          if (visible && visible.target && visible.target.id) setActive(visible.target.id);
+        }, { root: null, threshold: [0.2, 0.35, 0.5, 0.65] });
+
+        sections.forEach(s => io.observe(s));
+
+        // If user loads with hash, set it quickly (fallback)
+        const h = (location.hash || "").replace("#","").trim();
+        if (h && sections.some(s => s.id === h)) setActive(h);
+      }
+
       (async function boot() {
         state.lang = getLangFromURL();
         state.dict = await loadI18n();
@@ -727,17 +662,14 @@
         setupLang();
         setupScroll();
         setupBurger();
+        setupScrollSpy();
         setYear();
 
         applyText();
-
-        // If user comes with #features, keep it (do not rewrite hash). The anchor is in-page.
-        // No more runtime routing modifications here.
       })();
     })();
   </script>
 
-  <!-- Non-essential: tiny noscript note -->
   <noscript>
     <div style="padding:12px;margin:12px;border:1px solid rgba(255,255,255,.18);border-radius:10px">
       Trang vẫn đọc được không cần JavaScript. Tuy nhiên chuyển ngôn ngữ và menu mobile cần bật JavaScript.
