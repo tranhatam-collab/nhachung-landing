@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" width="720" height="200" role="img" aria-label="Nhà Chung — Primary Wordmark">
+  <title>Nhà Chung Primary Wordmark</title>
+  <defs>
+    <linearGradient id="nc-gold-wm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD700"/>
+      <stop offset="35%" stop-color="#E5C158"/>
+      <stop offset="65%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#B8910C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Optional dark plate (uncomment for dark BG variant) -->
+  <!-- <rect x="0" y="0" width="720" height="200" fill="#0A0A0A"/> -->
+
+  <!-- Roof glyph above the C -->
+  <path d="M 408 56 L 442 24 L 476 56"
+        fill="none"
+        stroke="url(#nc-gold-wm)"
+        stroke-width="6.5"
+        stroke-linejoin="round"
+        stroke-linecap="round"/>
+
+  <!-- Wordmark "Nhà Chung" -->
+  <text x="40" y="138"
+        font-family="'Fraunces', 'Playfair Display', Georgia, serif"
+        font-size="116"
+        font-weight="600"
+        fill="url(#nc-gold-wm)"
+        letter-spacing="-2">Nhà Chung</text>
+
+  <!-- Tagline overline -->
+  <text x="40" y="178"
+        font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif"
+        font-size="13"
+        font-weight="600"
+        letter-spacing="6"
+        fill="#FFFFFF"
+        opacity="0.65">SỐNG THẬT · LÀM THẬT · CÙNG NHAU</text>
+</svg>

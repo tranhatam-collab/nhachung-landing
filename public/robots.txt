@@ -1,3 +1,27 @@
+# Nhà Chung — robots.txt
+# Public site: indexable.
+# App: gated, must not be indexed.
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Block AI crawlers from training (we keep editorial control of brand voice)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# Sitemap
 Sitemap: https://nhachung.org/sitemap.xml

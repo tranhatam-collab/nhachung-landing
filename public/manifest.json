@@ -1,16 +1,17 @@
 {
-  "name": "Nha Chung",
-  "short_name": "Nha Chung",
-  "description": "Nha Chung landing portal linking the landing, app, and API surfaces.",
+  "name": "Nhà Chung",
+  "short_name": "Nhà Chung",
+  "description": "Hệ điều hành cộng đồng sống thật. Sống tự do, làm việc muôn nơi, có nơi thuộc về.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b0f0c",
-  "theme_color": "#0b0f0c",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
   "icons": [
     {
       "src": "/assets/favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }

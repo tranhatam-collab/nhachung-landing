@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng ký miễn phí | Nhà Chung</title>
+  <meta name="description" content="Đăng ký Nhà Chung miễn phí. Tích xanh sau khi xác minh. Không cam kết tài chính, không hứa thu nhập." />
+  <link rel="canonical" href="https://nhachung.org/dang-ky.html" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%23FFD700'/><stop offset='50%25' stop-color='%23D4AF37'/><stop offset='100%25' stop-color='%23B8910C'/></linearGradient></defs><rect width='100' height='100' rx='18' fill='%230A0A0A'/><path d='M20 50 L50 22 L80 50' fill='none' stroke='url(%23g)' stroke-width='6' stroke-linejoin='round'/><text y='80' x='50%25' text-anchor='middle' font-size='30' font-family='Georgia,serif' font-weight='800' fill='url(%23g)'>NC</text></svg>" />
+  <style>
+    .nc-form { max-width: 520px; margin: 0 auto; display:flex; flex-direction:column; gap:18px; }
+    .nc-form label { display:block; color:var(--gold-400); font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; }
+    .nc-form input, .nc-form select, .nc-form textarea {
+      width:100%; padding:14px 16px;
+      background: rgba(20,20,20,0.85);
+      border: 1px solid rgba(212,175,55,0.25);
+      color: var(--white);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    .nc-form input:focus, .nc-form select:focus, .nc-form textarea:focus {
+      outline: none;
+      border-color: var(--gold-500);
+      box-shadow: var(--shadow-gold-soft);
+    }
+    .nc-form .checkbox-row { display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--gray-400); line-height:1.6; }
+    .nc-form .checkbox-row input { width:18px; height:18px; margin-top:2px; }
+    .nc-form button { padding:16px 24px; font-size:16px; font-weight:700; cursor:pointer; }
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-placeholder">NC</div>
+        <div class="nav-logo-text"><span class="nav-logo-name">Nhà Chung</span><span class="nav-logo-sub">Hệ điều hành cộng đồng sống thật</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Trang Chủ</a></li>
+        <li><a href="/nha-chung-la-gi.html">Nhà Chung là gì</a></li>
+        <li><a href="/hanh-trinh-tham-gia.html">Hành trình</a></li>
+        <li><a href="/cac-can-nha.html">Các căn</a></li>
+        <li><a href="/dang-ky.html">Đăng ký</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content" style="padding-top:120px;">
+
+  <section class="section-pad-lg">
+    <div class="container">
+      <div class="fade-in" style="max-width:680px;margin:0 auto;text-align:center;">
+        <div class="section-label" style="justify-content:center;"><span>Đăng ký miễn phí</span></div>
+        <h1 class="section-heading">Đăng ký miễn phí.<br><em>Tích xanh sau khi xác minh.</em></h1>
+        <div class="gold-divider" style="margin:24px auto;"></div>
+        <p style="font-size:17px;line-height:1.75;color:var(--gray-500);">
+          Không cam kết tài chính. Không hứa thu nhập. Chỉ là một cánh cửa để bạn vào, hiểu, và tự quyết định bước tiếp theo.
+        </p>
+      </div>
+
+      <form class="nc-form fade-in" style="margin-top:48px;" action="https://app.nhachung.org/api/auth/magic-link" method="POST" novalidate>
+
+        <div>
+          <label for="nc-name">Họ và tên</label>
+          <input id="nc-name" name="display_name" type="text" required placeholder="Ví dụ: Nguyễn Văn A" />
+        </div>
+
+        <div>
+          <label for="nc-email">Email</label>
+          <input id="nc-email" name="email" type="email" required placeholder="ban@email.com" />
+        </div>
+
+        <div>
+          <label for="nc-region">Bạn đang ở đâu</label>
+          <select id="nc-region" name="region">
+            <option value="">— Chọn khu vực —</option>
+            <option value="da_lat">Đà Lạt</option>
+            <option value="sai_gon">Sài Gòn / TP.HCM</option>
+            <option value="lam_dong">Lâm Đồng</option>
+            <option value="nha_trang">Nha Trang</option>
+            <option value="ha_noi">Hà Nội</option>
+            <option value="other_vn">Tỉnh thành khác (Việt Nam)</option>
+            <option value="overseas">Nước ngoài</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="nc-goal">Bạn đang tìm gì ở Nhà Chung?</label>
+          <textarea id="nc-goal" name="goal" rows="4" placeholder="Vài câu ngắn cũng được — ví dụ: muốn làm việc remote có cộng đồng, muốn thử sống chung 1 tháng, muốn học một kỹ năng mới..."></textarea>
+        </div>
+
+        <div class="checkbox-row">
+          <input id="nc-agree" name="agree" type="checkbox" required />
+          <label for="nc-agree" style="margin:0;color:var(--gray-400);text-transform:none;letter-spacing:0;font-size:14px;font-weight:400;">
+            Tôi đã đọc và đồng ý với <a href="#privacy">Chính sách bảo mật</a> và <a href="#tos">Điều khoản sử dụng</a>. Tôi hiểu Nhà Chung không phải nền tảng đầu tư công khai và không cam kết lợi nhuận.
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          Gửi link đăng nhập tới email của tôi
+        </button>
+
+        <p style="font-size:13px;color:var(--gray-400);text-align:center;margin-top:8px;">
+          Sau khi đăng ký, bạn sẽ nhận email với link đăng nhập. Link có hiệu lực 15 phút.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="fade-in" style="max-width:720px;margin:0 auto;">
+        <div class="section-label"><span>Sau khi đăng ký</span></div>
+        <h2 class="section-heading">Ba việc nên làm <em>trong tuần đầu</em></h2>
+        <div class="gold-divider"></div>
+
+        <ol style="list-style:none;padding:0;margin-top:32px;counter-reset:item;">
+          <li style="padding:24px;background:rgba(20,20,20,0.6);border-left:3px solid var(--gold-500);margin-bottom:16px;border-radius:var(--radius-sm);counter-increment:item;">
+            <strong style="color:var(--gold-400);">01 — Hoàn thiện hồ sơ</strong>
+            <p style="margin-top:8px;color:var(--gray-500);">Thêm mục tiêu sống, khu vực bạn ở, kỹ năng. Tăng mức xác minh từ L0 (email) lên L1 (phone).</p>
+          </li>
+          <li style="padding:24px;background:rgba(20,20,20,0.6);border-left:3px solid var(--gold-500);margin-bottom:16px;border-radius:var(--radius-sm);counter-increment:item;">
+            <strong style="color:var(--gold-400);">02 — Đọc câu chuyện thật</strong>
+            <p style="margin-top:8px;color:var(--gray-500);">Từ những người đang sống tại 4 căn (Đà Lạt, Sài Gòn, Lâm Đồng, Nha Trang).</p>
+          </li>
+          <li style="padding:24px;background:rgba(20,20,20,0.6);border-left:3px solid var(--gold-500);border-radius:var(--radius-sm);counter-increment:item;">
+            <strong style="color:var(--gold-400);">03 — Khám phá lamviecmuonnoi.com</strong>
+            <p style="margin-top:8px;color:var(--gray-500);">Hành trình 4 tầng bắt đầu ở đó. Học một kỹ năng nhỏ, làm task thử, có hồ sơ ban đầu.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><div class="footer-logo-circle">NC</div><div class="footer-logo-name">Nhà Chung</div></div>
+        <p class="footer-brand-desc">Hệ điều hành cộng đồng sống thật.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Điều hướng</div>
+        <nav class="footer-links">
+          <a href="/">Trang chủ</a>
+          <a href="/nha-chung-la-gi.html">Nhà Chung là gì</a>
+          <a href="/hanh-trinh-tham-gia.html">Hành trình</a>
+          <a href="/cac-can-nha.html">Các căn</a>
+          <a href="/dang-ky.html">Đăng ký</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-col-title">Pháp lý công khai</div>
+        <div class="footer-legal-info">
+          <div class="footer-legal-item">VIET CAN NEW CORP (Hoa Kỳ)<br>CÔNG TY TNHH BỒ CÂU TRẮNG (Việt Nam)</div>
+          <div class="footer-legal-item" style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);">
+            <strong>Không cam kết lợi nhuận. Không hứa thu nhập chắc chắn.</strong> Mọi đóng góp tài chính cần hợp đồng pháp lý riêng.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copyright">© 2026 Nhà Chung.</p></div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
