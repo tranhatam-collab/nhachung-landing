@@ -3,32 +3,108 @@
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
 
-  function safeLang(x) {
-    const langs = (NHACHUNG && NHACHUNG.SUPPORTED_LANGS) || ["vi", "en"];
-    return langs.includes(x) ? x : ((NHACHUNG && NHACHUNG.DEFAULT_LANG) || "vi");
+  function localeRegistry() {
+    return (NHACHUNG && NHACHUNG.LOCALES) || {
+      vi: { short: "VI", dir: "ltr" },
+      en: { short: "EN", dir: "ltr" }
+    };
+  }
+
+  function activeLangs() {
+    return (NHACHUNG && NHACHUNG.SUPPORTED_LANGS) || ["vi", "en"];
+  }
+
+  function fallbackLang() {
+    return (NHACHUNG && NHACHUNG.FALLBACK_LANG) || (NHACHUNG && NHACHUNG.DEFAULT_LANG) || "vi";
+  }
+
+  function normalizeLangTag(value) {
+    return String(value || "").trim().toLowerCase();
+  }
+
+  function tryResolveLang(value) {
+    const langs = activeLangs();
+    const raw = normalizeLangTag(value);
+    if (!raw) return null;
+    if (langs.includes(raw)) return raw;
+    const base = raw.split("-")[0];
+    if (langs.includes(base)) return base;
+    return null;
+  }
+
+  function resolveLang(value) {
+    return tryResolveLang(value) || fallbackLang();
   }
 
   function getLang() {
     const u = new URL(location.href);
     const q = u.searchParams.get("lang");
-    if (q) return safeLang(q);
+    if (q) return resolveLang(q);
     const saved = localStorage.getItem("nhachung_lang");
-    if (saved) return safeLang(saved);
-    return safeLang((NHACHUNG && NHACHUNG.DEFAULT_LANG) || "vi");
+    if (saved) return resolveLang(saved);
+
+    const browserPrefs = (navigator.languages && navigator.languages.length)
+      ? navigator.languages
+      : [navigator.language];
+
+    for (const pref of browserPrefs) {
+      const match = tryResolveLang(pref);
+      if (match) return match;
+    }
+
+    return resolveLang((NHACHUNG && NHACHUNG.DEFAULT_LANG) || "vi");
   }
 
-  async function loadI18n() {
-    const res = await fetch("/assets/i18n.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("i18n_load_failed");
+  function contentBase() {
+    return (NHACHUNG && NHACHUNG.CONTENT_BASE) || "/content";
+  }
+
+  async function loadLanguagePayload(lang) {
+    const locale = resolveLang(lang);
+    const res = await fetch(`${contentBase()}/${locale}.json`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`content_load_failed:${locale}`);
     return res.json();
   }
 
+  async function loadI18n() {
+    const langs = [...new Set([...activeLangs(), fallbackLang(), "vi", "en"].filter(Boolean).map(resolveLang))];
+    const entries = await Promise.all(langs.map(async (lang) => [lang, await loadLanguagePayload(lang)]));
+    return Object.fromEntries(entries);
+  }
+
+  function translationFor(dict, lang, key) {
+    const locale = resolveLang(lang);
+    const base = locale.split("-")[0];
+    const fallback = fallbackLang();
+    const langFirst = dict && dict[locale];
+    const langBase = dict && dict[base];
+    const langFallback = dict && dict[fallback];
+
+    return (langFirst && langFirst[key]) ||
+      (langBase && langBase[key]) ||
+      (langFallback && langFallback[key]) ||
+      "";
+  }
+
+  function buttonLabel(lang) {
+    const meta = localeRegistry()[resolveLang(lang)] || {};
+    return meta.short || resolveLang(lang).toUpperCase();
+  }
+
   function applyI18n(dict, lang) {
-    document.documentElement.lang = lang;
-    $$("#langBtn").forEach((b) => (b.textContent = lang.toUpperCase()));
+    const locale = resolveLang(lang);
+    const meta = localeRegistry()[locale] || {};
+
+    document.documentElement.lang = locale;
+    document.documentElement.dir = meta.dir || "ltr";
+    document.documentElement.dataset.locale = locale;
+    $$("#langBtn").forEach((b) => {
+      b.textContent = buttonLabel(locale);
+      b.setAttribute("title", meta.label || locale);
+    });
     $$("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
-      const val = dict?.[lang]?.[key];
+      const val = translationFor(dict, locale, key);
       if (typeof val === "string") el.textContent = val;
     });
   }
@@ -49,6 +125,8 @@
     const a4 = $("#btnStartAdmin");
     const a5 = $("#btnStartApi");
     const a6 = $("#btnOpenAPI");
+    const legalPrivacy = $("#legalPrivacyLink");
+    const legalTerms = $("#legalTermsLink");
 
     if (a1) a1.href = appUrl;
     if (a2) a2.href = appUrl;
@@ -56,6 +134,8 @@
     if (a4) a4.href = adminUrl;
     if (a5) a5.href = api;
     if (a6) a6.href = apiUrl;
+    if (legalPrivacy) legalPrivacy.href = lang === "en" ? "/en/legal/privacy.html" : "/vi/legal/privacy.html";
+    if (legalTerms) legalTerms.href = lang === "en" ? "/en/legal/terms.html" : "/vi/legal/terms.html";
 
     $("#year").textContent = String(new Date().getFullYear());
   }
@@ -66,7 +146,9 @@
 
     btn.addEventListener("click", () => {
       const current = getLang();
-      const next = current === "vi" ? "en" : "vi";
+      const langs = activeLangs();
+      const i = langs.indexOf(current);
+      const next = langs[(i + 1) % langs.length] || fallbackLang();
       localStorage.setItem("nhachung_lang", next);
 
       const u = new URL(location.href);

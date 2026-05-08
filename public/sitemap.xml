@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://nhachung.org/</loc></url>
-  <url><loc>https://nhachung.org/status</loc></url>
-  <url><loc>https://nhachung.org/verify</loc></url>
-  <url><loc>https://nhachung.org/admin</loc></url>
-  <url><loc>https://nhachung.org/legal/privacy.html</loc></url>
-  <url><loc>https://nhachung.org/legal/terms.html</loc></url>
+  <url><loc>https://nhachung.org/vi/</loc></url>
+  <url><loc>https://nhachung.org/en/</loc></url>
+  <url><loc>https://nhachung.org/vi/legal/privacy.html</loc></url>
+  <url><loc>https://nhachung.org/en/legal/privacy.html</loc></url>
+  <url><loc>https://nhachung.org/vi/legal/terms.html</loc></url>
+  <url><loc>https://nhachung.org/en/legal/terms.html</loc></url>
 </urlset>

@@ -9,25 +9,38 @@
   const cfg = {
     BRAND: "Nhà Chung",
     DEFAULT_LANG: "vi",
+    FALLBACK_LANG: "vi",
     SUPPORTED_LANGS: ["vi", "en"],
+    LOCALES: {
+      vi: { label: "Tiếng Việt", short: "VI", hreflang: "vi-VN", dir: "ltr", primary: true },
+      en: { label: "English", short: "EN", hreflang: "en-US", dir: "ltr" },
+      fr: { label: "Français", short: "FR", hreflang: "fr-FR", dir: "ltr", enabled: false },
+      de: { label: "Deutsch", short: "DE", hreflang: "de-DE", dir: "ltr", enabled: false },
+      ja: { label: "日本語", short: "JA", hreflang: "ja-JP", dir: "ltr", enabled: false },
+      ko: { label: "한국어", short: "KO", hreflang: "ko-KR", dir: "ltr", enabled: false },
+      "zh-hans": { label: "简体中文", short: "ZH", hreflang: "zh-CN", dir: "ltr", enabled: false }
+    },
 
     // Canonical endpoints (LOCKED CONTRACT)
     LANDING_BASE: "https://nhachung.org",
     API_BASE: "https://api.nhachung.org",
     APP_BASE: "https://app.nhachung.org",
+    CONTENT_BASE: "/content",
+    LANGUAGE_REBUILD_REQUIRED: true,
 
     // Landing internal anchors
-    ANCHORS: ["features", "how", "trust", "faq"],
+    ANCHORS: ["vision", "system", "opportunities", "levels", "pricing", "faq"],
 
     // Contract landing short routes (handled by Pages _redirects)
     ROUTES: {
+      register: "/register",
       app: "/app",
       verify: "/verify",
       admin: "/admin"
     },
 
     // Optional: shown in UI as a link (landing should not fetch)
-    API_HEALTH_PATH: "/test-db"
+    API_HEALTH_PATH: "/api/health"
   };
 
   // Debug overrides (DO NOT use in production marketing links)
