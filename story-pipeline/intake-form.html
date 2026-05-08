@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internal Story Intake | Nha Chung</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --gold: #D4AF37;
+      --ink: #111111;
+      --line: #D8D2C2;
+      --paper: #FFFFFF;
+      --soft: #F7F4EC;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--soft);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 40px auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 28px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-family: Georgia, serif;
+      font-size: clamp(28px, 5vw, 44px);
+    }
+
+    p {
+      margin: 0 0 24px;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    fieldset {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+
+    legend {
+      padding: 0 8px;
+      color: #7B5F10;
+      font-weight: 700;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      margin: 12px 0;
+      font-weight: 650;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .check {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      align-items: start;
+      gap: 10px;
+      font-weight: 500;
+    }
+
+    .check input {
+      margin-top: 4px;
+      width: auto;
+    }
+
+    button {
+      justify-self: start;
+      border: 0;
+      border-radius: 6px;
+      background: var(--gold);
+      color: #111111;
+      padding: 12px 18px;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <main data-internal-only="true">
+    <h1>Story Intake</h1>
+    <p>Internal form template only. Do not deploy under <code>public/</code>. A story cannot be published until consent and legal review are complete.</p>
+
+    <form data-state="draft_received" method="post">
+      <fieldset>
+        <legend>Author</legend>
+        <label>
+          Author display name
+          <input name="author_display_name" autocomplete="name" required />
+        </label>
+        <label>
+          Author legal name, internal only
+          <input name="author_legal_name" required />
+        </label>
+        <label>
+          Contact, internal only
+          <input name="author_contact" required />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Story Context</legend>
+        <label>
+          Story ID
+          <input name="story_id" pattern="story-[0-9]{8}-[a-z0-9-]+" placeholder="story-20260508-da-lat-example" required />
+        </label>
+        <label>
+          House or circle
+          <select name="house_context" required>
+            <option value="">Choose one</option>
+            <option value="da-lat">Da Lat</option>
+            <option value="sai-gon">Sai Gon</option>
+            <option value="lam-dong">Lam Dong</option>
+            <option value="nha-trang">Nha Trang</option>
+            <option value="online">Online circle</option>
+          </select>
+        </label>
+        <label>
+          Story body
+          <textarea name="story_body" maxlength="2500" required></textarea>
+        </label>
+        <label>
+          Editor notes
+          <textarea name="editor_notes" maxlength="1500"></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Consent Gates</legend>
+        <label class="check">
+          <input type="checkbox" name="consent_signed" required />
+          <span>Author agrees that Nhà Chung may edit and publish the approved story version.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="photo_usage_approved" required />
+          <span>Author approves the selected photo or confirms no photo should be used.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="quote_approved" required />
+          <span>Author approves public quote usage.</span>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="legal_review" required />
+          <span>Legal reviewer confirms no gated, investment, finance promise, or private detail appears.</span>
+        </label>
+        <label>
+          Consent timestamp
+          <input type="datetime-local" name="consent_timestamp" required />
+        </label>
+      </fieldset>
+
+      <button type="submit">Record Internal Draft</button>
+    </form>
+  </main>
+</body>
+</html>

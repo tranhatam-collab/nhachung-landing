@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{story_title}} | Câu chuyện Nhà Chung</title>
+  <meta name="description" content="{{story_summary}}" />
+  <link rel="canonical" href="https://nhachung.org/cau-chuyen/{{story_slug}}.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Nhà Chung" />
+  <meta property="og:title" content="{{story_title}}" />
+  <meta property="og:description" content="{{story_summary}}" />
+  <meta property="og:url" content="https://nhachung.org/cau-chuyen/{{story_slug}}.html" />
+  <meta property="og:image" content="https://nhachung.org/assets/og/{{story_slug}}.svg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body data-story-state="publish_approved">
+  <a class="skip-link" href="#main-content">Bỏ qua điều hướng</a>
+  <main id="main-content">
+    <article class="section-pad">
+      <div class="container">
+        <p class="section-label">Câu chuyện đã có đồng ý</p>
+        <h1 class="section-heading">{{story_title}}</h1>
+        <p>{{story_summary}}</p>
+        <figure>
+          <img src="{{story_photo_url}}" alt="{{story_photo_alt}}" width="1200" height="800" loading="eager" fetchpriority="high" />
+          <figcaption>{{photo_credit}}</figcaption>
+        </figure>
+        <div class="story-body">
+          {{story_body_around_200_words}}
+        </div>
+      </div>
+    </article>
+  </main>
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <p>Đơn vị vận hành quốc tế: VIET CAN NEW CORP. Đơn vị vận hành Việt Nam: CÔNG TY TNHH BỒ CÂU TRẮNG. Hạ tầng thanh toán: pay.iai.one.</p>
+      <p>Nhà Chung không phải sàn bất động sản, không phải nền tảng đầu tư công khai. Không cam kết lợi nhuận, không hứa thu nhập chắc chắn.</p>
+    </div>
+  </footer>
+</body>
+</html>

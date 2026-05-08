@@ -39,6 +39,7 @@ Verified on 2026-05-08:
 
 - `brand-lint`: PASS
 - `i18n-smoke`: PASS 4/4
+- `story-pipeline-lint`: PASS
 - `git diff --check`: PASS
 - `node scripts/public-web-route-smoke.mjs nhachung-landing/public`: PASS 9 pages
 - `node scripts/public-seo-audit.mjs nhachung-landing/public`: PASS 9 pages
@@ -58,3 +59,4 @@ Repo-side canonical work already complete:
 - 1200x630 `og:image` metadata/assets under `public/assets/og/`.
 - Newsletter signup in `public/dang-ky.html` calls `https://api.nhachung.org/api/newsletter` through `public/assets/js/main.js`.
 - SEO, accessibility, and static performance gates pass against `public/`.
+- Internal story collection pipeline lives outside the deploy root in `story-pipeline/`, with intake form, consent/legal workflow, story template, and `scripts/story-pipeline-lint.mjs`.
