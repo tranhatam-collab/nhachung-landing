@@ -8,6 +8,7 @@ Run times:
 - 2026-05-08T14:30:15Z
 - 2026-05-08T15:09:10Z
 - 2026-05-08T15:33:10Z
+- 2026-05-08T15:56:21Z
 
 Scope: T1 public web production parity and Worker/API edge routing.
 
@@ -19,15 +20,15 @@ Blocked. The canonical `brand/v2.0-migration` source is clean, but live web fetc
 
 - Repo path: `/Users/tranhatam/Documents/Devnewproject/nhachung.org/nhachung-landing`
 - Branch: `brand/v2.0-migration`
-- Commit: `bd856a6a215cc77a54854eef18d8c302f7697ff3`
-- `public/index.html` SHA-256: `db3a4103adb01ec5a5f2e344c30be13aab05a153bc578042cdcc512c2fff1a78`
+- Commit: `fe1c057`
+- `public/index.html` SHA-256: `1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a`
 - Local title: `Nhà Chung | Hệ điều hành cộng đồng sống thật`
 
 ## Live Fetch Observations
 
 ### `https://nhachung.org/`
 
-The live document rendered the older public surface again in the 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, and 2026-05-08T15:33Z verifications:
+The live document rendered the older public surface again in the 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, 2026-05-08T15:33Z, and 2026-05-08T15:56Z verifications:
 
 - Title: `Nhà Chung | Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng`
 - Header/navigation included `Tính năng`, `Modules`, `Cấp độ`, `Lộ trình`, `FAQ`, `Admin`, and `Vào App`.
@@ -36,11 +37,11 @@ The live document rendered the older public surface again in the 2026-05-08T13:4
 
 ### `https://www.nhachung.org/`
 
-The 2026-05-08T09:21:06Z, 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, and 2026-05-08T15:33Z web fetches returned a 502 for `https://www.nhachung.org/` instead of the canonical BrandPro page.
+The 2026-05-08T09:21:06Z, 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, 2026-05-08T15:33Z, and 2026-05-08T15:56Z web fetches returned a 502 for `https://www.nhachung.org/` instead of the canonical BrandPro page.
 
 ### `https://api.nhachung.org/`
 
-The live root rendered a static asset page again in the 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, and 2026-05-08T15:33Z verifications:
+The live root rendered a static asset page again in the 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, 2026-05-08T15:33Z, and 2026-05-08T15:56Z verifications:
 
 - Heading/content: `Hello, World!`
 - Body text: `This page comes from a static asset stored at public/index.html as configured in wrangler.jsonc.`
@@ -51,7 +52,7 @@ The live root rendered a static asset page again in the 2026-05-08T13:42Z, 2026-
 - Do not claim `nhachung.org`/`www.nhachung.org` production hash parity until the correct Pages project is confirmed at the edge.
 - Do not claim Worker API production root parity until `api.nhachung.org` routing is confirmed. Endpoint-specific newsletter smoke may still be valid, but the root route evidence conflicts with the current handoff.
 
-## Local Gate Recheck — 2026-05-08T15:09Z
+## Local Gate Recheck — 2026-05-08T15:56Z
 
 The canonical source gates last passed locally from `/Users/tranhatam/Documents/Devnewproject/nhachung.org/nhachung-landing`; the live-edge shell smoke still cannot resolve the public host from this sandbox:
 
@@ -59,10 +60,12 @@ The canonical source gates last passed locally from `/Users/tranhatam/Documents/
 - `node scripts/i18n-smoke.mjs` — PASS
 - `node scripts/story-pipeline-lint.mjs` — PASS
 - `node scripts/public-analytics-gate.mjs` — PASS
+- `node scripts/public-legal-gate.mjs` — PASS
+- `node scripts/public-icon-gate.mjs` — PASS
 - `node ../scripts/public-web-route-smoke.mjs public` — PASS, 9 pages checked
 - `node ../scripts/public-seo-audit.mjs public` — PASS, 9 pages checked
 - `node ../scripts/public-accessibility-audit.mjs public` — PASS, 9 pages checked
-- `node ../scripts/public-performance-audit.mjs public` — PASS, 9 pages / 2 assets / 298607 bytes checked
+- `node ../scripts/public-performance-audit.mjs public` — PASS, 9 pages / 2 critical assets / 297802 critical bytes checked
 - `git diff --check` — PASS
 - `node scripts/live-edge-smoke.mjs` — FAIL in local shell before HTTP fetch because this sandbox cannot resolve `nhachung.org` (`getaddrinfo ENOTFOUND nhachung.org`)
 
