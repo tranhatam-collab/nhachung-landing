@@ -6,6 +6,8 @@ Run times:
 - 2026-05-08T09:21:06Z
 - 2026-05-08T13:42:15Z
 - 2026-05-08T14:30:15Z
+- 2026-05-08T15:09:10Z
+- 2026-05-08T15:33:10Z
 
 Scope: T1 public web production parity and Worker/API edge routing.
 
@@ -25,7 +27,7 @@ Blocked. The canonical `brand/v2.0-migration` source is clean, but live web fetc
 
 ### `https://nhachung.org/`
 
-The live document rendered the older public surface again in the 2026-05-08T13:42Z and 2026-05-08T14:30Z verifications:
+The live document rendered the older public surface again in the 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, and 2026-05-08T15:33Z verifications:
 
 - Title: `Nhà Chung | Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng`
 - Header/navigation included `Tính năng`, `Modules`, `Cấp độ`, `Lộ trình`, `FAQ`, `Admin`, and `Vào App`.
@@ -34,11 +36,11 @@ The live document rendered the older public surface again in the 2026-05-08T13:4
 
 ### `https://www.nhachung.org/`
 
-The 2026-05-08T09:21:06Z, 2026-05-08T13:42Z, and 2026-05-08T14:30Z web fetches returned a 502 for `https://www.nhachung.org/` instead of the canonical BrandPro page.
+The 2026-05-08T09:21:06Z, 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, and 2026-05-08T15:33Z web fetches returned a 502 for `https://www.nhachung.org/` instead of the canonical BrandPro page.
 
 ### `https://api.nhachung.org/`
 
-The live root rendered a static asset page again in the 2026-05-08T13:42Z and 2026-05-08T14:30Z verifications:
+The live root rendered a static asset page again in the 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, and 2026-05-08T15:33Z verifications:
 
 - Heading/content: `Hello, World!`
 - Body text: `This page comes from a static asset stored at public/index.html as configured in wrangler.jsonc.`
@@ -49,9 +51,9 @@ The live root rendered a static asset page again in the 2026-05-08T13:42Z and 20
 - Do not claim `nhachung.org`/`www.nhachung.org` production hash parity until the correct Pages project is confirmed at the edge.
 - Do not claim Worker API production root parity until `api.nhachung.org` routing is confirmed. Endpoint-specific newsletter smoke may still be valid, but the root route evidence conflicts with the current handoff.
 
-## Local Gate Recheck — 2026-05-08T14:30Z
+## Local Gate Recheck — 2026-05-08T15:09Z
 
-The canonical source gates still pass locally from `/Users/tranhatam/Documents/Devnewproject/nhachung.org/nhachung-landing`:
+The canonical source gates last passed locally from `/Users/tranhatam/Documents/Devnewproject/nhachung.org/nhachung-landing`; the live-edge shell smoke still cannot resolve the public host from this sandbox:
 
 - `bash scripts/brand-lint.sh public` — PASS
 - `node scripts/i18n-smoke.mjs` — PASS
@@ -62,8 +64,18 @@ The canonical source gates still pass locally from `/Users/tranhatam/Documents/D
 - `node ../scripts/public-accessibility-audit.mjs public` — PASS, 9 pages checked
 - `node ../scripts/public-performance-audit.mjs public` — PASS, 9 pages / 2 assets / 298607 bytes checked
 - `git diff --check` — PASS
+- `node scripts/live-edge-smoke.mjs` — FAIL in local shell before HTTP fetch because this sandbox cannot resolve `nhachung.org` (`getaddrinfo ENOTFOUND nhachung.org`)
 
-`node scripts/live-edge-smoke.mjs` could not run from the local shell because this sandbox could not resolve `nhachung.org` (`getaddrinfo ENOTFOUND nhachung.org`). Independent web fetch evidence above still confirms the edge mismatch, so the release gate remains blocked on Cloudflare routing/parity rather than local source quality.
+Independent web fetch evidence above still confirms the edge mismatch, so the release gate remains blocked on Cloudflare routing/parity rather than local source quality.
+
+## Worker Gate Recheck — 2026-05-08T15:09Z
+
+Worker source gates pass locally from `/Users/tranhatam/Documents/Devnewproject/nhachung.org/apps/worker`:
+
+- `npm test -- --run` — PASS, 54 tests
+- `npx tsc --noEmit` — PASS
+
+This verifies the source-side root route guard, but production `https://api.nhachung.org/` still needs a routing/deploy reconciliation because the live root continues serving the static Wrangler asset placeholder.
 
 ## Required Next Step
 
