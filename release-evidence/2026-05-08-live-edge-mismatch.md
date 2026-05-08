@@ -5,6 +5,7 @@ Run times:
 - 2026-05-08T08:45:22Z
 - 2026-05-08T09:21:06Z
 - 2026-05-08T13:42:15Z
+- 2026-05-08T14:30:15Z
 
 Scope: T1 public web production parity and Worker/API edge routing.
 
@@ -16,7 +17,7 @@ Blocked. The canonical `brand/v2.0-migration` source is clean, but live web fetc
 
 - Repo path: `/Users/tranhatam/Documents/Devnewproject/nhachung.org/nhachung-landing`
 - Branch: `brand/v2.0-migration`
-- Commit: `61eddb16cd772742acb5afdea339721221bd60d4`
+- Commit: `bd856a6a215cc77a54854eef18d8c302f7697ff3`
 - `public/index.html` SHA-256: `db3a4103adb01ec5a5f2e344c30be13aab05a153bc578042cdcc512c2fff1a78`
 - Local title: `Nhà Chung | Hệ điều hành cộng đồng sống thật`
 
@@ -24,7 +25,7 @@ Blocked. The canonical `brand/v2.0-migration` source is clean, but live web fetc
 
 ### `https://nhachung.org/`
 
-The live document rendered the older public surface again in the 2026-05-08T13:42Z verification:
+The live document rendered the older public surface again in the 2026-05-08T13:42Z and 2026-05-08T14:30Z verifications:
 
 - Title: `Nhà Chung | Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng`
 - Header/navigation included `Tính năng`, `Modules`, `Cấp độ`, `Lộ trình`, `FAQ`, `Admin`, and `Vào App`.
@@ -33,11 +34,11 @@ The live document rendered the older public surface again in the 2026-05-08T13:4
 
 ### `https://www.nhachung.org/`
 
-The 2026-05-08T09:21:06Z and 2026-05-08T13:42Z web fetches returned a 502 for `https://www.nhachung.org/` instead of the canonical BrandPro page.
+The 2026-05-08T09:21:06Z, 2026-05-08T13:42Z, and 2026-05-08T14:30Z web fetches returned a 502 for `https://www.nhachung.org/` instead of the canonical BrandPro page.
 
 ### `https://api.nhachung.org/`
 
-The live root rendered a static asset page again in the 2026-05-08T13:42Z verification:
+The live root rendered a static asset page again in the 2026-05-08T13:42Z and 2026-05-08T14:30Z verifications:
 
 - Heading/content: `Hello, World!`
 - Body text: `This page comes from a static asset stored at public/index.html as configured in wrangler.jsonc.`
@@ -47,6 +48,22 @@ The live root rendered a static asset page again in the 2026-05-08T13:42Z verifi
 - Do not mark Lighthouse/live screenshot evidence complete against current production.
 - Do not claim `nhachung.org`/`www.nhachung.org` production hash parity until the correct Pages project is confirmed at the edge.
 - Do not claim Worker API production root parity until `api.nhachung.org` routing is confirmed. Endpoint-specific newsletter smoke may still be valid, but the root route evidence conflicts with the current handoff.
+
+## Local Gate Recheck — 2026-05-08T14:30Z
+
+The canonical source gates still pass locally from `/Users/tranhatam/Documents/Devnewproject/nhachung.org/nhachung-landing`:
+
+- `bash scripts/brand-lint.sh public` — PASS
+- `node scripts/i18n-smoke.mjs` — PASS
+- `node scripts/story-pipeline-lint.mjs` — PASS
+- `node scripts/public-analytics-gate.mjs` — PASS
+- `node ../scripts/public-web-route-smoke.mjs public` — PASS, 9 pages checked
+- `node ../scripts/public-seo-audit.mjs public` — PASS, 9 pages checked
+- `node ../scripts/public-accessibility-audit.mjs public` — PASS, 9 pages checked
+- `node ../scripts/public-performance-audit.mjs public` — PASS, 9 pages / 2 assets / 298607 bytes checked
+- `git diff --check` — PASS
+
+`node scripts/live-edge-smoke.mjs` could not run from the local shell because this sandbox could not resolve `nhachung.org` (`getaddrinfo ENOTFOUND nhachung.org`). Independent web fetch evidence above still confirms the edge mismatch, so the release gate remains blocked on Cloudflare routing/parity rather than local source quality.
 
 ## Required Next Step
 
