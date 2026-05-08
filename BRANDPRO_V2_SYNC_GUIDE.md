@@ -12,7 +12,8 @@
 | Production runtime | Cloudflare account `93112cc89181e75335cbd7ef7e392ba3`, Pages `nhachung-landing`, alias `nhachung-landing-abp.pages.dev`, No Git |
 | Duplicate/reference | Cloudflare account `f3f9e76222dcb488d5e303e29e8ba192`, Pages `nhachung-org.pages.dev`, same hash `70d1...` |
 | Git source | This repo, branch `brand/v2.0-migration` |
-| Latest pushed commit | `b41c864 fix(brand): add v2 lint guardrail` |
+| Brand code baseline | `b41c864 fix(brand): add v2 lint guardrail` |
+| Handoff guide | This file in the same branch |
 | PR URL | `https://github.com/tranhatam-collab/nhachung-landing/pull/new/brand/v2.0-migration` |
 
 `public/index.html` currently hashes to `9897bcbe082662d45462ed86dc9c8e4d614180784a3d54fb0621f57dd853f6f3`. It intentionally differs from live hash `70d1...` because this branch fixes the legacy hover color `#c9a455` to `#D4AF37`.
