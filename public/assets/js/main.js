@@ -186,4 +186,170 @@
     counters.forEach(c => cObserver.observe(c));
   }
 
+  /* ---- Public house map ---- */
+  const houseMap = document.querySelector('[data-house-map]');
+  if (houseMap) {
+    const houseData = {
+      'da-lat': {
+        title: 'Đà Lạt',
+        statusVi: 'Đang vận hành định hướng',
+        statusEn: 'Orientation active',
+        descriptionVi: 'Nhịp chậm, phù hợp học sâu, viết, nghiên cứu và làm việc tập trung.',
+        descriptionEn: 'A slower rhythm for deep learning, writing, research and focused work.',
+        rhythmVi: 'Chậm và sâu',
+        rhythmEn: 'Slow and deep',
+        activitiesVi: 'Học sâu · viết · nghiên cứu',
+        activitiesEn: 'Deep learning · writing · research'
+      },
+      'sai-gon': {
+        title: 'Sài Gòn',
+        statusVi: 'Kết nối dự án',
+        statusEn: 'Project connection',
+        descriptionVi: 'Kết nối dự án, gặp nhóm, thử vai trò và cộng tác nhanh.',
+        descriptionEn: 'Project connection, team meetings, role trials and fast collaboration.',
+        rhythmVi: 'Nhanh và kết nối',
+        rhythmEn: 'Fast and connected',
+        activitiesVi: 'Gặp nhóm · thử vai trò · cộng tác',
+        activitiesEn: 'Team meetings · role trials · collaboration'
+      },
+      'lam-dong': {
+        title: 'Lâm Đồng',
+        statusVi: 'Trải nghiệm ngắn',
+        statusEn: 'Short stays',
+        descriptionVi: 'Trải nghiệm ngắn, nhịp gần thiên nhiên, phù hợp học và phục hồi lịch làm việc.',
+        descriptionEn: 'Short stays, nature-close rhythm, suitable for learning and resetting work routines.',
+        rhythmVi: 'Gần thiên nhiên',
+        rhythmEn: 'Nature-close',
+        activitiesVi: 'Học · làm nhóm · phục hồi lịch làm việc',
+        activitiesEn: 'Learning · group work · work routine reset'
+      },
+      'nha-trang': {
+        title: 'Nha Trang',
+        statusVi: 'Đang chuẩn bị',
+        statusEn: 'In preparation',
+        descriptionVi: 'Nhóm mới, đang chuẩn bị dữ liệu vận hành và lịch hoạt động phù hợp.',
+        descriptionEn: 'A new group preparing operating data and a suitable activity calendar.',
+        rhythmVi: 'Biển và nhóm mới',
+        rhythmEn: 'Coastal and forming',
+        activitiesVi: 'Chuẩn bị lịch · kết nối nhóm · trải nghiệm ngắn',
+        activitiesEn: 'Calendar prep · group connection · short stays'
+      }
+    };
+
+    const pins = houseMap.querySelectorAll('[data-house-pin]');
+    const chips = houseMap.querySelectorAll('[data-house-select]');
+    const fields = {
+      title: houseMap.querySelector('[data-house-field="title"]'),
+      status: houseMap.querySelector('[data-house-field="status"]'),
+      description: houseMap.querySelector('[data-house-field="description"]'),
+      rhythm: houseMap.querySelector('[data-house-field="rhythm"]'),
+      activities: houseMap.querySelector('[data-house-field="activities"]')
+    };
+    const publicNote = houseMap.querySelector('[data-house-field="publicNote"]');
+
+    function langSpan(vi, en) {
+      return `<span data-lang="vi">${vi}</span><span data-lang="en">${en}</span>`;
+    }
+
+    function selectHouse(id) {
+      const next = houseData[id] || houseData['da-lat'];
+      pins.forEach(pin => {
+        const active = pin.dataset.housePin === id;
+        pin.classList.toggle('active', active);
+        pin.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      chips.forEach(chip => {
+        const active = chip.dataset.houseSelect === id;
+        chip.classList.toggle('active', active);
+        chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      if (fields.title) fields.title.textContent = next.title;
+      if (fields.status) fields.status.innerHTML = langSpan(next.statusVi, next.statusEn);
+      if (fields.description) fields.description.innerHTML = langSpan(next.descriptionVi, next.descriptionEn);
+      if (fields.rhythm) fields.rhythm.innerHTML = langSpan(next.rhythmVi, next.rhythmEn);
+      if (fields.activities) fields.activities.innerHTML = langSpan(next.activitiesVi, next.activitiesEn);
+      if (publicNote) {
+        publicNote.innerHTML = langSpan('Không hiển thị điều khoản gated.', 'Gated terms are not shown here.');
+      }
+    }
+
+    pins.forEach(pin => {
+      pin.addEventListener('click', () => selectHouse(pin.dataset.housePin));
+      pin.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          selectHouse(pin.dataset.housePin);
+        }
+      });
+    });
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => selectHouse(chip.dataset.houseSelect));
+    });
+  }
+
+  /* ---- Public registration form -> API ---- */
+  const newsletterForm = document.querySelector('[data-newsletter-form]');
+  if (newsletterForm) {
+    const statusEl = newsletterForm.querySelector('[data-form-status]');
+    const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+    const endpoint = newsletterForm.dataset.newsletterEndpoint || 'https://api.nhachung.org/api/newsletter';
+
+    function formLang() {
+      return document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'vi';
+    }
+
+    function setFormStatus(kind, vi, en) {
+      if (!statusEl) return;
+      statusEl.dataset.state = kind;
+      statusEl.textContent = formLang() === 'en' ? en : vi;
+    }
+
+    newsletterForm.addEventListener('submit', async (event) => {
+      if (!window.fetch) return;
+      event.preventDefault();
+
+      const formData = new FormData(newsletterForm);
+      const payload = Object.fromEntries(formData.entries());
+      payload.locale = formLang();
+      payload.source_url = window.location.href;
+
+      if (submitBtn) submitBtn.disabled = true;
+      setFormStatus('loading', 'Đang gửi thông tin...', 'Sending your details...');
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'x-request-id': `public-signup-${Date.now()}`
+          },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json().catch(() => null);
+        if (!response.ok || !result || result.ok !== true) {
+          throw new Error(result && result.message ? result.message : 'submit_failed');
+        }
+        setFormStatus(
+          'success',
+          'Đã nhận thông tin. Bạn có thể tiếp tục vào app để hoàn tất bước tiếp theo.',
+          'Details received. You can continue to the app for the next step.'
+        );
+        setTimeout(() => {
+          window.location.href = result.data && result.data.next_url ? result.data.next_url : newsletterForm.action;
+        }, 650);
+      } catch (error) {
+        setFormStatus(
+          'error',
+          'Chưa gửi được qua API. Bạn vẫn có thể tiếp tục vào app.',
+          'The API submission did not complete. You can still continue to the app.'
+        );
+        setTimeout(() => {
+          newsletterForm.submit();
+        }, 900);
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  }
+
 })();

@@ -2,7 +2,7 @@
 # ============================================================
 # NHÀ CHUNG — BRAND + LANGUAGE LINTER
 # Usage: bash scripts/brand-lint.sh [path]
-# Default path: nhachung.org/apps/www/public/
+# Default path: nhachung-landing/public/
 #
 # Fails (exit 1) if any forbidden token found in public-facing files.
 # Pass into CI before deploy.
@@ -10,7 +10,7 @@
 # ============================================================
 set -euo pipefail
 
-TARGET="${1:-apps/www/public}"
+TARGET="${1:-public}"
 
 if [ ! -d "$TARGET" ]; then
   echo "❌ Target dir not found: $TARGET"

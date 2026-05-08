@@ -40,15 +40,21 @@ Verified on 2026-05-08:
 - `brand-lint`: PASS
 - `i18n-smoke`: PASS 4/4
 - `git diff --check`: PASS
+- `node scripts/public-web-route-smoke.mjs nhachung-landing/public`: PASS 9 pages
+- `node scripts/public-seo-audit.mjs nhachung-landing/public`: PASS 9 pages
+- `node scripts/public-accessibility-audit.mjs nhachung-landing/public`: PASS 9 pages
+- `node scripts/public-performance-audit.mjs nhachung-landing/public`: PASS 9 pages / 299620 bytes
 
 ## Remaining Before Production Merge
 
-1. Add missing public pages:
-   - `cau-chuyen.html`
-   - `nguyen-tac-song-chung.html`
-   - `lam-viec-muon-noi.html`
-   - `ung-dung.html`
-2. Add 1200x630 `og:image` metadata/assets for homepage and subpages.
-3. Migrate newsletter signup into this repo if public signup remains in V1.
-4. Re-run SEO/accessibility/performance gates against `public/`.
-5. Wait for Cloudflare branch preview, review visual/content, then open PR and merge.
+1. Wait for Cloudflare branch preview and review visual/content.
+2. Run Lighthouse mobile + desktop on preview/live; each public page must score at least 95.
+3. Capture screenshot evidence for homepage, app link, signup form, and legal footer.
+4. Apply the newsletter Worker/D1 rollout if the public signup form is used in production.
+5. Open PR, merge main, then verify `https://nhachung.org` and `https://www.nhachung.org`.
+
+Repo-side canonical work already complete:
+- 9 public pages under `public/`, including `cau-chuyen.html`, `nguyen-tac-song-chung.html`, `lam-viec-muon-noi.html`, and `ung-dung.html`.
+- 1200x630 `og:image` metadata/assets under `public/assets/og/`.
+- Newsletter signup in `public/dang-ky.html` calls `https://api.nhachung.org/api/newsletter` through `public/assets/js/main.js`.
+- SEO, accessibility, and static performance gates pass against `public/`.

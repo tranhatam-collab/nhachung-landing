@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Nha Chung">
+  <rect width="1200" height="630" fill="#000000"/>
+  <rect x="72" y="72" width="1056" height="486" rx="28" fill="#0A0A0A" stroke="#D4AF37" stroke-width="2"/>
+  <path d="M120 246 L190 186 L260 246" fill="none" stroke="#D4AF37" stroke-width="18" stroke-linejoin="round"/>
+  <text x="120" y="332" fill="#FFFFFF" font-family="Georgia,serif" font-size="86" font-weight="700">Nha Chung</text>
+  <text x="124" y="402" fill="#D0D0D0" font-family="Arial,sans-serif" font-size="34">Song that. Lam that. Cung nhau.</text>
+  <circle cx="1016" cy="180" r="54" fill="#D4AF37"/>
+  <circle cx="936" cy="450" r="36" fill="#FFD700"/>
+</svg>
