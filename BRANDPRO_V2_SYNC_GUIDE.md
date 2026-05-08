@@ -32,6 +32,7 @@ cd /Users/tranhatam/Documents/Devnewproject/nhachung.org/nhachung-landing
 git checkout brand/v2.0-migration
 bash scripts/brand-lint.sh public
 node scripts/i18n-smoke.mjs
+node scripts/public-analytics-gate.mjs
 git diff --check
 ```
 
@@ -40,6 +41,7 @@ Verified on 2026-05-08:
 - `brand-lint`: PASS
 - `i18n-smoke`: PASS 4/4
 - `story-pipeline-lint`: PASS
+- `public-analytics-gate`: PASS
 - `git diff --check`: PASS
 - `node scripts/public-web-route-smoke.mjs nhachung-landing/public`: PASS 9 pages
 - `node scripts/public-seo-audit.mjs nhachung-landing/public`: PASS 9 pages
@@ -51,12 +53,14 @@ Verified on 2026-05-08:
 1. Wait for Cloudflare branch preview and review visual/content.
 2. Run Lighthouse mobile + desktop on preview/live; each public page must score at least 95.
 3. Capture screenshot evidence for homepage, app link, signup form, and legal footer.
-4. Apply the newsletter Worker/D1 rollout if the public signup form is used in production.
-5. Open PR, merge main, then verify `https://nhachung.org` and `https://www.nhachung.org`.
+4. Inject the Cloudflare Web Analytics token during controlled Pages setup; source keeps `CLOUDFLARE_WEB_ANALYTICS_TOKEN` empty and gated to avoid committing runtime identifiers.
+5. Apply the newsletter Worker/D1 rollout if the public signup form is used in production.
+6. Open PR, merge main, then verify `https://nhachung.org` and `https://www.nhachung.org`.
 
 Repo-side canonical work already complete:
 - 9 public pages under `public/`, including `cau-chuyen.html`, `nguyen-tac-song-chung.html`, `lam-viec-muon-noi.html`, and `ung-dung.html`.
 - 1200x630 `og:image` metadata/assets under `public/assets/og/`.
 - Newsletter signup in `public/dang-ky.html` calls `https://api.nhachung.org/api/newsletter` through `public/assets/js/main.js`.
+- Cloudflare Web Analytics scaffold is wired through `public/assets/js/analytics.js` on public and legal pages; it loads only when `public/assets/config.js` receives a token and does not inspect forms, cookies, storage, or custom events.
 - SEO, accessibility, and static performance gates pass against `public/`.
 - Internal story collection pipeline lives outside the deploy root in `story-pipeline/`, with intake form, consent/legal workflow, story template, and `scripts/story-pipeline-lint.mjs`.

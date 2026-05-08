@@ -27,6 +27,10 @@
     APP_BASE: "https://app.nhachung.org",
     CONTENT_BASE: "/content",
     LANGUAGE_REBUILD_REQUIRED: true,
+    ANALYTICS: {
+      CLOUDFLARE_WEB_ANALYTICS_TOKEN: "",
+      PROVIDER: "cloudflare-web-analytics"
+    },
 
     // Landing internal anchors
     ANCHORS: ["vision", "system", "opportunities", "levels", "pricing", "faq"],
