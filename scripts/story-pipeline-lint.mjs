@@ -7,11 +7,13 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const pipelineDir = path.join(root, "story-pipeline");
+const publicDir = path.join(root, "public");
 
 const requiredFiles = [
   "publishing-workflow.md",
   "intake-form.html",
-  "story-template.html"
+  "story-template.html",
+  "approved-story-assets.json"
 ];
 
 const requiredStates = [
@@ -44,6 +46,17 @@ const requiredTemplateTokens = [
   "{{story_photo_alt}}",
   "{{photo_credit}}",
   "{{story_body_around_200_words}}"
+];
+
+const requiredAssetFields = [
+  "story_id",
+  "state",
+  "public_route",
+  "hero_asset",
+  "photo_consent",
+  "legal_review",
+  "author_final_ok",
+  "publish_approved"
 ];
 
 function read(relativePath) {
@@ -85,4 +98,25 @@ assert(template.includes("VIET CAN NEW CORP"), "story template missing internati
 assert(template.includes("BỒ CÂU TRẮNG"), "story template missing Vietnam legal entity");
 assert(template.includes("pay.iai.one"), "story template missing payment infrastructure line");
 
-console.log("Story pipeline lint PASS: internal intake, consent workflow, legal review, and template are present.");
+const publicStoryHub = fs.readFileSync(path.join(publicDir, "cau-chuyen.html"), "utf8");
+assert(!publicStoryHub.includes("images.unsplash.com"), "public story hub must not use unapproved stock-photo assets");
+assert(publicStoryHub.includes("assets/og/cau-chuyen.svg"), "public story hub must use the approved local story hub asset");
+
+const assetManifest = JSON.parse(read("approved-story-assets.json"));
+assert(Array.isArray(assetManifest.stories), "approved-story-assets.json must contain a stories array");
+assert(assetManifest.stories.length > 0, "approved-story-assets.json must track at least the story hub placeholder");
+
+for (const story of assetManifest.stories) {
+  for (const field of requiredAssetFields) {
+    assert(Object.hasOwn(story, field), `approved-story-assets.json entry missing ${field}`);
+  }
+
+  const approved = story.photo_consent === true && story.legal_review === true && story.author_final_ok === true && story.publish_approved === true;
+  if (story.state === "publish_approved") {
+    assert(approved, `${story.story_id} is publish_approved without full consent/legal/author approval`);
+    assert(story.public_route.startsWith("/"), `${story.story_id} public_route must be an absolute public path`);
+    assert(story.hero_asset.startsWith("/assets/"), `${story.story_id} hero_asset must be a local approved asset`);
+  }
+}
+
+console.log("Story pipeline lint PASS: internal intake, consent workflow, legal review, template, and approved asset manifest are present.");

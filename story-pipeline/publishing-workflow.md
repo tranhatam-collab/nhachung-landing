@@ -42,7 +42,8 @@
 2. Replace every `{{placeholder}}`.
 3. Keep the story body close to 200 words.
 4. Add a 1200x630 OG image for that specific story.
-5. Run:
+5. Add the story/photo entry to `approved-story-assets.json` with `photo_consent`, `legal_review`, `author_final_ok`, and `publish_approved` set to true.
+6. Run:
 
 ```bash
 node scripts/story-pipeline-lint.mjs
