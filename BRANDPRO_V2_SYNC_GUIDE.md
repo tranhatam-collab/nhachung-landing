@@ -46,6 +46,7 @@ bash scripts/brand-lint.sh public
 node scripts/i18n-smoke.mjs
 node scripts/story-pipeline-lint.mjs
 node scripts/public-analytics-gate.mjs
+node scripts/live-edge-smoke.mjs
 node ../scripts/public-web-route-smoke.mjs public
 node ../scripts/public-seo-audit.mjs public
 node ../scripts/public-accessibility-audit.mjs public
@@ -60,6 +61,7 @@ Verified on 2026-05-08:
 - `i18n-smoke`: PASS 4/4
 - `story-pipeline-lint`: PASS
 - `public-analytics-gate`: PASS
+- `live-edge-smoke`: BLOCKED by production routing mismatch; 2026-05-08T09:21Z web fetch still showed stale `nhachung.org`, `www.nhachung.org` 502, and static `api.nhachung.org/`
 - `git diff --check`: PASS
 - `git diff --check main...HEAD`: PASS
 - `node ../scripts/public-web-route-smoke.mjs public`: PASS 9 pages
@@ -71,7 +73,7 @@ Verified on 2026-05-08:
 
 1. Open the PR from `brand/v2.0-migration` to `main`; the branch is compare-clean and does not need a rebase as of this verification.
 2. Wait for Cloudflare branch preview and review visual/content.
-3. Reconcile Cloudflare live routing so `https://nhachung.org`, `https://www.nhachung.org`, and `https://api.nhachung.org` serve the intended Pages/Worker projects.
+3. Reconcile Cloudflare live routing so `https://nhachung.org`, `https://www.nhachung.org`, and `https://api.nhachung.org` serve the intended Pages/Worker projects; then run `node scripts/live-edge-smoke.mjs`.
 4. Run Lighthouse mobile + desktop on preview/live; each public page must score at least 95.
 5. Capture screenshot evidence for homepage, app link, signup form, newsletter success/error, and legal footer.
 6. Inject the Cloudflare Web Analytics token during controlled Pages setup; source keeps `CLOUDFLARE_WEB_ANALYTICS_TOKEN` empty and gated to avoid committing runtime identifiers.

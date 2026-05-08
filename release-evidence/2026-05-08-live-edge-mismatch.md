@@ -1,6 +1,9 @@
 # Live Edge Mismatch Evidence — 2026-05-08
 
-Run time: 2026-05-08T08:45:22Z
+Run times:
+
+- 2026-05-08T08:45:22Z
+- 2026-05-08T09:21:06Z
 
 Scope: T1 public web production parity and Worker/API edge routing.
 
@@ -27,6 +30,10 @@ The live document rendered the older public surface:
 - Hero H1 included: `Nơi Con Người Có Không Gian Ở Thật, Công Việc Thật, Cộng Đồng Thật, Và Dòng Tiền Thật.`
 - Footer showed only `Privacy`, `Terms`, and `API`, not the canonical legal/footer set in the current BrandPro source.
 
+### `https://www.nhachung.org/`
+
+The 2026-05-08T09:21:06Z web fetch returned a 502 for `https://www.nhachung.org/` instead of the canonical BrandPro page.
+
 ### `https://api.nhachung.org/`
 
 The live root rendered a static asset page:
@@ -50,6 +57,7 @@ bash scripts/brand-lint.sh public
 node scripts/i18n-smoke.mjs
 node scripts/story-pipeline-lint.mjs
 node scripts/public-analytics-gate.mjs
+node scripts/live-edge-smoke.mjs
 node ../scripts/public-web-route-smoke.mjs public
 node ../scripts/public-seo-audit.mjs public
 node ../scripts/public-accessibility-audit.mjs public
