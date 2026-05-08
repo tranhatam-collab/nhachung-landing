@@ -9,6 +9,7 @@ Run times:
 - 2026-05-08T15:09:10Z
 - 2026-05-08T15:33:10Z
 - 2026-05-08T15:56:21Z
+- 2026-05-08T17:52:44Z
 
 Scope: T1 public web production parity and Worker/API edge routing.
 
@@ -28,7 +29,7 @@ Blocked. The canonical `brand/v2.0-migration` source is clean, but live web fetc
 
 ### `https://nhachung.org/`
 
-The live document rendered the older public surface again in the 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, 2026-05-08T15:33Z, and 2026-05-08T15:56Z verifications:
+The live document rendered the older public surface again in the 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, 2026-05-08T15:33Z, 2026-05-08T15:56Z, and 2026-05-08T17:52Z verifications:
 
 - Title: `Nhà Chung | Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng`
 - Header/navigation included `Tính năng`, `Modules`, `Cấp độ`, `Lộ trình`, `FAQ`, `Admin`, and `Vào App`.
@@ -37,11 +38,11 @@ The live document rendered the older public surface again in the 2026-05-08T13:4
 
 ### `https://www.nhachung.org/`
 
-The 2026-05-08T09:21:06Z, 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, 2026-05-08T15:33Z, and 2026-05-08T15:56Z web fetches returned a 502 for `https://www.nhachung.org/` instead of the canonical BrandPro page.
+The 2026-05-08T09:21:06Z, 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, 2026-05-08T15:33Z, 2026-05-08T15:56Z, and 2026-05-08T17:52Z web fetches returned a 502 for `https://www.nhachung.org/` instead of the canonical BrandPro page.
 
 ### `https://api.nhachung.org/`
 
-The live root rendered a static asset page again in the 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, 2026-05-08T15:33Z, and 2026-05-08T15:56Z verifications:
+The live root rendered a static asset page again in the 2026-05-08T13:42Z, 2026-05-08T14:30Z, 2026-05-08T15:09Z, 2026-05-08T15:33Z, 2026-05-08T15:56Z, and 2026-05-08T17:52Z verifications:
 
 - Heading/content: `Hello, World!`
 - Body text: `This page comes from a static asset stored at public/index.html as configured in wrangler.jsonc.`
