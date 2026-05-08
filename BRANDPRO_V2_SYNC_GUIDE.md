@@ -13,7 +13,7 @@
 | Duplicate/reference | Cloudflare account `f3f9e76222dcb488d5e303e29e8ba192`, Pages `nhachung-org.pages.dev`, historical Brand v2 reference; do not use as canonical production |
 | Git source | This repo, branch `brand/v2.0-migration` |
 | Brand code baseline | `4580e59 feat(brand): sync canonical public site pack` |
-| Current branch commit | `e1685134836cd00a8e3cba0452123c6515d5aa24` |
+| Current branch commit | `61eddb16cd772742acb5afdea339721221bd60d4` |
 | Current local `public/index.html` hash | `db3a4103adb01ec5a5f2e344c30be13aab05a153bc578042cdcc512c2fff1a78` |
 | Handoff guide | This file in the same branch |
 | PR URL | `https://github.com/tranhatam-collab/nhachung-landing/pull/new/brand/v2.0-migration` |
@@ -23,9 +23,10 @@
 
 ## Live Edge Blocker
 
-2026-05-08T08:45:22Z web fetch evidence found production routing/content inconsistent with this canonical source:
+2026-05-08T08:45:22Z web fetch evidence found production routing/content inconsistent with this canonical source. A fresh 2026-05-08T13:42Z verification still found the same blocker:
 
 - `https://nhachung.org/` rendered the older "Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng" surface, including old navigation labels such as `Tính năng`, `Modules`, `Cấp độ`, and app/admin links.
+- `https://www.nhachung.org/` returned a 502 during the latest web verification.
 - `https://api.nhachung.org/` rendered a static "Hello, World!" asset page instead of the Worker API surface.
 
 Release implication: do not claim live Lighthouse, live screenshot, or production parity PASS until Cloudflare Pages/Worker routing is reconciled and a fresh live hash is recorded. See `release-evidence/2026-05-08-live-edge-mismatch.md`.
@@ -61,7 +62,7 @@ Verified on 2026-05-08:
 - `i18n-smoke`: PASS 4/4
 - `story-pipeline-lint`: PASS
 - `public-analytics-gate`: PASS
-- `live-edge-smoke`: BLOCKED by production routing mismatch; 2026-05-08T09:21Z web fetch still showed stale `nhachung.org`, `www.nhachung.org` 502, and static `api.nhachung.org/`
+- `live-edge-smoke`: BLOCKED by production routing mismatch; 2026-05-08T13:42Z verification still showed stale `nhachung.org`, `www.nhachung.org` 502, and static `api.nhachung.org/`
 - `git diff --check`: PASS
 - `git diff --check main...HEAD`: PASS
 - `node ../scripts/public-web-route-smoke.mjs public`: PASS 9 pages
