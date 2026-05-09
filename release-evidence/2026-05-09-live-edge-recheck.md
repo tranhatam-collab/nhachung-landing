@@ -1,6 +1,6 @@
 # Live Edge Recheck Evidence — 2026-05-09
 
-Run time: 2026-05-09T01:32:02Z / 2026-05-09T08:32:02+0700
+Run time: 2026-05-09T01:35:18Z / 2026-05-09T08:35:18+0700
 
 ## Scope
 
@@ -8,9 +8,9 @@ T1 production parity and T2 Worker/API root routing after the latest BrandPro so
 
 ## Result
 
-Blocked by production routing, not by canonical source quality.
+Inconclusive because live fetch paths disagree and local DNS is not repeatable. The canonical source quality gates pass.
 
-The canonical `brand/v2.0-migration` source is clean at commit `43e5a9b`, but external live fetches still did not return the expected BrandPro/Worker surfaces.
+The canonical `brand/v2.0-migration` source is clean at commit `43e5a9b`. External web fetches still showed stale/non-canonical surfaces, but shell `curl` briefly returned canonical BrandPro/Worker HTML before repeat hash capture failed on local DNS.
 
 ## Canonical Source Checked
 
@@ -24,26 +24,38 @@ The canonical `brand/v2.0-migration` source is clean at commit `43e5a9b`, but ex
 
 ### `https://nhachung.org/`
 
-External web fetch still returned the older public surface:
+External web fetch returned the older public surface:
 
 - Title: `Nhà Chung | Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng`
 - Header/navigation included stale labels such as `Tính năng`, `Modules`, `Cấp độ`, `Lộ trình`, `FAQ`, `Admin`, and `Vào App`.
 - Hero H1 included `Nơi Con Người Có Không Gian Ở Thật, Công Việc Thật, Cộng Đồng Thật, Và Dòng Tiền Thật.`
 
+Shell `curl` at 2026-05-09T01:34Z returned the canonical BrandPro HTML with title `Nhà Chung | Hệ điều hành cộng đồng sống thật`.
+
 ### `https://www.nhachung.org/`
 
 External web fetch did not return a fetchable canonical BrandPro page, so the `www` custom domain still cannot be counted as production evidence.
 
+Shell `curl` at 2026-05-09T01:34Z returned the canonical BrandPro HTML.
+
 ### `https://api.nhachung.org/`
 
-External web fetch still returned the static Wrangler asset placeholder:
+External web fetch returned the static Wrangler asset placeholder:
 
 - Heading/content: `Hello, World!`
 - Body text described a static asset from `public/index.html` configured in `wrangler.jsonc`.
 
+Shell `curl` at 2026-05-09T01:34Z returned the Worker API home HTML with `Nha Chung API` and `Cloudflare Worker + D1`.
+
 ### `https://nhachung-landing-abp.pages.dev/`
 
 External web fetch did not return a fetchable canonical BrandPro page. Treat the custom domains and Pages alias as unreconciled until Cloudflare routing is checked directly.
+
+Shell `curl` at 2026-05-09T01:34Z returned the canonical BrandPro HTML.
+
+### Repeatability Limitation
+
+Immediate repeat hash capture via shell `curl` failed with `Could not resolve host` for the custom domains, Pages alias, and API domain. `node scripts/live-edge-smoke.mjs` also failed with `getaddrinfo ENOTFOUND nhachung.org`.
 
 ## Local Landing Gate Recheck
 
@@ -71,9 +83,9 @@ Local source checks passed:
 
 ## Release Impact
 
-- Do not count Lighthouse or live screenshot evidence against current production.
-- Do not claim `nhachung.org`, `www.nhachung.org`, or `nhachung-landing-abp.pages.dev` parity until Cloudflare Pages routing returns the canonical source hash.
-- Do not claim Worker production root parity until `https://api.nhachung.org/` stops serving the static Wrangler asset placeholder.
+- Do not count Lighthouse or live screenshot evidence until live hash capture is repeatable.
+- Do not claim final `nhachung.org`, `www.nhachung.org`, or `nhachung-landing-abp.pages.dev` parity until a stable network records canonical source hashes.
+- Do not claim final Worker production root parity until a stable network records the Worker API home without the static placeholder.
 
 ## Required Next Step
 
