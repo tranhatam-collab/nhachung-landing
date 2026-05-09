@@ -18,9 +18,9 @@ const landingUrls = [
 
 const requiredLandingMarkers = [
   "Hệ điều hành cộng đồng sống thật",
-  "Sống tự do",
+  "Ba hình thức Nhà Chung",
   "Làm việc muôn nơi",
-  "Có nơi thuộc về",
+  "Đăng ký miễn phí",
   "VIET CAN NEW CORP",
   "CÔNG TY TNHH BỒ CÂU TRẮNG",
 ];

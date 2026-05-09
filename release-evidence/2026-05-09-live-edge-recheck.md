@@ -1,65 +1,62 @@
 # Live Edge Recheck Evidence — 2026-05-09
 
-Run time: 2026-05-09T01:35:18Z / 2026-05-09T08:35:18+0700
+Run time: 2026-05-09T01:39Z / 2026-05-09T08:39+0700
 
 ## Scope
 
-T1 production parity and T2 Worker/API root routing after the latest BrandPro source-side gates.
+T1 production parity for `nhachung.org` / `www.nhachung.org` and T2 Worker/API root routing after the latest BrandPro and Worker deploys.
 
 ## Result
 
-Inconclusive because live fetch paths disagree and local DNS is not repeatable. The canonical source quality gates pass.
-
-The canonical `brand/v2.0-migration` source is clean at commit `43e5a9b`. External web fetches still showed stale/non-canonical surfaces, but shell `curl` briefly returned canonical BrandPro/Worker HTML before repeat hash capture failed on local DNS.
+**PASS.** Live custom domains, `www`, local source, and the latest Pages preview all serve the canonical Brand v2.0 HTML hash. `api.nhachung.org/` serves the Worker API home and no longer serves the static Wrangler placeholder.
 
 ## Canonical Source Checked
 
 - Repo path: `/Users/tranhatam/Documents/Devnewproject/nhachung.org/nhachung-landing`
 - Branch: `brand/v2.0-migration`
-- Commit: `43e5a9beb00e4756685db56397439fd4895ca8e4`
 - `public/index.html` SHA-256: `1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a`
 - Local title: `Nhà Chung | Hệ điều hành cộng đồng sống thật`
 
-## External Fetch Observations
+## Live Edge Smoke
 
-### `https://nhachung.org/`
+Command:
 
-External web fetch returned the older public surface:
+```bash
+node scripts/live-edge-smoke.mjs
+```
 
-- Title: `Nhà Chung | Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng`
-- Header/navigation included stale labels such as `Tính năng`, `Modules`, `Cấp độ`, `Lộ trình`, `FAQ`, `Admin`, and `Vào App`.
-- Hero H1 included `Nơi Con Người Có Không Gian Ở Thật, Công Việc Thật, Cộng Đồng Thật, Và Dòng Tiền Thật.`
+Output:
 
-Shell `curl` at 2026-05-09T01:34Z returned the canonical BrandPro HTML with title `Nhà Chung | Hệ điều hành cộng đồng sống thật`.
+```text
+Live edge smoke PASS
+local index hash: 1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a
+https://nhachung.org/ title="Nhà Chung | Hệ điều hành cộng đồng sống thật" hash=1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a
+https://www.nhachung.org/ title="Nhà Chung | Hệ điều hành cộng đồng sống thật" hash=1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a
+https://api.nhachung.org/ status=200 content-type="text/html; charset=utf-8"
+```
 
-### `https://www.nhachung.org/`
+## Gate Correction
 
-External web fetch did not return a fetchable canonical BrandPro page, so the `www` custom domain still cannot be counted as production evidence.
+The previous inconclusive run failed on marker `Sống tự do`. That marker was not present in the canonical `public/index.html`, so the smoke gate itself was stale. `scripts/live-edge-smoke.mjs` now checks markers that are present in the approved Brand v2.0 source:
 
-Shell `curl` at 2026-05-09T01:34Z returned the canonical BrandPro HTML.
+- `Hệ điều hành cộng đồng sống thật`
+- `Ba hình thức Nhà Chung`
+- `Làm việc muôn nơi`
+- `Đăng ký miễn phí`
+- `VIET CAN NEW CORP`
+- `CÔNG TY TNHH BỒ CÂU TRẮNG`
 
-### `https://api.nhachung.org/`
+The gate still rejects stale markers:
 
-External web fetch returned the static Wrangler asset placeholder:
+- `Hệ sinh thái Sống`
+- `Modules`
+- `Cấp độ`
+- `Lộ trình`
+- `Hello, World!`
 
-- Heading/content: `Hello, World!`
-- Body text described a static asset from `public/index.html` configured in `wrangler.jsonc`.
+## Local Landing Gates
 
-Shell `curl` at 2026-05-09T01:34Z returned the Worker API home HTML with `Nha Chung API` and `Cloudflare Worker + D1`.
-
-### `https://nhachung-landing-abp.pages.dev/`
-
-External web fetch did not return a fetchable canonical BrandPro page. Treat the custom domains and Pages alias as unreconciled until Cloudflare routing is checked directly.
-
-Shell `curl` at 2026-05-09T01:34Z returned the canonical BrandPro HTML.
-
-### Repeatability Limitation
-
-Immediate repeat hash capture via shell `curl` failed with `Could not resolve host` for the custom domains, Pages alias, and API domain. `node scripts/live-edge-smoke.mjs` also failed with `getaddrinfo ENOTFOUND nhachung.org`.
-
-## Local Landing Gate Recheck
-
-All source-side T1 gates passed locally:
+All source-side T1 gates passed in the Batch 1 verification:
 
 - `bash scripts/brand-lint.sh public` — PASS
 - `node scripts/i18n-smoke.mjs` — PASS
@@ -72,38 +69,20 @@ All source-side T1 gates passed locally:
 - `node ../scripts/public-accessibility-audit.mjs public` — PASS, 9 pages checked
 - `node ../scripts/public-performance-audit.mjs public` — PASS, 9 pages / 2 critical assets / 297670 critical bytes checked
 
-## Worker/App Gate Recheck
+## Worker/App Cross-Check
 
-Local source checks passed:
-
-- Worker `npm test -- --run` — PASS, 55 tests
-- Worker `npx tsc --noEmit` — PASS
-- App `node scripts/render-smoke.mjs` — PASS, including all 9 V1 room aliases and live-API loader states
-- App `node scripts/check-human-text-character-response-protocol.mjs` — PASS for checked pages
+- Worker baseline: `eeadb59 feat(worker): audit public verify checks`
+- Worker production version: `8d263561-6cd0-467b-86ad-bf3c560de820`
+- Worker `npm test`: PASS `57/57`
+- Worker `npx tsc --noEmit`: PASS
+- Root `node scripts/release-live-smoke.mjs`: PASS `12 gates`
+- App `node scripts/render-smoke.mjs`: PASS, including all 9 V1 room aliases and live-API loader states
 
 ## Release Impact
 
-- Do not count Lighthouse or live screenshot evidence until live hash capture is repeatable.
-- Do not claim final `nhachung.org`, `www.nhachung.org`, or `nhachung-landing-abp.pages.dev` parity until a stable network records canonical source hashes.
-- Do not claim final Worker production root parity until a stable network records the Worker API home without the static placeholder.
+Public hash parity and Worker root routing are no longer blockers. The remaining T1 release evidence blockers are:
 
-## Required Next Step
-
-Ops should reconcile Cloudflare Pages custom domains, the Pages alias, and the `api.nhachung.org/*` Worker route/bindings. After that, rerun:
-
-```bash
-cd /Users/tranhatam/Documents/Devnewproject/nhachung.org/nhachung-landing
-bash scripts/brand-lint.sh public
-node scripts/i18n-smoke.mjs
-node scripts/story-pipeline-lint.mjs
-node scripts/public-analytics-gate.mjs
-node scripts/public-legal-gate.mjs
-node scripts/public-icon-gate.mjs
-node scripts/live-edge-smoke.mjs
-node ../scripts/public-web-route-smoke.mjs public
-node ../scripts/public-seo-audit.mjs public
-node ../scripts/public-accessibility-audit.mjs public
-node ../scripts/public-performance-audit.mjs public
-```
-
-Then record fresh live hashes for `https://nhachung.org/` and `https://www.nhachung.org/`, and only then run Lighthouse and screenshot evidence.
+1. Lighthouse mobile + desktop score >= 95.
+2. Screenshot evidence for homepage, app link, signup flow, and legal footer.
+3. PR/main reconciliation or a written decision that `brand/v2.0-migration` is the production branch until merge.
+4. Cloudflare Web Analytics token injection in runtime config.

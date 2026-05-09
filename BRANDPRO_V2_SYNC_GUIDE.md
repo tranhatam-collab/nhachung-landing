@@ -8,8 +8,8 @@
 | Item | Correct state |
 |---|---|
 | Intended live production | `https://nhachung.org` + `https://www.nhachung.org` |
-| Counted live hash | INCONCLUSIVE - local source hash is known, but live hash capture is not repeatable in this environment |
-| Production runtime to reconcile | Cloudflare account `93112cc89181e75335cbd7ef7e392ba3`, Pages `nhachung-landing`, alias `nhachung-landing-abp.pages.dev`, No Git |
+| Counted live hash | `1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a` |
+| Production runtime | Cloudflare account `93112cc89181e75335cbd7ef7e392ba3`, Pages `nhachung-landing`, latest verified deploy `ec4ee215.nhachung-landing-abp.pages.dev`, No Git |
 | Duplicate/reference | Cloudflare account `f3f9e76222dcb488d5e303e29e8ba192`, Pages `nhachung-org.pages.dev`, historical Brand v2 reference; do not use as canonical production |
 | Git source | This repo, branch `brand/v2.0-migration` |
 | Brand code baseline | `4580e59 feat(brand): sync canonical public site pack` |
@@ -19,20 +19,17 @@
 | PR URL | `https://github.com/tranhatam-collab/nhachung-landing/pull/new/brand/v2.0-migration` |
 | PR compare preflight | `brand/v2.0-migration` is ahead of local `main` by 23 commits; rerun compare before merge if remote access is available |
 
-`public/index.html` currently hashes to `1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a`. Treat this as the canonical source hash. Do not mark final Lighthouse/screenshots complete until live hash capture is repeatable from a stable browser or CI network.
+`public/index.html`, `https://nhachung.org/`, and `https://www.nhachung.org/` currently hash to `1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a`. Treat this as the canonical source/live hash.
 
 ## Live Edge Evidence
 
-2026-05-09T01:32Z external web fetch evidence found production routing/content inconsistent with this canonical source:
+2026-05-09T01:39Z `node scripts/live-edge-smoke.mjs` passed:
 
-- `https://nhachung.org/` rendered the older "Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng" surface, including old navigation labels such as `Tính năng`, `Modules`, `Cấp độ`, and app/admin links.
-- `https://www.nhachung.org/` did not return a fetchable canonical BrandPro page during the latest web verification.
-- `https://api.nhachung.org/` rendered a static "Hello, World!" asset page instead of the Worker API surface.
-- `https://nhachung-landing-abp.pages.dev/` did not return a fetchable canonical BrandPro page during the latest web verification.
+- `https://nhachung.org/` title `Nhà Chung | Hệ điều hành cộng đồng sống thật`, hash `1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a`.
+- `https://www.nhachung.org/` title `Nhà Chung | Hệ điều hành cộng đồng sống thật`, hash `1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a`.
+- `https://api.nhachung.org/` returned Worker API home with `text/html; charset=utf-8`, not the static Wrangler placeholder.
 
-2026-05-09T01:34Z shell `curl` briefly returned the canonical BrandPro HTML for `https://nhachung.org/`, `https://www.nhachung.org/`, and `https://ec4ee215.nhachung-landing-abp.pages.dev/`, and returned the Worker API home HTML for `https://api.nhachung.org/`. Immediate repeat hash capture then failed with local DNS `Could not resolve host`, and `node scripts/live-edge-smoke.mjs` still failed with `getaddrinfo ENOTFOUND nhachung.org`.
-
-Release implication: production is likely close to parity, but do not claim final Lighthouse, live screenshot, or production hash PASS until the check is repeatable. See `release-evidence/2026-05-09-live-edge-recheck.md`.
+See `release-evidence/2026-05-09-live-edge-recheck.md`.
 
 ## Do Not
 
@@ -67,7 +64,7 @@ Verified on 2026-05-09:
 - `public-analytics-gate`: PASS
 - `public-legal-gate`: PASS
 - `public-icon-gate`: PASS
-- `live-edge-smoke`: INCONCLUSIVE; external web fetch showed stale/non-canonical surfaces, one shell `curl` pass showed canonical surfaces, and repeat hash capture failed on local DNS
+- `live-edge-smoke`: PASS 2026-05-09T01:39Z; `nhachung.org` and `www` hash match local source, and `api.nhachung.org/` serves Worker API home
 - `git diff --check`: PASS
 - `git diff --check main...HEAD`: PASS
 - `node ../scripts/public-web-route-smoke.mjs public`: PASS 9 pages
@@ -79,7 +76,7 @@ Verified on 2026-05-09:
 
 1. Open the PR from `brand/v2.0-migration` to `main`; the branch is compare-clean and does not need a rebase as of this verification.
 2. Wait for Cloudflare branch preview and review visual/content.
-3. Reconcile or repeat Cloudflare live routing evidence so `https://nhachung.org`, `https://www.nhachung.org`, and `https://api.nhachung.org` serve the intended Pages/Worker projects with repeatable hashes; then run `node scripts/live-edge-smoke.mjs` from a network where Node DNS works.
+3. Keep `node scripts/live-edge-smoke.mjs` green through PR/merge; rerun after any Pages/Worker deploy.
 4. Run Lighthouse mobile + desktop on preview/live; each public page must score at least 95.
 5. Capture screenshot evidence for homepage, app link, signup form, newsletter success/error, and legal footer.
 6. Inject the Cloudflare Web Analytics token during controlled Pages setup; source keeps `CLOUDFLARE_WEB_ANALYTICS_TOKEN` empty and gated to avoid committing runtime identifiers.
