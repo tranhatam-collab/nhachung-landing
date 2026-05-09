@@ -2,6 +2,10 @@
 /register  https://app.nhachung.org/r/apply  302
 /verify    https://app.nhachung.org/r/verify 302
 /admin     https://app.nhachung.org/r/admin  302
+/legal/privacy /vi/legal/privacy.html   302!
+/legal/terms   /vi/legal/terms.html     302!
+/legal/community-principles /vi/legal/community-principles.html 302!
+/legal/resident-agreement   /vi/legal/resident-agreement.html   302!
 /legal/privacy.html /vi/legal/privacy.html   302!
 /legal/terms.html   /vi/legal/terms.html     302!
 /legal/community-principles.html /vi/legal/community-principles.html 302!

@@ -81,6 +81,12 @@ for (const [lang, locale] of Object.entries(locales)) {
 
 const redirects = readRequired(path.join(publicRoot, "_redirects"));
 for (const doc of docs) {
+  const cleanExpected = new RegExp(
+    `^/legal/${doc}\\s+/vi/legal/${doc}\\.html\\s+302!$`,
+    "m",
+  );
+  assert(cleanExpected.test(redirects), `Missing forced canonical redirect for /legal/${doc}`);
+
   const expected = new RegExp(
     `^/legal/${doc}\\.html\\s+/vi/legal/${doc}\\.html\\s+302!$`,
     "m",
