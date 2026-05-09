@@ -1,35 +1,36 @@
 # BRANDPRO NHÀ CHUNG V2 — SOURCE + DEPLOY GUIDE
 
-**Verified:** 2026-05-08
+**Verified:** 2026-05-09
 **Approved brand:** Gold/White/Black v2.0
 
 ## Current Truth
 
 | Item | Correct state |
 |---|---|
-| Live production | `https://nhachung.org` + `https://www.nhachung.org` |
-| Live hash | `6ddb1562b757a6f7a3b815e98a5d868fe3e2502a2392172deb571993ca246a2f` |
-| Production runtime | Cloudflare account `93112cc89181e75335cbd7ef7e392ba3`, Pages `nhachung-landing`, alias `nhachung-landing-abp.pages.dev`, latest deploy `263c6d01.nhachung-landing-abp.pages.dev`, No Git |
+| Intended live production | `https://nhachung.org` + `https://www.nhachung.org` |
+| Counted live hash | BLOCKED - external fetch still returns the stale pre-BrandPro surface, so do not count a live hash yet |
+| Production runtime to reconcile | Cloudflare account `93112cc89181e75335cbd7ef7e392ba3`, Pages `nhachung-landing`, alias `nhachung-landing-abp.pages.dev`, No Git |
 | Duplicate/reference | Cloudflare account `f3f9e76222dcb488d5e303e29e8ba192`, Pages `nhachung-org.pages.dev`, historical Brand v2 reference; do not use as canonical production |
 | Git source | This repo, branch `brand/v2.0-migration` |
 | Brand code baseline | `4580e59 feat(brand): sync canonical public site pack` |
-| Current branch commit | `61eddb16cd772742acb5afdea339721221bd60d4` |
-| Current local `public/index.html` hash | `db3a4103adb01ec5a5f2e344c30be13aab05a153bc578042cdcc512c2fff1a78` |
+| Current branch commit | `43e5a9beb00e4756685db56397439fd4895ca8e4` |
+| Current local `public/index.html` hash | `1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a` |
 | Handoff guide | This file in the same branch |
 | PR URL | `https://github.com/tranhatam-collab/nhachung-landing/pull/new/brand/v2.0-migration` |
-| PR compare preflight | `brand/v2.0-migration` is ahead of `main` by 11 commits, behind by 0; merge base is `259c8a23742d6b249c52a6238c854437302f6d35` |
+| PR compare preflight | `brand/v2.0-migration` is ahead of local `main` by 23 commits; rerun compare before merge if remote access is available |
 
-`public/index.html` no longer hashes to the older `6ddb1562b757a6f7a3b815e98a5d868fe3e2502a2392172deb571993ca246a2f` after the analytics and guide commits. Treat `db3a4103adb01ec5a5f2e344c30be13aab05a153bc578042cdcc512c2fff1a78` as the current local source hash until the next production deploy records a new live hash.
+`public/index.html` currently hashes to `1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a`. Treat this as the canonical source hash. Do not treat any production URL as matched until a live fetch records this same hash.
 
 ## Live Edge Blocker
 
-2026-05-08T08:45:22Z web fetch evidence found production routing/content inconsistent with this canonical source. A fresh 2026-05-08T13:42Z verification still found the same blocker:
+2026-05-09T01:32Z external web fetch evidence still found production routing/content inconsistent with this canonical source:
 
 - `https://nhachung.org/` rendered the older "Hệ sinh thái Sống – Học – Làm – Đầu tư – Cộng đồng" surface, including old navigation labels such as `Tính năng`, `Modules`, `Cấp độ`, and app/admin links.
-- `https://www.nhachung.org/` returned a 502 during the latest web verification.
+- `https://www.nhachung.org/` did not return a fetchable canonical BrandPro page during the latest web verification.
 - `https://api.nhachung.org/` rendered a static "Hello, World!" asset page instead of the Worker API surface.
+- `https://nhachung-landing-abp.pages.dev/` did not return a fetchable canonical BrandPro page during the latest web verification.
 
-Release implication: do not claim live Lighthouse, live screenshot, or production parity PASS until Cloudflare Pages/Worker routing is reconciled and a fresh live hash is recorded. See `release-evidence/2026-05-08-live-edge-mismatch.md`.
+Release implication: do not claim live Lighthouse, live screenshot, or production parity PASS until Cloudflare Pages/Worker routing is reconciled and a fresh live hash is recorded. See `release-evidence/2026-05-09-live-edge-recheck.md`.
 
 ## Do Not
 
@@ -56,19 +57,21 @@ git diff --check
 git diff --check main...HEAD
 ```
 
-Verified on 2026-05-08:
+Verified on 2026-05-09:
 
 - `brand-lint`: PASS
 - `i18n-smoke`: PASS 4/4
 - `story-pipeline-lint`: PASS
 - `public-analytics-gate`: PASS
-- `live-edge-smoke`: BLOCKED by production routing mismatch; 2026-05-08T13:42Z verification still showed stale `nhachung.org`, `www.nhachung.org` 502, and static `api.nhachung.org/`
+- `public-legal-gate`: PASS
+- `public-icon-gate`: PASS
+- `live-edge-smoke`: BLOCKED by production routing mismatch; 2026-05-09T01:32Z verification still showed stale `nhachung.org`, non-canonical `www`/Pages alias fetches, and static `api.nhachung.org/`
 - `git diff --check`: PASS
 - `git diff --check main...HEAD`: PASS
 - `node ../scripts/public-web-route-smoke.mjs public`: PASS 9 pages
 - `node ../scripts/public-seo-audit.mjs public`: PASS 9 pages
 - `node ../scripts/public-accessibility-audit.mjs public`: PASS 9 pages
-- `node ../scripts/public-performance-audit.mjs public`: PASS 9 pages / 299620 bytes
+- `node ../scripts/public-performance-audit.mjs public`: PASS 9 pages / 2 critical assets / 297670 critical bytes
 
 ## Remaining Before Production Merge
 

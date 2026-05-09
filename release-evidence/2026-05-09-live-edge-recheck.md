@@ -1,6 +1,6 @@
 # Live Edge Recheck Evidence — 2026-05-09
 
-Run time: 2026-05-08T21:06:30Z / 2026-05-09T04:06:30+0700
+Run time: 2026-05-09T01:32:02Z / 2026-05-09T08:32:02+0700
 
 ## Scope
 
@@ -10,13 +10,13 @@ T1 production parity and T2 Worker/API root routing after the latest BrandPro so
 
 Blocked by production routing, not by canonical source quality.
 
-The canonical `brand/v2.0-migration` source is clean at commit `20b0673`, but external live fetches still did not return the expected BrandPro/Worker surfaces.
+The canonical `brand/v2.0-migration` source is clean at commit `43e5a9b`, but external live fetches still did not return the expected BrandPro/Worker surfaces.
 
 ## Canonical Source Checked
 
 - Repo path: `/Users/tranhatam/Documents/Devnewproject/nhachung.org/nhachung-landing`
 - Branch: `brand/v2.0-migration`
-- Commit: `20b0673`
+- Commit: `43e5a9beb00e4756685db56397439fd4895ca8e4`
 - `public/index.html` SHA-256: `1462b82ec977dae14349d104bbf989e97369ce3290ff26f0272d3133e1fc1d6a`
 - Local title: `Nhà Chung | Hệ điều hành cộng đồng sống thật`
 
