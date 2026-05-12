@@ -76,6 +76,11 @@ for (const tracker of forbiddenTrackers) {
   assert(!analyticsJs.includes(tracker), `analytics.js must not include custom tracker/data sink: ${tracker}`);
 }
 
+const headersText = readRequired(path.join(publicRoot, "_headers"));
+assertIncludes(headersText, "Content-Security-Policy:", "_headers");
+assertIncludes(headersText, "https://static.cloudflareinsights.com", "_headers");
+assertIncludes(headersText, "https://cloudflareinsights.com", "_headers");
+
 for (const page of publicPages) {
   const html = readRequired(path.join(publicRoot, page));
   assertIncludes(html, '<script src="assets/config.js" defer></script>', page);
