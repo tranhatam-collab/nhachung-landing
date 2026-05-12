@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-05-12T03:20:25.515Z",
+  "source": "public/assets/logo/*.svg and public/assets/og/*.svg",
+  "icons": [
+    "assets/icons/icon-16.png",
+    "assets/icons/icon-32.png",
+    "assets/icons/icon-64.png",
+    "assets/icons/icon-128.png",
+    "assets/icons/icon-256.png",
+    "assets/icons/icon-512.png",
+    "assets/icons/icon-1024.png",
+    "assets/icons/icon-192.png",
+    "assets/icons/app/apple-touch-icon.png",
+    "assets/icons/app/icon-192-maskable.png",
+    "assets/icons/app/icon-512-maskable.png",
+    "assets/favicon.ico",
+    "assets/favicon.svg"
+  ],
+  "logos": [
+    "assets/logo/01-monogram.png",
+    "assets/logo/02-wordmark-primary.png",
+    "assets/logo/03-horizontal-lockup.png",
+    "assets/logo/04-stacked-lockup.png"
+  ],
+  "og_images": [
+    "assets/og/home.png",
+    "assets/og/nha-chung-la-gi.png",
+    "assets/og/hanh-trinh-tham-gia.png",
+    "assets/og/cac-can-nha.png",
+    "assets/og/cau-chuyen.png",
+    "assets/og/nguyen-tac-song-chung.png",
+    "assets/og/lam-viec-muon-noi.png",
+    "assets/og/ung-dung.png",
+    "assets/og/dang-ky.png"
+  ]
+}

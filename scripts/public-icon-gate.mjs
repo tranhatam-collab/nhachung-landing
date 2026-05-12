@@ -11,6 +11,7 @@ const iconChecks = [
   ["assets/icons/icon-32.png", 32],
   ["assets/icons/icon-64.png", 64],
   ["assets/icons/icon-128.png", 128],
+  ["assets/icons/icon-192.png", 192],
   ["assets/icons/icon-256.png", 256],
   ["assets/icons/icon-512.png", 512],
   ["assets/icons/icon-1024.png", 1024],
@@ -65,9 +66,18 @@ function assertPngDimensions(relativePath, expectedSize) {
   assert(width === expectedSize && height === expectedSize, `${relativePath} expected ${expectedSize}x${expectedSize}, got ${width}x${height}`);
 }
 
+function assertIco(relativePath) {
+  const buffer = readRequired(relativePath);
+  assert(buffer.length > 22, `${relativePath} is too small to be a valid ICO`);
+  assert(buffer.readUInt16LE(0) === 0, `${relativePath} invalid ICO reserved header`);
+  assert(buffer.readUInt16LE(2) === 1, `${relativePath} invalid ICO type header`);
+  assert(buffer.readUInt16LE(4) >= 1, `${relativePath} must contain at least one icon entry`);
+}
+
 for (const [relativePath, expectedSize] of iconChecks) {
   assertPngDimensions(relativePath, expectedSize);
 }
+assertIco("assets/favicon.ico");
 
 const manifest = JSON.parse(readText("manifest.json"));
 const iconSrcs = new Set((manifest.icons || []).map((icon) => icon.src));
@@ -82,6 +92,7 @@ for (const src of [
 
 for (const page of publicPages) {
   const html = readText(page);
+  assert(html.includes('rel="icon" href="assets/favicon.ico"'), `${page} missing ICO favicon link`);
   assert(html.includes('rel="icon" href="assets/favicon.svg"'), `${page} missing SVG favicon link`);
   assert(html.includes('rel="icon" href="assets/icons/icon-32.png"'), `${page} missing PNG favicon link`);
   assert(html.includes('rel="apple-touch-icon" href="assets/icons/app/apple-touch-icon.png"'), `${page} missing apple-touch-icon link`);
@@ -90,10 +101,11 @@ for (const page of publicPages) {
 
 for (const page of legalPages) {
   const html = readText(page);
+  assert(html.includes('rel="icon" href="/assets/favicon.ico"'), `${page} missing ICO favicon link`);
   assert(html.includes('rel="icon" href="/assets/favicon.svg"'), `${page} missing SVG favicon link`);
   assert(html.includes('rel="icon" href="/assets/icons/icon-32.png"'), `${page} missing PNG favicon link`);
   assert(html.includes('rel="apple-touch-icon" href="/assets/icons/app/apple-touch-icon.png"'), `${page} missing apple-touch-icon link`);
   assert(html.includes('rel="manifest" href="/manifest.json"'), `${page} missing manifest link`);
 }
 
-console.log("Public icon gate PASS: PNG favicon/app icons exist, dimensions match, and public/legal pages link them.");
+console.log("Public icon gate PASS: ICO + PNG favicon/app icons exist, dimensions match, and public/legal pages link them.");

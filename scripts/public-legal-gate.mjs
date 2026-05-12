@@ -13,6 +13,11 @@ const docs = [
   "resident-agreement",
 ];
 
+const structuredContentFiles = [
+  "content/vi.json",
+  "content/en.json",
+];
+
 const locales = {
   vi: {
     name: "Nhà Chung",
@@ -41,6 +46,18 @@ const publicPages = [
 ];
 
 const requiredFooterLinks = docs.map((doc) => `/vi/legal/${doc}.html`);
+
+const prohibitedStructuredContentClaims = [
+  /\bđầu tư\b/i,
+  /\binvesting\b/i,
+  /\bkiếm tiền thật\b/i,
+  /\bearn real\b/i,
+  /\bearning plans\b/i,
+  /\bincome pathways\b/i,
+  /\breference income range\b/i,
+  /\b1\.000-2\.000 usd\b/i,
+  /\busd 1,000-2,000\b/i,
+];
 
 function readRequired(filePath) {
   if (!fs.existsSync(filePath)) {
@@ -111,4 +128,14 @@ for (const page of publicPages) {
   }
 }
 
-console.log("Public legal gate PASS: 4 P0 legal docs are bilingual, linked, redirected, and in sitemap.");
+for (const rel of structuredContentFiles) {
+  const body = readRequired(path.join(publicRoot, rel));
+  for (const claim of prohibitedStructuredContentClaims) {
+    assert(
+      !claim.test(body),
+      `${rel} contains prohibited public-claim wording: ${claim}`,
+    );
+  }
+}
+
+console.log("Public legal gate PASS: 4 P0 legal docs are bilingual, linked, redirected, in sitemap, and structured public copy passes the boundary sweep.");
