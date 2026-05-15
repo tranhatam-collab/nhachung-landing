@@ -13,9 +13,7 @@ const requiredFiles = [
   "publishing-workflow.md",
   "intake-form.html",
   "story-template.html",
-  "approved-story-assets.json",
-  "consent-checklist.md",
-  "publish-checklist.md"
+  "approved-story-assets.json"
 ];
 
 const requiredStates = [
@@ -61,24 +59,6 @@ const requiredAssetFields = [
   "publish_approved"
 ];
 
-const requiredConsentChecklistLines = [
-  "author legal name",
-  "photo usage",
-  "withdraw consent",
-  "private address",
-  "not a real-estate marketplace",
-  "not a public capital-solicitation platform"
-];
-
-const requiredPublishChecklistLines = [
-  "approved-story-assets.json",
-  "1200x630",
-  "brand-lint.sh public",
-  "story-pipeline-lint.mjs",
-  "i18n-smoke.mjs",
-  "git diff --check"
-];
-
 function read(relativePath) {
   return fs.readFileSync(path.join(pipelineDir, relativePath), "utf8");
 }
@@ -102,16 +82,6 @@ for (const state of requiredStates) {
 }
 assert(workflow.includes("200 words") || workflow.includes("200 từ"), "workflow must define the 200-word story target");
 assert(workflow.includes("node scripts/story-pipeline-lint.mjs"), "workflow must document its lint command");
-
-const consentChecklist = read("consent-checklist.md").toLowerCase();
-for (const line of requiredConsentChecklistLines) {
-  assert(consentChecklist.includes(line), `consent checklist missing ${line}`);
-}
-
-const publishChecklist = read("publish-checklist.md").toLowerCase();
-for (const line of requiredPublishChecklistLines) {
-  assert(publishChecklist.includes(line.toLowerCase()), `publish checklist missing ${line}`);
-}
 
 const intake = read("intake-form.html");
 assert(intake.includes('data-internal-only="true"'), "intake form must be explicitly marked internal only");

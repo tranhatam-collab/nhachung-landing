@@ -55,6 +55,8 @@ declare -a FORBIDDEN_WORDS=(
   # Formality wrong tone
   "quý khách"
   "kính thưa"
+  "marketplace"
+  "affiliate"
 )
 
 echo "─── Word filter check ───"

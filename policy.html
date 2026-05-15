@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Policy • Nhà Chung</title>
-  <meta name="description" content="Chính sách sử dụng và quyền riêng tư cho Nhà Chung."/>
+  <title>Policy and Legal Scope • Nhà Chung</title>
+  <meta name="description" content="Điểm vào tóm tắt phạm vi pháp lý công khai của Nhà Chung và các liên kết legal chuẩn."/>
   <style>
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;background:#0b0f17;color:rgba(255,255,255,.92)}
     .wrap{max-width:920px;margin:0 auto;padding:28px 18px 44px}
@@ -13,8 +13,12 @@
     h1{margin:0 0 10px;font-size:34px}
     h2{margin:18px 0 8px;font-size:18px;color:rgba(255,255,255,.72);text-transform:uppercase;letter-spacing:.08em}
     p{margin:10px 0;color:rgba(255,255,255,.74);line-height:1.65}
+    ul{margin:10px 0 0 18px;color:rgba(255,255,255,.8);line-height:1.65}
+    li+li{margin-top:6px}
     .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
     .btn{display:inline-block;border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.06);text-decoration:none}
+    .grid{display:grid;gap:14px}
+    @media (min-width:760px){.grid{grid-template-columns:1fr 1fr}}
   </style>
 </head>
 <body>
@@ -25,20 +29,36 @@
     </div>
 
     <div class="card">
-      <h1>Policy</h1>
-      <p>nhachung.org là “cổng vào”. Các chức năng tài khoản, nội dung, file, marketplace vận hành trong app.nhachung.org.</p>
+      <h1>Policy and legal scope</h1>
+      <p>Trang này chỉ là điểm điều hướng tóm tắt cho legal pack công khai của Nhà Chung. Bản đầy đủ nằm ở các trang legal chuẩn bên dưới.</p>
 
-      <h2>Privacy</h2>
-      <p>Ưu tiên quyền riêng tư. Công khai chỉ preview. Thành viên được duyệt thủ công mới xem nội dung đầy đủ.</p>
+      <div class="grid">
+        <div>
+          <h2>Legal pack</h2>
+          <ul>
+            <li><a href="/vi/legal/terms.html">Điều khoản sử dụng</a> / <a href="/en/legal/terms.html">Terms of Use</a></li>
+            <li><a href="/vi/legal/privacy.html">Chính sách quyền riêng tư</a> / <a href="/en/legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="/vi/legal/community-principles.html">Nguyên tắc cộng đồng</a> / <a href="/en/legal/community-principles.html">Community Principles</a></li>
+            <li><a href="/vi/legal/resident-agreement.html">Thỏa thuận cư dân</a> / <a href="/en/legal/resident-agreement.html">Resident Agreement</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Public scope</h2>
+          <p>`nhachung.org` là public entry để giới thiệu và điều hướng. App thành viên, trạng thái xác minh, hợp đồng riêng, thanh toán, hoàn tiền, và tài liệu vận hành chỉ mở trong app hoặc kênh đã được xác nhận.</p>
+        </div>
+      </div>
 
-      <h2>Content & Access</h2>
-      <p>Quyền xem, chia sẻ, bán nội dung do chính sách từng phòng (room) quyết định và do admin duyệt.</p>
+      <h2>Public legal entities</h2>
+      <p><strong>Đơn vị vận hành quốc tế:</strong> VIET CAN NEW CORP (Hoa Kỳ). <strong>Đơn vị vận hành Việt Nam:</strong> CÔNG TY TNHH BỒ CÂU TRẮNG. <strong>Hạ tầng thanh toán:</strong> pay.iai.one.</p>
 
-      <h2>Files & Purchases</h2>
-      <p>Nội dung số có thể xem online. Tải file có thể là quyền trả phí. Ebook cho phép tải 1 lần (chọn PDF hoặc EPUB) kèm license id + QR verify.</p>
+      <h2>Disclaimer</h2>
+      <p>Nhà Chung không phải sàn bất động sản, không phải nơi chào mời góp vốn công khai. Không hứa kết quả tài chính, không hứa thu nhập. Mọi đóng góp tài chính chỉ thực hiện sau khi có hợp đồng pháp lý riêng và tư vấn pháp lý độc lập.</p>
 
-      <h2>Security</h2>
-      <p>Nếu đăng nhập báo invalid_key: xoá cookie/localStorage của app.nhachung.org và yêu cầu gửi lại link đăng nhập mới.</p>
+      <h2>Member boundary</h2>
+      <p>Nội dung public chỉ để hiểu phạm vi hệ thống. Quyết định cư trú, phí, đặt cọc, hoàn tiền, quyền truy cập, và nghĩa vụ từng trường hợp chỉ có hiệu lực theo hợp đồng hoặc SOP áp dụng cho case đã xác minh.</p>
+
+      <h2>Security note</h2>
+      <p>Nếu luồng đăng nhập app gặp lỗi token hoặc liên kết cũ, yêu cầu phát hành lại liên kết đăng nhập mới qua đúng kênh hỗ trợ thay vì dựa vào link hết hạn.</p>
     </div>
   </div>
 </body>

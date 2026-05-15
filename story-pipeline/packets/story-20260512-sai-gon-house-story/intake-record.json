@@ -1,0 +1,21 @@
+{
+  "story_id": "story-20260512-sai-gon-house-story",
+  "slot_id": "slot-02-sai-gon-house-story",
+  "target_public_route": "/cau-chuyen/sai-gon-house-story.html",
+  "packet_path": "story-pipeline/packets/story-20260512-sai-gon-house-story/packet.md",
+  "author_display_name": null,
+  "author_legal_name": null,
+  "author_contact": null,
+  "house_context": "Sai Gon",
+  "public_naming_mode": null,
+  "story_body": null,
+  "editor_notes": null,
+  "consent_signed": false,
+  "photo_usage_approved": false,
+  "photo_usage_scope": null,
+  "quote_approved": false,
+  "quote_usage_scope": null,
+  "legal_review": false,
+  "consent_timestamp": null,
+  "withdrawal_rule_recorded": false
+}

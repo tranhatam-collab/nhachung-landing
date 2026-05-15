@@ -133,8 +133,23 @@
       <fieldset>
         <legend>Story Context</legend>
         <label>
+          Slot ID
+          <select name="slot_id" required>
+            <option value="">Choose one</option>
+            <option value="slot-01-da-lat-house-story">Slot 01 — Da Lat house story</option>
+            <option value="slot-02-sai-gon-house-story">Slot 02 — Sai Gon house story</option>
+            <option value="slot-03-lam-dong-house-story">Slot 03 — Lam Dong house story</option>
+            <option value="slot-04-nha-trang-house-story">Slot 04 — Nha Trang house story</option>
+            <option value="slot-05-cross-house-member-story">Slot 05 — Cross-house member journey</option>
+          </select>
+        </label>
+        <label>
           Story ID
           <input name="story_id" pattern="story-[0-9]{8}-[a-z0-9-]+" placeholder="story-20260508-da-lat-example" required />
+        </label>
+        <label>
+          Proposed public route
+          <input name="target_public_route" pattern="\\/cau-chuyen\\/[a-z0-9-]+\\.html" placeholder="/cau-chuyen/da-lat-house-story.html" required />
         </label>
         <label>
           House or circle
@@ -145,6 +160,15 @@
             <option value="lam-dong">Lam Dong</option>
             <option value="nha-trang">Nha Trang</option>
             <option value="online">Online circle</option>
+          </select>
+        </label>
+        <label>
+          Public naming mode
+          <select name="public_naming_mode" required>
+            <option value="">Choose one</option>
+            <option value="real_name">Real name</option>
+            <option value="first_name_only">First name only</option>
+            <option value="pseudonym">Pseudonym</option>
           </select>
         </label>
         <label>
@@ -167,18 +191,42 @@
           <input type="checkbox" name="photo_usage_approved" required />
           <span>Author approves the selected photo or confirms no photo should be used.</span>
         </label>
+        <label>
+          Photo usage scope
+          <select name="photo_usage_scope" required>
+            <option value="">Choose one</option>
+            <option value="face">Face photo allowed</option>
+            <option value="contextual_only">Contextual photo only</option>
+            <option value="no_photo">No photo</option>
+          </select>
+        </label>
         <label class="check">
           <input type="checkbox" name="quote_approved" required />
           <span>Author approves public quote usage.</span>
         </label>
+        <label>
+          Quote usage scope
+          <select name="quote_usage_scope" required>
+            <option value="">Choose one</option>
+            <option value="direct_quote_ok">Direct quote OK</option>
+            <option value="summary_only">Summary only</option>
+            <option value="no_quote">No quote</option>
+          </select>
+        </label>
         <label class="check">
-          <input type="checkbox" name="legal_review" required />
-          <span>Legal reviewer confirms no gated, investment, finance promise, or private detail appears.</span>
+          <input type="checkbox" name="withdrawal_rule_recorded" required />
+          <span>Withdrawal rule is recorded: the author may withdraw consent before <code>publish_approved</code>.</span>
         </label>
         <label>
           Consent timestamp
           <input type="datetime-local" name="consent_timestamp" required />
         </label>
+        <label>
+          Packet path
+          <input name="packet_path" placeholder="story-pipeline/packets/story-20260508-da-lat-example/packet.md" required />
+        </label>
+        <input type="hidden" name="legal_review" value="false" />
+        <p><strong>Review order:</strong> intake first, then <code>story-draft.md</code>, source photo pack, consent record, and only after that the separate <code>legal-review.md</code> step.</p>
       </fieldset>
 
       <button type="submit">Record Internal Draft</button>

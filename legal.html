@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Member • Nhà Chung</title>
+  <title>Legal • Nhà Chung</title>
   <meta name="robots" content="noindex"/>
   <style>
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;background:#0b0f17;color:rgba(255,255,255,.92)}
@@ -12,22 +12,32 @@
     a{color:inherit;text-decoration:none}
     .btn{display:inline-block;border:1px solid rgba(255,255,255,.12);padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.06);font-weight:700}
     p{color:rgba(255,255,255,.72);line-height:1.6}
+    .legal{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12)}
+    .legal strong{color:rgba(255,255,255,.92)}
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .links a{border-bottom:1px solid rgba(212,175,55,.85);padding-bottom:1px}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <h1 style="margin:0 0 8px">Member</h1>
-      <p>Trang này chỉ để trung chuyển. Khu thành viên nằm ở app.nhachung.org.</p>
+      <h1 style="margin:0 0 8px">Legal / Member Gateway</h1>
+      <p>Trang này giữ lớp pháp lý công khai nhất quán khi người dùng đi qua link `Legal`, đồng thời cho phép chủ động đi tiếp vào khu thành viên tại `app.nhachung.org` khi đã sẵn sàng.</p>
       <p><a class="btn" href="https://app.nhachung.org/member">Vào Member ↗</a></p>
       <p style="margin-top:14px;color:rgba(255,255,255,.62)">Nếu bị lỗi invalid_key: xoá cookie/localStorage của app.nhachung.org và đăng nhập lại.</p>
+      <div class="legal">
+        <p><strong>Đơn vị vận hành quốc tế:</strong> VIET CAN NEW CORP (Hoa Kỳ). <strong>Đơn vị vận hành Việt Nam:</strong> CÔNG TY TNHH BỒ CÂU TRẮNG. <strong>Hạ tầng thanh toán:</strong> pay.iai.one.</p>
+        <p>Nhà Chung không phải sàn bất động sản, không phải nơi chào mời góp vốn công khai. Không hứa kết quả tài chính, không hứa thu nhập. Mọi đóng góp tài chính chỉ thực hiện sau khi có hợp đồng pháp lý riêng và tư vấn pháp lý độc lập.</p>
+        <div class="links" aria-label="Public legal links">
+          <a href="/vi/legal/privacy.html">Privacy</a>
+          <a href="/vi/legal/terms.html">Terms</a>
+          <a href="/vi/legal/community-principles.html">Principles</a>
+          <a href="/vi/legal/resident-agreement.html">Resident</a>
+        </div>
+        <p style="margin-top:14px;color:rgba(255,255,255,.62)">Các link legal công khai vẫn mở tại đây; vào Member là hành động thủ công, không phải auto-redirect.</p>
+      </div>
       <p><a href="/">← Quay về cổng</a></p>
     </div>
   </div>
-
-  <script>
-    // Optional auto-redirect after 800ms
-    setTimeout(()=>{ location.href="https://app.nhachung.org/member"; }, 800);
-  </script>
 </body>
 </html>

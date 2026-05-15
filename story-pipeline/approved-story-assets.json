@@ -1,12 +1,118 @@
 {
-  "version": "2026-05-09",
+  "version": "2026-05-12",
+  "packet_schema_version": "2026-05-12-story-packet-v1",
   "scope": "Internal approval ledger for public story and story-photo assets.",
+  "content_gate": {
+    "required_ready_story_count": 5,
+    "ready_story_count": 0,
+    "status": "blocked",
+    "open_blockers": [
+      "No slot has the final local hero + 1200x630 OG asset pair attached to a real story packet yet.",
+      "Only 0/5 required story slots are publish-approved with full consent, legal review, author final approval, and publish approval.",
+      "Shared first unblockers across seeded slots: real intake record, story draft, approved source photo pack, consent record."
+    ]
+  },
+  "required_story_slots": [
+    {
+      "slot_id": "slot-01-da-lat-house-story",
+      "target_route": "/cau-chuyen/da-lat-house-story.html",
+      "target_house": "Da Lat",
+      "status": "packet_seeded",
+      "packet_path": "story-pipeline/packets/story-20260512-da-lat-house-story/packet.md",
+      "missing_evidence": [
+        "real intake record",
+        "story draft",
+        "approved source photo pack",
+        "consent record",
+        "legal review record",
+        "author final approval record",
+        "local hero asset",
+        "1200x630 OG asset"
+      ]
+    },
+    {
+      "slot_id": "slot-02-sai-gon-house-story",
+      "target_route": "/cau-chuyen/sai-gon-house-story.html",
+      "target_house": "Sai Gon",
+      "status": "packet_seeded",
+      "packet_path": "story-pipeline/packets/story-20260512-sai-gon-house-story/packet.md",
+      "missing_evidence": [
+        "real intake record",
+        "story draft",
+        "approved source photo pack",
+        "consent record",
+        "legal review record",
+        "author final approval record",
+        "local hero asset",
+        "1200x630 OG asset"
+      ]
+    },
+    {
+      "slot_id": "slot-03-lam-dong-house-story",
+      "target_route": "/cau-chuyen/lam-dong-house-story.html",
+      "target_house": "Lam Dong",
+      "status": "packet_seeded",
+      "packet_path": "story-pipeline/packets/story-20260512-lam-dong-house-story/packet.md",
+      "missing_evidence": [
+        "real intake record",
+        "story draft",
+        "approved source photo pack",
+        "consent record",
+        "legal review record",
+        "author final approval record",
+        "local hero asset",
+        "1200x630 OG asset"
+      ]
+    },
+    {
+      "slot_id": "slot-04-nha-trang-house-story",
+      "target_route": "/cau-chuyen/nha-trang-house-story.html",
+      "target_house": "Nha Trang",
+      "status": "packet_seeded",
+      "packet_path": "story-pipeline/packets/story-20260512-nha-trang-house-story/packet.md",
+      "missing_evidence": [
+        "real intake record",
+        "story draft",
+        "approved source photo pack",
+        "consent record",
+        "legal review record",
+        "author final approval record",
+        "local hero asset",
+        "1200x630 OG asset"
+      ]
+    },
+    {
+      "slot_id": "slot-05-cross-house-member-story",
+      "target_route": "/cau-chuyen/cross-house-member-story.html",
+      "target_house": "Cross-house member journey",
+      "status": "packet_seeded",
+      "packet_path": "story-pipeline/packets/story-20260512-cross-house-member-journey/packet.md",
+      "missing_evidence": [
+        "real intake record",
+        "story draft",
+        "approved source photo pack",
+        "consent record",
+        "legal review record",
+        "author final approval record",
+        "local hero asset",
+        "1200x630 OG asset"
+      ]
+    }
+  ],
   "stories": [
     {
       "story_id": "story-hub-20260509-cau-chuyen",
       "state": "asset_placeholder",
       "public_route": "/cau-chuyen.html",
       "hero_asset": "/assets/og/cau-chuyen.svg",
+      "og_asset": "/assets/og/cau-chuyen.png",
+      "packet_record": null,
+      "source_photo_pack": null,
+      "photo_policy": "brandpro_placeholder_only",
+      "consent_record": null,
+      "legal_record": null,
+      "author_final_record": null,
+      "language_review": "brandpro_story_hub_copy_only",
       "photo_consent": false,
       "legal_review": false,
       "author_final_ok": false,
