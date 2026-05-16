@@ -1,3 +1,10 @@
 name = "nhachung-landing"
 compatibility_date = "2026-03-23"
 pages_build_output_dir = "./public"
+
+# Build command: injects CF_ANALYTICS_TOKEN into config.js at deploy time.
+# Set CF_ANALYTICS_TOKEN in CF Pages > Settings > Environment Variables.
+# If the var is unset the placeholder stays as "" and analytics silently
+# no-ops (analytics.js guards against empty token).
+[build]
+command = "if [ -n \"$CF_ANALYTICS_TOKEN\" ]; then sed -i \"s|CLOUDFLARE_WEB_ANALYTICS_TOKEN: \\\"\\\"|CLOUDFLARE_WEB_ANALYTICS_TOKEN: \\\"$CF_ANALYTICS_TOKEN\\\"|\" public/assets/config.js; fi"
