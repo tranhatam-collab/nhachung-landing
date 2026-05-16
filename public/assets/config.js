@@ -27,6 +27,17 @@
     APP_BASE: "https://app.nhachung.org",
     CONTENT_BASE: "/content",
     LANGUAGE_REBUILD_REQUIRED: true,
+    // ANALYTICS TOKEN SETUP:
+    // CLOUDFLARE_WEB_ANALYTICS_TOKEN must remain "" in source (enforced by
+    // scripts/public-analytics-gate.mjs). Inject the real token via Cloudflare Pages
+    // environment variable or a build-time sed/replace step — do NOT commit it.
+    // To get the token:
+    //   1. Go to https://dash.cloudflare.com/f3f9e76222dcb488d5e303e29e8ba192/web-analytics/sites
+    //   2. Select the nhachung.org site (or create it if missing)
+    //   3. Copy the "token" value shown in the JS snippet
+    //   4. Set it in Cloudflare Pages > Settings > Environment Variables as
+    //      CF_ANALYTICS_TOKEN (then replace "" below only in your deploy pipeline,
+    //      never in a committed file)
     ANALYTICS: {
       CLOUDFLARE_WEB_ANALYTICS_TOKEN: "",
       PROVIDER: "cloudflare-web-analytics"
