@@ -1,0 +1,9 @@
+{
+  "name": "nhachung-landing",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "smoke:member-journey": "node scripts/member-journey-smoke.mjs"
+  }
+}
