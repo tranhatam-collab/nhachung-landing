@@ -352,4 +352,19 @@
     });
   }
 
+  /* ---- Cookie Consent Banner ---- */
+  (function initCookieBanner() {
+    if (localStorage.getItem('nc_cookie_consent')) return;
+    const banner = document.createElement('div');
+    banner.innerHTML = '<span data-lang="vi">Trang web sử dụng cookie để cải thiện trải nghiệm. Tiếp tục sử dụng nghĩa là bạn đồng ý.</span><span data-lang="en" style="display:none">This website uses cookies to improve your experience. Continuing to use means you agree.</span><button>Đồng ý / Agree</button>';
+    banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:9999;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:14px 18px;background:rgba(11,15,23,.95);border-top:1px solid rgba(212,175,55,.15);color:#cfd9e8;font-size:14px;line-height:1.5;font-family:system-ui,-apple-system,sans-serif;';
+    const btn = banner.querySelector('button');
+    btn.style.cssText = 'padding:6px 14px;border-radius:8px;border:1px solid rgba(212,175,55,.3);background:rgba(212,175,55,.12);color:#f0e4c8;cursor:pointer;font-size:13px;font-weight:700;';
+    document.body.appendChild(banner);
+    btn.addEventListener('click', function () {
+      localStorage.setItem('nc_cookie_consent', '1');
+      banner.remove();
+    });
+  })();
+
 })();
