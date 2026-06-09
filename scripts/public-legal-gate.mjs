@@ -38,6 +38,13 @@ const publicPages = [
   "lam-viec-muon-noi.html",
   "ung-dung.html",
   "dang-ky.html",
+  "lacduong.html",
+  "mua-he-y-nghia-2026.html",
+  "sinh-vien-mua-he.html",
+  "gia-dinh-doanh-nhan.html",
+  "tro-thanh-chuyen-gia-nha-chung.html",
+  "lacduong-faq.html",
+  "dang-ky-quan-tam.html",
 ];
 
 const requiredFooterLinks = docs.map((doc) => `/vi/legal/${doc}.html`);

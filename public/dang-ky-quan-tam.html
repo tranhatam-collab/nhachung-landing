@@ -19,25 +19,193 @@
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="manifest.json" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Bỏ qua điều hướng</a>
-<header id="header" role="banner" class="scrolled"><div class="container"><nav class="nav-inner" aria-label="Navigation chính"><a href="/" class="nav-logo"><div class="nav-logo-placeholder">NC</div><div class="nav-logo-text"><span class="nav-logo-name">Nhà Chung</span><span class="nav-logo-sub">Đăng ký quan tâm pilot</span></div></a><ul class="nav-links"><li><a href="lacduong.html">Lạc Dương</a></li><li><a href="mua-he-y-nghia-2026.html">Mùa hè</a></li><li><a href="lacduong-faq.html">FAQ</a></li></ul><div class="nav-right"><button class="hamburger" id="hamburger" aria-label="Mở menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button></div></nav></div></header>
-<nav id="mobileNav" class="mobile-nav" aria-label="Navigation di động"><a href="lacduong.html">Lạc Dương</a><a href="mua-he-y-nghia-2026.html">Mùa hè</a><a href="lacduong-faq.html">FAQ</a></nav>
+
+<header id="header" role="banner" class="scrolled">
+  <div class="container">
+    <nav class="nav-inner" aria-label="Navigation chính">
+      <a href="/" class="nav-logo" aria-label="Nhà Chung - Trang chủ">
+        <div class="nav-logo-placeholder" aria-hidden="true">NC</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Nhà Chung</span>
+          <span class="nav-logo-sub">Đăng ký quan tâm pilot</span>
+        </div>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="lacduong.html">Lạc Dương</a></li>
+        <li><a href="mua-he-y-nghia-2026.html">Mùa hè 2026</a></li>
+        <li><a href="lacduong-faq.html">FAQ</a></li>
+        <li><a href="/">Trang chủ</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="hamburger" id="hamburger" aria-label="Mở menu" aria-expanded="false" aria-controls="mobileNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<nav id="mobileNav" class="mobile-nav" aria-label="Navigation di động">
+  <a href="lacduong.html">Lạc Dương</a>
+  <a href="mua-he-y-nghia-2026.html">Mùa hè 2026</a>
+  <a href="lacduong-faq.html">FAQ</a>
+  <a href="/">Trang chủ</a>
+</nav>
+
 <main id="main-content">
-  <section id="hero"><div class="hero-bg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1920&q=85&auto=format&fit=crop" alt="" loading="eager" fetchpriority="high" /><div class="hero-overlay"></div><div class="hero-overlay-bottom"></div></div><div class="container"><div class="hero-content"><div class="hero-badge"><span class="hero-badge-dot"></span>Chương trình cộng đồng</div><h1 class="hero-title">CHUỖI KHOÁ HỌC<br><em>9 NGÀY KHẮC NGHIỆT</em></h1><p class="hero-desc">Để tận hưởng cuộc sống và thành công cùng cộng đồng.</p></div></div></section>
-  <section id="auth-section" class="section-pad" style="background:var(--bg-elevated);text-align:center;"><div class="container" style="max-width:560px;"><div class="section-label">Đăng ký bằng Google</div><h2 class="section-heading">Xác thực để tiếp tục</h2><div class="gold-divider"></div><p class="how-desc">Đăng nhập bằng tài khoản Google để truy cập thông tin liên hệ và đăng ký chương trình.</p><div id="google-btn-wrap" style="margin:32px 0;display:flex;justify-content:center;"><div id="g_id_onload" data-client_id="496670862618-nlnkmr4r77fa34lrhnpvqa9gd1hr4kik.apps.googleusercontent.com" data-callback="handleGoogleAuth" data-auto_prompt="false"></div><button id="google-login-btn" class="btn-outline" style="display:inline-flex;align-items:center;gap:12px;font-size:1.05rem;padding:14px 28px;cursor:pointer;border:1px solid var(--border);background:var(--card-bg);color:var(--text-main);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.08);"><svg width="20" height="20" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.49h4.84a4.14 4.14 0 0 1-1.8 2.71v2.26h2.92a8.78 8.78 0 0 0 2.68-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.81 5.96-2.18l-2.92-2.26c-.81.54-1.84.86-3.04.86-2.34 0-4.33-1.58-5.04-3.71H1.06v2.33A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.96 10.71a5.41 5.41 0 0 1 0-3.42V4.96H1.06A8.996 8.996 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.9-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.91 11.43 0 9 0A8.997 8.997 0 0 0 1.06 4.96l2.9 2.33C4.67 5.16 6.66 3.58 9 3.58z"/></svg>Đăng nhập với Google</button></div><div id="contact-reveal" style="display:none;margin-top:24px;padding:24px;background:var(--card-bg);border-radius:12px;border:1px solid var(--border);"><p style="margin-bottom:12px;font-weight:600;">Thông tin liên hệ:</p><p style="font-size:1.5rem;font-weight:700;color:var(--accent);margin-bottom:16px;">+84 849 135 426</p><a href="https://wa.me/84849135426" target="_blank" rel="noopener" class="btn-primary" style="background:#25D366;border-color:#25D366;">💬 Liên hệ qua WhatsApp</a><p style="margin-top:12px;color:var(--text-muted);font-size:0.85rem;">Chỉ liên hệ qua WhatsApp. Không gọi điện trực tiếp.</p></div></div></section>
-  <section class="section-pad"><div class="container" style="max-width:800px;"><div class="section-label">Thông tin đăng ký</div><h2 class="section-heading">Các khoá học cộng đồng</h2><div class="gold-divider"></div><p class="how-desc">Chi tiết chương trình: <a href="https://bit.ly/49tdoDF" target="_blank" rel="noopener">https://bit.ly/49tdoDF</a></p><p class="how-desc">Các khoá khác có ở bên dưới.</p></div></section>
-  <section class="section-pad" style="background:var(--bg-elevated);"><div class="container" style="max-width:800px;"><div class="section-label">Cơ hội</div><h2 class="section-heading">Những cơ hội và đặc quyền</h2><div class="gold-divider"></div><ul style="line-height:1.9;padding-left:20px;"><li>Vừa học, vừa làm việc, kiếm tiền, liên tục trong 10 ngày học</li><li>Trở thành thành viên chính thức của công ty sau 6 tháng đến 12 tháng làm việc hiệu quả</li><li>Tặng gói đầu tư khởi nghiệp là thành viên công ty trị giá từ 66 đến 88 triệu đồng</li><li>Học khoá CEO Thành công 8 ngày liên tục vào ngày 8 tháng 8 năm 2024 hoàn toàn miễn phí nếu thành công, tiếp nghiệp sau khoá học 10 ngày này</li><li>Hỗ trợ đầu tư từ quỹ đầu tư khởi nghiệp cộng đồng kinh doanh toàn cầu</li><li>Vinh danh trong chương trình đào tạo và trao bằng tốt nghiệp doanh nhân / chuyên gia trong các khoá học hoặc chuỗi sự kiện sắp tới do công ty tổ chức</li><li>Tặng chương trình du lịch, học tập và làm việc thực tế trị giá 3.300 USD cho học viên thành công và đạt chỉ tiêu với điểm số cao nhất trong khoá học này</li></ul></div></section>
-  <section class="section-pad"><div class="container" style="max-width:800px;"><div class="section-label">Lưu ý</div><h2 class="section-heading">Điều kiện tham gia</h2><div class="gold-divider"></div><ul style="line-height:1.9;padding-left:20px;"><li>Thành viên chính thức của công ty và những cổ đông, học viên đã mua gói học tập đều được tham gia miễn phí chương trình này. Chỉ đóng chi phí ăn ở, đi lại nếu có. Hoặc giảm giá tương ứng với % mà bạn đã mua gói thành viên trước đó.</li><li>Nếu là thành viên dự bị, bạn cần cam kết trở thành thành viên chính thức trong công ty, trong thời gian cụ thể (có cam kết) để được học miễn phí. Độ tuổi ưu tiên từ 24 tuổi trở lên, nếu nhỏ hơn, gửi hồ sơ, form đăng ký, chúng tôi sẽ xem xét và tuyển chọn.</li></ul></div></section>
-  <section class="section-pad" style="background:var(--bg-elevated);"><div class="container" style="max-width:800px;"><div class="section-label">Môi trường</div><h2 class="section-heading">Không gian học tập</h2><div class="gold-divider"></div><p class="how-desc">Khu nghỉ dưỡng ở trong rừng Thông, phòng ở tập thể 2 hoặc 4 người/phòng, ăn uống do đầu bếp nhà tự nấu. Ngồi học trong tư thế thiền tiếp đất, có thể trong nhà nếu trời mưa, nếu trời đẹp có thể được học ngoài trời. Buổi tối thường hay có tiệc nhẹ, rượu bia và BBQ cùng nhau tâm sự và có thể học ngay trong lúc cùng nhau ăn uống và thảo luận.</p><p class="how-desc">Đây là khoá học thực tế và có hoạt động thiền hàng ngày, nên các bạn lưu ý khi tham gia, chấp nhận những hoạt động cộng đồng tập thể cùng nhau với tinh thần chia sẻ, hỗ trợ đoàn kết và sống chân thật cùng nhau. Một trong những chuỗi chương trình trong hành trình sống thật với cộng đồng của chúng ta.</p></div></section>
-  <section class="section-pad"><div class="container" style="max-width:800px;"><div class="section-label">Quy định</div><h2 class="section-heading">Học phí trọn gói</h2><div class="gold-divider"></div><p class="how-desc" style="font-size:1.25rem;font-weight:600;">66 triệu đồng</p><p class="how-desc">Bao gồm chỗ ở phòng 2 hoặc 4 người, chi phí ăn uống, tiệc, xe đưa đón từ trung tâm và chi phí di chuyển trong khoá học, gồm 2 đêm cắm trại thực tế sinh tồn, BBQ và rượu bia nhẹ hàng đêm — toạ đàm cùng doanh nhân. Chia sẻ cơ hội đầu tư, kinh doanh và hợp tác quốc tế với nhau.</p><p class="how-desc" style="margin-top:24px;"><strong>Người trực tiếp đào tạo và hướng dẫn:</strong> Trần Hà Tâm</p></div></section>
-  <section class="section-pad" style="background:var(--bg-elevated);"><div class="container" style="max-width:800px;"><div class="section-label">Đăng ký</div><h2 class="section-heading">Đăng ký và liên hệ</h2><div class="gold-divider"></div><p class="how-desc">Form đăng ký: <a href="http://bit.ly/9ngaythanhcong" target="_blank" rel="noopener">http://bit.ly/9ngaythanhcong</a></p><p class="how-desc">Email gửi hồ sơ sau khi đăng ký: <a href="mailto:lactiendalat@gmail.com">lactiendalat@gmail.com</a></p><p class="how-desc">Hoặc liên hệ trực tiếp với người chia sẻ, giới thiệu chương trình cho bạn để được tư vấn cụ thể.</p><p class="how-desc">Tham gia thành viên công ty để được học miễn phí: <a href="https://forms.gle/QXUniFPxf6HgauMH8" target="_blank" rel="noopener">https://forms.gle/QXUniFPxf6HgauMH8</a></p><p class="how-desc">Chi tiết chương trình đào tạo: <a href="https://bit.ly/4aByGj8" target="_blank" rel="noopener">https://bit.ly/4aByGj8</a></p><div class="note-box" style="margin-top:24px;">Thông tin chuyển khoản sau khi đăng ký thành công, bộ phận liên lạc sẽ tư vấn hỗ trợ qua Zalo, điện thoại hoặc tin nhắn Facebook cá nhân cho các bạn.</div><p class="how-desc" style="margin-top:16px;">Toàn bộ học phí thu được sẽ được đưa vào quỹ xây dựng cộng đồng, đầu tư vào giáo dục. Hướng đi cho cuộc sống cộng đồng sống thuận tự nhiên, vừa học tập, vừa làm việc cùng nhau.</p><p class="how-desc" style="margin-top:16px;"><strong>Thông tin đóng góp quỹ học bổng:</strong> Số tài khoản: 0231000091212 — Vietcombank — TRAN HA TAM</p></div></section>
-  <section class="section-pad"><div class="container" style="max-width:800px;"><div class="section-label">Chuỗi khoá học</div><h2 class="section-heading">Các khoá học tập cộng đồng</h2><div class="gold-divider"></div><p class="how-desc">Các công ty có liên kết đào tạo thường xuyên vào mỗi cuối tuần:</p><div class="architecture-cards" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:24px;"><article class="arch-card"><h3 class="arch-card-title-vi">Khoá 1: Lãnh đạo cuộc đời</h3><p class="arch-card-desc"><a href="https://bit.ly/4cCAYRb" target="_blank" rel="noopener">Chi tiết →</a></p><p class="arch-card-desc">Học phí: 12 triệu đồng</p></article><article class="arch-card"><h3 class="arch-card-title-vi">Khoá 2: Đi vào cuộc sống</h3><p class="arch-card-desc"><a href="https://bit.ly/4aHZAGa" target="_blank" rel="noopener">Chi tiết →</a></p><p class="arch-card-desc">Học phí: 12 triệu đồng</p></article><article class="arch-card"><h3 class="arch-card-title-vi">Khoá 3: Sáng tạo cho cuộc sống thành công</h3><p class="arch-card-desc"><a href="https://bit.ly/3vCBjme" target="_blank" rel="noopener">Chi tiết →</a></p><p class="arch-card-desc">Học phí: 33 triệu đồng</p></article><article class="arch-card"><h3 class="arch-card-title-vi">Khoá 4: Chương trình đào tạo CEO</h3><p class="arch-card-desc"><a href="https://bit.ly/49nfLHR" target="_blank" rel="noopener">Chi tiết →</a></p><p class="arch-card-desc">Học phí: 66 triệu đồng</p></article><article class="arch-card"><h3 class="arch-card-title-vi">Khoá 5: Giám đốc điều hành quốc tế</h3><p class="arch-desc"><a href="https://bit.ly/3vGlc73" target="_blank" rel="noopener">Chi tiết →</a></p><p class="arch-card-desc">Học phí: 5.000 USD</p></article></div><p class="how-desc" style="margin-top:24px;">Chi tiết các khoá học khác thường xuyên cập nhật: <a href="https://drive.google.com/drive/folders/1qU2sOm-c-fo_vl6pOZ0PEh8cCb08LFCt?usp=sharing" target="_blank" rel="noopener">Google Drive Folder →</a></p></div></section>
-  <section class="section-pad" style="background:var(--bg-elevated);text-align:center;"><div class="container" style="max-width:600px;"><div style="margin:40px 0;"><a href="http://bit.ly/9ngaythanhcong" target="_blank" rel="noopener" class="btn-primary" style="font-size:1.25rem;padding:18px 40px;">Đăng ký ngay →</a></div><p style="color:var(--text-muted);font-size:0.9rem;">Hãy tham gia ngay để nắm bắt cơ hội phát triển bản thân và tạo dựng sự nghiệp thành công!</p><p class="how-desc" style="margin-top:24px;font-weight:600;">Trần Hà Tâm</p></div></section>
+  <section id="hero" aria-label="Đăng ký quan tâm pilot Lạc Dương">
+    <div class="hero-bg" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1920&q=85&auto=format&fit=crop" alt="" loading="eager" fetchpriority="high" />
+      <div class="hero-overlay"></div>
+      <div class="hero-overlay-bottom"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge"><span class="hero-badge-dot"></span>Form quan tâm · chưa cần thanh toán</div>
+        <h1 class="hero-title">ĐĂNG KÝ<br><em>QUAN TÂM PILOT</em></h1>
+        <p class="hero-desc">Cho đội vận hành biết bạn muốn tham gia Nhà Chung Lạc Dương số 1 theo vai nào, thời gian nào và có cần trò chuyện trước không.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" aria-labelledby="form-heading">
+    <div class="container">
+      <div class="split-panel">
+        <div>
+          <div class="section-label">Pilot intake</div>
+          <h2 class="section-heading" id="form-heading">Ngắn, rõ,<br><em>đúng vai.</em></h2>
+          <p class="how-desc">Form này chỉ là bước quan tâm ban đầu. Đội vận hành sẽ đọc thủ công và phản hồi bước tiếp theo nếu hồ sơ phù hợp với công suất pilot.</p>
+          <div class="note-box">Không có thanh toán ở bước này. Không có xác nhận chỗ ở tự động. Không có hứa việc làm, thu nhập hoặc quyền tham gia dài hạn.</div>
+        </div>
+
+        <form class="form-grid" action="https://app.nhachung.org/onboarding" method="get" data-newsletter-form data-newsletter-endpoint="https://api.nhachung.org/api/newsletter">
+          <input type="hidden" name="source" value="lacduong_pilot_interest" />
+          <label>Họ tên
+            <input class="field" name="name" autocomplete="name" required />
+          </label>
+          <label>Email
+            <input class="field" type="email" name="email" autocomplete="email" required />
+          </label>
+          <label>Năm sinh
+            <input class="field" name="birth_year" inputmode="numeric" placeholder="2004" />
+          </label>
+          <label>Thành phố hiện tại
+            <input class="field" name="city" autocomplete="address-level2" />
+          </label>
+          <label>Nghề nghiệp / tình trạng học tập
+            <select class="field" name="status">
+              <option value="student">Sinh viên</option>
+              <option value="freelancer">Người làm tự do</option>
+              <option value="employee">Đang đi làm</option>
+              <option value="family">Gia đình / cha mẹ</option>
+              <option value="mentor">Mentor / chuyên gia</option>
+              <option value="local">Người địa phương</option>
+            </select>
+          </label>
+          <label>Nhóm muốn tham gia
+            <select class="field" name="group">
+              <option value="student_summer">Sinh viên mùa hè</option>
+              <option value="family">Gia đình</option>
+              <option value="freelancer">Người làm tự do</option>
+              <option value="collaborator">Cộng tác viên</option>
+              <option value="mentor">Mentor / chuyên gia</option>
+            </select>
+          </label>
+          <label>Thời gian ở dự kiến
+            <select class="field" name="stay_length">
+              <option value="day_visit">Tham quan / open day</option>
+              <option value="3_6_days">3-6 ngày</option>
+              <option value="1_2_weeks">1-2 tuần</option>
+              <option value="1_month">Khoảng 1 tháng</option>
+              <option value="not_sure">Chưa chắc</option>
+            </select>
+          </label>
+          <label>Có thể tham gia bếp chung?
+            <select class="field" name="shared_kitchen">
+              <option value="yes">Có</option>
+              <option value="need_discuss">Cần trao đổi thêm</option>
+              <option value="no">Chưa phù hợp</option>
+            </select>
+          </label>
+          <label class="field-full">Mục tiêu tham gia
+            <textarea class="field" name="goal" rows="4" placeholder="Bạn muốn học gì, làm gì, thử vai nào hoặc cần điều gì từ pilot?"></textarea>
+          </label>
+          <label class="field-full">Bạn có cần trò chuyện trước khi tham gia không?
+            <textarea class="field" name="call_need" rows="3"></textarea>
+          </label>
+          <div class="field-full note-box">Bằng việc gửi form, bạn hiểu đây là đăng ký quan tâm pilot. Mọi bước ở lại, đóng phí, hợp đồng hoặc cộng tác sẽ được trao đổi riêng sau khi duyệt phù hợp.</div>
+
+          <div class="field-full" style="margin:18px 0;">
+            <div id="google-btn-wrap">
+              <button type="button" id="google-login-btn" class="btn-outline" style="display:flex;align-items:center;gap:0.5rem;justify-content:center;width:100%;">
+                <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z"/></svg>
+                Đăng nhập bằng Google
+              </button>
+              <p class="muted" style="text-align:center;margin-top:8px;font-size:0.85rem;">Hoặc điền form bên dưới nếu bạn chưa có tài khoản Google.</p>
+            </div>
+            <div id="contact-reveal" style="display:none;margin-top:16px;padding:20px;background:var(--card-bg);border-radius:12px;border:1px solid var(--border);">
+              <p style="margin-bottom:12px;font-weight:600;">Thông tin liên hệ:</p>
+              <p style="font-size:1.5rem;font-weight:700;color:var(--accent);margin-bottom:16px;">+84 849 135 426</p>
+              <a href="https://wa.me/84849135426" target="_blank" rel="noopener" class="btn-primary" style="background:#25D366;border-color:#25D366;">💬 Liên hệ qua WhatsApp</a>
+              <p style="margin-top:12px;color:var(--text-muted);font-size:0.85rem;">Chỉ liên hệ qua WhatsApp. Không gọi điện trực tiếp.</p>
+            </div>
+          </div>
+
+          <p class="form-status field-full" data-form-status aria-live="polite"></p>
+          <button class="btn-primary field-full" type="submit">Gửi đăng ký quan tâm</button>
+        </form>
+      </div>
+    </div>
+  </section>
 </main>
-<footer id="footer" role="contentinfo"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo"><div class="footer-logo-circle">NC</div><div class="footer-logo-name">Nhà Chung</div></div><p class="footer-brand-desc">Form quan tâm pilot Lạc Dương số 1.</p></div><div><div class="footer-col-title">Liên kết</div><nav class="footer-links"><a href="lacduong.html">Lạc Dương</a><a href="mua-he-y-nghia-2026.html">Mùa hè</a><a href="lacduong-faq.html">FAQ</a></nav></div><div><div class="footer-col-title">Pháp lý công khai</div><div class="footer-legal-info"><div class="footer-legal-item"><strong>Đơn vị vận hành quốc tế</strong><br>VIET CAN NEW CORP<br>(Hoa Kỳ)</div><div class="footer-legal-item"><strong>Đơn vị vận hành Việt Nam</strong><br>CÔNG TY TNHH BỒ CÂU TRẮNG</div><div class="footer-legal-item legal-disclaimer"><strong>Tuyên bố</strong><br>Nhà Chung không phải sàn bất động sản, không phải nơi chào mời góp vốn công khai. Không hứa kết quả tài chính, không hứa thu nhập. Mọi đóng góp tài chính chỉ thực hiện sau khi có hợp đồng pháp lý riêng và tư vấn pháp lý độc lập.</div><div class="footer-legal-item legal-disclaimer">Hạ tầng thanh toán: pay.iai.one.</div></div></div></div><div class="footer-bottom"><p>© 2026 Nhà Chung.</p><div class="footer-bottom-links"><a href="/vi/legal/privacy.html">Privacy</a><a href="/vi/legal/terms.html">Terms</a><a href="/vi/legal/community-principles.html">Principles</a><a href="/vi/legal/resident-agreement.html">Resident</a></div></div></div></footer>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<script src="assets/config.js" defer></script><script src="assets/js/main.js" defer></script><script src="assets/js/analytics.js" defer></script><script src="assets/js/auth.js" defer></script>
+
+<footer id="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-circle">NC</div>
+          <div class="footer-logo-name">Nhà Chung</div>
+        </div>
+        <p class="footer-brand-desc">Form quan tâm pilot Lạc Dương số 1.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Liên kết</div>
+        <nav class="footer-links">
+          <a href="lacduong.html">Lạc Dương</a>
+          <a href="mua-he-y-nghia-2026.html">Mùa hè 2026</a>
+          <a href="lacduong-faq.html">FAQ</a>
+        </nav>
+      </div>
+      <div>
+        <div class="footer-col-title">Pháp lý công khai</div>
+        <div class="footer-legal-info">
+          <div class="footer-legal-item"><strong>Đơn vị vận hành quốc tế</strong><br>VIET CAN NEW CORP<br>(Hoa Kỳ)</div>
+          <div class="footer-legal-item"><strong>Đơn vị vận hành Việt Nam</strong><br>CÔNG TY TNHH BỒ CÂU TRẮNG</div>
+          <div class="footer-legal-item legal-disclaimer"><strong>Tuyên bố</strong><br>Nhà Chung không phải sàn bất động sản, không phải nơi chào mời góp vốn công khai. Không hứa kết quả tài chính, không hứa thu nhập. Mọi đóng góp tài chính chỉ thực hiện sau khi có hợp đồng pháp lý riêng và tư vấn pháp lý độc lập.</div>
+          <div class="footer-legal-item legal-disclaimer">Hạ tầng thanh toán: pay.iai.one.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nhà Chung.</p>
+      <div class="footer-bottom-links">
+        <a href="/vi/legal/privacy.html">Privacy</a>
+        <a href="/vi/legal/terms.html">Terms</a>
+        <a href="/vi/legal/community-principles.html">Principles</a>
+        <a href="/vi/legal/resident-agreement.html">Resident</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/config.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/analytics.js" defer></script>
+<script src="assets/js/auth.js" defer></script>
 </body>
 </html>
