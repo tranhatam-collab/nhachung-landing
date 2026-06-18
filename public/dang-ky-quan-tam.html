@@ -106,13 +106,16 @@
               <option value="local">Người địa phương</option>
             </select>
           </label>
-          <label>Nhóm muốn tham gia
-            <select class="field" name="group">
-              <option value="student_summer">Sinh viên mùa hè</option>
-              <option value="family">Gia đình</option>
-              <option value="freelancer">Người làm tự do</option>
-              <option value="collaborator">Cộng tác viên</option>
-              <option value="mentor">Mentor / chuyên gia</option>
+          <label>Hình thức quan tâm (chọn tất cả phù hợp)
+            <select class="field" name="lane" required>
+              <option value="">Chọn bước bắt đầu</option>
+              <option value="learn_online">Tìm hiểu online</option>
+              <option value="prep_course">Khóa chuẩn bị (3 buổi)</option>
+              <option value="experience_3_6_9">Chuyến trải nghiệm 3–6–9 ngày</option>
+              <option value="residency">Residency tuần / tháng</option>
+              <option value="learn_work">Học và làm thử</option>
+              <option value="collaborate">Cộng tác</option>
+              <option value="long_term">Tìm hiểu dự án dài hạn</option>
             </select>
           </label>
           <label>Thời gian ở dự kiến
@@ -131,13 +134,59 @@
               <option value="no">Chưa phù hợp</option>
             </select>
           </label>
+          <label class="field-full">Kỹ năng có thể đóng góp
+            <textarea class="field" name="skills" rows="3" placeholder="Viết, dịch, AI, content, nhiếp ảnh, làm vườn, nấu ăn, quản lý, v.v."></textarea>
+          </label>
           <label class="field-full">Mục tiêu tham gia
-            <textarea class="field" name="goal" rows="4" placeholder="Bạn muốn học gì, làm gì, thử vai nào hoặc cần điều gì từ pilot?"></textarea>
+            <textarea class="field" name="goal" rows="4" placeholder="Bạn muốn học gì, làm gì, thử vai nào hoặc cần điều gì từ Nhà Chung Lạc Dương?"></textarea>
           </label>
           <label class="field-full">Bạn có cần trò chuyện trước khi tham gia không?
             <textarea class="field" name="call_need" rows="3"></textarea>
           </label>
-          <div class="field-full note-box">Bằng việc gửi form, bạn hiểu đây là đăng ký quan tâm pilot. Mọi bước ở lại, đóng phí, hợp đồng hoặc cộng tác sẽ được trao đổi riêng sau khi duyệt phù hợp.</div>
+          <fieldset class="field-full" style="border:1px solid var(--border);border-radius:8px;padding:16px;margin:12px 0;">
+            <legend style="padding:0 8px;font-weight:600;">Nhu cầu chỗ ở</legend>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_stay" value="none" /> Không cần chỗ ở</label>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_stay" value="private_room" /> Cần phòng riêng</label>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_stay" value="shared_room" /> Cần phòng chung</label>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_stay" value="not_sure" /> Chưa biết</label>
+          </fieldset>
+          <fieldset class="field-full" style="border:1px solid var(--border);border-radius:8px;padding:16px;margin:12px 0;">
+            <legend style="padding:0 8px;font-weight:600;">Nhu cầu học</legend>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_learn" value="ai" /> AI / Công nghệ</label>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_learn" value="writing" /> Viết / Nội dung</label>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_learn" value="translation" /> Dịch thuật</label>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_learn" value="other" /> Khác / Chưa biết</label>
+          </fieldset>
+          <fieldset class="field-full" style="border:1px solid var(--border);border-radius:8px;padding:16px;margin:12px 0;">
+            <legend style="padding:0 8px;font-weight:600;">Nhu cầu làm việc</legend>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_work" value="none" /> Không cần việc làm ngay</label>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_work" value="online" /> Làm việc online</label>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_work" value="offline" /> Làm việc tại chỗ</label>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_work" value="both" /> Cả hai</label>
+            <label style="display:flex;align-items:center;gap:8px;margin:8px 0;"><input type="checkbox" name="need_work" value="not_sure" /> Chưa biết</label>
+          </fieldset>
+          <label>Ngân sách trải nghiệm dự kiến (không bắt buộc)
+            <select class="field" name="budget">
+              <option value="">Chọn khoảng phù hợp</option>
+              <option value="under_3m">Dưới 3 triệu đồng</option>
+              <option value="3m_10m">3–10 triệu đồng</option>
+              <option value="10m_30m">10–30 triệu đồng</option>
+              <option value="30m_plus">Trên 30 triệu đồng</option>
+              <option value="not_sure">Chưa biết / Cần tư vấn</option>
+            </select>
+          </label>
+          <div class="field-full" style="margin:18px 0;padding:16px;background:var(--bg-elevated);border-radius:12px;border:1px solid var(--border);">
+            <label style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;cursor:pointer;">
+              <input type="checkbox" name="consent_data" required style="margin-top:4px;flex-shrink:0;" />
+              <span style="font-size:0.95rem;">Tôi đồng ý để Nhà Chung xử lý thông tin cá nhân trong form này nhằm liên hệ và hướng dẫn phù hợp.</span>
+            </label>
+            <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+              <input type="checkbox" name="consent_no_promise" required style="margin-top:4px;flex-shrink:0;" />
+              <span style="font-size:0.95rem;">Tôi xác nhận hiểu rằng đây là đăng ký quan tâm, không phải cam kết việc làm, thu nhập hoặc quyền sở hữu. Mọi quyền lợi tài chính hoặc tài sản chỉ phát sinh khi có hợp đồng riêng.</span>
+            </label>
+          </div>
+
+          <div class="field-full note-box">Bằng việc gửi form, bạn hiểu đây là đăng ký quan tâm. Đội vận hành sẽ đọc thủ công và phản hồi bước tiếp theo nếu phù hợp. Mọi bước ở lại, đóng phí, hợp đồng hoặc cộng tác sẽ được trao đổi riêng.</div>
 
           <div class="field-full" style="margin:18px 0;">
             <div id="google-btn-wrap">
@@ -149,8 +198,8 @@
             </div>
             <div id="contact-reveal" style="display:none;margin-top:16px;padding:20px;background:var(--card-bg);border-radius:12px;border:1px solid var(--border);">
               <p style="margin-bottom:12px;font-weight:600;">Thông tin liên hệ:</p>
-              <p style="font-size:1.5rem;font-weight:700;color:var(--accent);margin-bottom:16px;">+84 849 135 426</p>
-              <a href="https://wa.me/84849135426" target="_blank" rel="noopener" class="btn-primary" style="background:#25D366;border-color:#25D366;">💬 Liên hệ qua WhatsApp</a>
+              <p style="font-size:1.5rem;font-weight:700;color:var(--accent);margin-bottom:16px;">+84 84 9153 426</p>
+              <a href="https://wa.me/84849153426" target="_blank" rel="noopener" class="btn-primary" style="background:#25D366;border-color:#25D366;">💬 Liên hệ qua WhatsApp</a>
               <p style="margin-top:12px;color:var(--text-muted);font-size:0.85rem;">Chỉ liên hệ qua WhatsApp. Không gọi điện trực tiếp.</p>
             </div>
           </div>
@@ -158,6 +207,14 @@
           <p class="form-status field-full" data-form-status aria-live="polite"></p>
           <button class="btn-primary field-full" type="submit">Gửi đăng ký quan tâm</button>
         </form>
+
+        <div id="thank-you" class="field-full" style="display:none;text-align:center;padding:40px 20px;">
+          <div style="font-size:3rem;margin-bottom:16px;">✓</div>
+          <h3 style="margin-bottom:12px;">Đã nhận thông tin quan tâm</h3>
+          <p style="color:var(--text-muted);margin-bottom:24px;">Đội vận hành sẽ đọc thủ công và phản hồi trong 48 giờ.<br>Nếu cần gấp, liên hệ qua WhatsApp <strong>+84 84 9153 426</strong>.</p>
+          <a href="/" class="btn-outline">Quay lại trang chủ</a>
+          <a href="lacduong.html" class="btn-primary" style="margin-left:12px;">Tìm hiểu Lạc Dương</a>
+        </div>
       </div>
     </div>
   </section>
@@ -207,5 +264,62 @@
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/analytics.js" defer></script>
 <script src="assets/js/auth.js" defer></script>
+<script>
+(function() {
+  var form = document.querySelector('form.form-grid');
+  var thankYou = document.getElementById('thank-you');
+  var statusEl = document.querySelector('[data-form-status]');
+
+  if (!form || !thankYou) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Validate required checkboxes
+    var consentData = form.querySelector('input[name="consent_data"]');
+    var consentNoPromise = form.querySelector('input[name="consent_no_promise"]');
+    if (!consentData.checked || !consentNoPromise.checked) {
+      if (statusEl) statusEl.textContent = 'Vui lòng đánh dấu cả hai ô xác nhận ở trên.';
+      return;
+    }
+
+    // Collect data
+    var formData = new FormData(form);
+    var params = new URLSearchParams();
+    formData.forEach(function(value, key) {
+      if (params.has(key)) {
+        params.append(key, value);
+      } else {
+        params.set(key, value);
+      }
+    });
+
+    // Show thank you immediately
+    form.style.display = 'none';
+    thankYou.style.display = 'block';
+    thankYou.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Send to backend (non-blocking)
+    var endpoint = form.getAttribute('action');
+    if (endpoint) {
+      fetch(endpoint + '?' + params.toString(), { method: 'GET', mode: 'no-cors' })
+        .catch(function() { /* silent fail — thank you already shown */ });
+    }
+
+    // Also try newsletter endpoint
+    var newsletterEndpoint = form.getAttribute('data-newsletter-endpoint');
+    if (newsletterEndpoint) {
+      var email = form.querySelector('input[type="email"]')?.value;
+      if (email) {
+        fetch(newsletterEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, source: 'lacduong_pilot_interest_v2' })
+        }).catch(function() {});
+      }
+    }
+  });
+})();
+</script>
 </body>
 </html>
